@@ -1,0 +1,12 @@
+# Extensões de sistema
+.DS_Store
+Thumbs.db
+
+# Pastas de configuração do editor (VS Code)
+.vscode/
+
+# Arquivos de log
+*.log
+
+# Caso use alguma biblioteca de terceiros no futuro
+node_modules/

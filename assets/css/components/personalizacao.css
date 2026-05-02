@@ -1,0 +1,18 @@
+/* assets/css/components/personalizacao.css */
+
+.misterio-load {
+    animation: mysteryLoad 2.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes mysteryLoad {
+    0% {
+        filter: blur(15px);
+        opacity: 0;
+        transform: scale(1.05); /* Leve zoom inicial */
+    }
+    100% {
+        filter: blur(0);
+        opacity: 1;
+        transform: scale(1);
+    }
+}

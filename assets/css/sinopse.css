@@ -1,0 +1,154 @@
+/* ================================================================
+   SEÇÃO 3: SINOPSE E IMPACTO
+   ================================================================ */
+
+.impact-quote {
+    font-size: 1.8rem;
+    font-family: 'Lora', serif;
+    font-style: italic;
+    color: #e2e2e2; /* Contraste total para a frase principal */
+    margin: 40px auto;
+    max-width: 800px;
+    line-height: 1.4;
+    border-left: 5px solid #c5a059; /* Cor ouro sólida */
+    padding-left: 25px;
+    text-align: left;
+}
+
+.impact-quote strong {
+    color: #b33a3a; /* Vermelho sóbrio para destacar 'abstinência' */
+    display: block;
+    margin-top: 12px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.synopsis-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px;
+}
+
+.synopsis-reveal {
+    filter: blur(8px);
+    opacity: 0.2;
+    transition: filter 2.5s ease, opacity 2.5s ease;
+    will-change: filter, opacity;
+    color: #adadad; /* Cor de texto mais escura para quando revelar */
+    font-size: 1.1rem;
+}
+
+/* Opções de Compra */
+.purchase-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+}
+
+.option-card {
+    background: #ffffff; /* Fundo branco para contraste com o texto escuro */
+    padding: 40px 30px;
+    border: 1px solid #646464;
+    border-radius: 8px;
+    width: 320px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.option-card.highlight {
+    border: 2px solid #c5a059;
+    transform: scale(1.05);
+    background: #f5f5fa; /* Cor Papel Pólen para a versão física */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.price {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin: 15px 0;
+}
+
+.specs-list {
+    list-style: none;
+    padding: 0;
+    font-size: 0.95rem;
+    color: #444; /* Cinza escuro para melhor leitura */
+    text-align: left;
+    margin-top: 20px;
+}
+
+.specs-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.specs-list li::before {
+    content: "✓";
+    color: #c5a059;
+    margin-right: 12px;
+    font-weight: bold;
+}
+
+/* SEÇÃO 4: JORNADA (CAPÍTULOS) - Ajuste de Contraste */
+.chapter-card {
+    background: #ffffff; /* Fundo branco fixo */
+    padding: 45px 30px;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #444444;
+    border-top: 5px solid #d4af37; /* Usando sua variável de ouro */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.chapter-card h4 {
+    color: #1a1a1a !important; /* Força o preto no fundo branco */
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    position: relative;
+    z-index: 2;
+}
+
+.chapter-card p {
+    color: #292929 !important; /* Força cinza escuro para leitura */
+    font-size: 1rem;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+}
+
+.chapter-number {
+    color: rgba(212, 175, 55, 0.15); /* Dourado muito suave ao fundo */
+    font-size: 4.5rem;
+    position: absolute;
+    top: -5px;
+    right: 15px;
+    font-weight: 900;
+}
+
+/* Ajuste para telas de celulares e tablets pequenos */
+@media (max-width: 768px) {
+    .capitulos-grid {
+        /* Muda de 3 colunas para apenas 1 coluna ocupando todo o espaço */
+        grid-template-columns: 1fr; 
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .chapter-card {
+        /* Garante que o card ocupe a largura total disponível */
+        width: 100%; 
+        padding: 30px 20px;
+    }
+
+    .chapter-card h4 {
+        /* Ajusta o tamanho da fonte para não quebrar tantas linhas no celular */
+        font-size: 1.2rem; 
+    }
+}
