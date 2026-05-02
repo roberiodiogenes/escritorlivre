@@ -1,259 +1,395 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Básico -->
-    <title>Robério Diógenes | Escritor</title>
-    <meta name="description" content="Site oficial do escritor Robério Diógenes. Explore obras de mistério como 'O Jogo das Máscaras' e reflexões sobre a vida e fé.">
-    <meta name="keywords" content="Robério Diógenes, Escritor, O Jogo das Máscaras, Suspense, Literatura Brasileira, A Sétima Lei">
-    <meta name="author" content="Robério Diógenes">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Robério Diógenes — escritor de thrillers psicológicos, drama e horror. Conheça os livros, a história e o universo de um dos autores mais intensos da literatura brasileira independente." />
+  <meta name="author" content="Robério Diógenes" />
+  <meta property="og:title" content="Robério Diógenes | Escritor" />
+  <meta property="og:description" content="Escrevo sobre o que nos assombra no silêncio." />
+  <meta property="og:type" content="website" />
+  <title>Robério Diógenes | Escritor</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" />
 
-    <!-- Font Awesome para ícones sociais -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/index.css" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/variables.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css//sinopse.css">
-    <link rel="stylesheet" href="assets/css/components/personalizacao.css">
 </head>
 <body>
 
-    <header class="header-main">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">Escritor<span>Livre</span></a>
-            </div>
-            
-            <button class="menu-toggle" aria-label="Abrir Menu">
-                <span class="hamburger"></span>
-            </button>
+  <!-- Cursores personalizados -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-anel" id="cursorAnel"></div>
 
-            <nav class="nav-menu">
-                <ul>
-                    <!-- O menu será injetado aqui pelo JavaScript -->
-                </ul>
-            </nav>
+  <!-- Botão voltar ao topo -->
+  <a href="#" class="topo-btn" id="topoBtn" aria-label="Voltar ao topo">↑</a>
+
+  <!-- ===== NAVEGAÇÃO ===== -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">
+      Robério Diógenes
+      <span>Escritor Independente</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="livros.html">Biblioteca</a></li>
+      <li><a href="autor.html">O Autor</a></li>
+      <li><a href="blog.html">Diário</a></li>
+      <li><a href="contato.html">Contato</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+
+    <!-- Partículas -->
+    <div class="particulas" id="particulas"></div>
+
+    <!-- Ornamentos tipográficos -->
+    <span class="ornamento ornamento-topo" aria-hidden="true">❧</span>
+    <span class="ornamento ornamento-base" aria-hidden="true">❧</span>
+
+    <div class="hero-texto">
+      <p class="hero-pretitulo">Escritor Independente · Ceará, Brasil</p>
+      <h1 class="hero-titulo">
+        Robério<br />
+        <em>Diógenes</em>
+      </h1>
+      <div class="hero-linha"></div>
+      <p class="hero-frase">
+        "Escrevo sobre o que nos assombra no silêncio, sobre os abismos que escondemos atrás das telas e das convenções sociais."
+      </p>
+      <div class="hero-acoes">
+        <a href="livros.html" class="btn btn-primario">Conhecer os Livros</a>
+        <a href="autor.html" class="btn btn-secundario">Sobre o Autor</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-foto-wrap">
+        <img src="img/autor2.jpg" alt="Robério Diógenes — Escritor" class="hero-foto" loading="eager" />
+        <div class="hero-foto-glow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divisor -->
+  <div class="divisor" aria-hidden="true">
+    <div class="divisor-linha"></div>
+    <span class="divisor-simbolo">✦</span>
+    <div class="divisor-linha"></div>
+  </div>
+
+  <!-- ===== LIVROS ===== -->
+  <section id="livros">
+    <p class="secao-subtitulo reveal">Obras Publicadas</p>
+    <h2 class="secao-titulo reveal reveal-delay-1">A <em>Biblioteca</em></h2>
+    <p class="secao-intro reveal reveal-delay-2">Histórias que habitam o limiar entre o que se vê e o que se cala. Cada obra é um espelho diferente — escolha o que deseja encarar.</p>
+
+    <!-- Destaque: O Jogo das Máscaras -->
+    <div class="livro-destaque reveal">
+      <img src="img/jogo-das-mascaras.jpg" alt="O Jogo das Máscaras" class="livro-destaque-capa" />
+      <div>
+        <p class="livro-destaque-genero">Thriller Psicológico · Em Destaque</p>
+        <h3 class="livro-destaque-titulo">O Jogo das Máscaras</h3>
+        <p class="livro-destaque-subtitulo">Toda verdade usa disfarce</p>
+        <p class="livro-destaque-sinopse">
+          Juliette acreditava que a dor era eterna, até conhecer o Cavaleiro. Um homem enigmático que não ofereceu salvação, mas lhe deu algo ainda mais perigoso: um sentido para sofrer. Entre cartas secretas, jogos psicológicos e correntes invisíveis, ela se vê mergulhada em um mundo onde cada lágrima é ritual e cada máscara esconde uma verdade que pode destruí-la.
+        </p>
+        <div class="livro-destaque-acoes">
+          <a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener" class="btn btn-primario">Comprar no Kindle</a>
+          <a href="livros/jogo-das-mascaras.html" class="btn btn-secundario">Saiba Mais</a>
         </div>
-    </header>
+      </div>
+    </div>
 
-    <!-- Efeito de mistério aplicado aqui -->
- <main class="main-content misterio-load">
+    <!-- Grade de livros -->
+    <div class="livros-grid">
+
+      <article class="livro-card reveal reveal-delay-1">
+        <div class="livro-capa-wrap">
+          <img src="img/a-setima-lei.jpg" alt="A Sétima Lei" class="livro-capa" loading="lazy" />
+          <div class="livro-overlay">
+            <span class="livro-overlay-genero">Auto-Ajuda Cristã</span>
+            <a href="https://www.amazon.com.br/dp/B0GXGZJV1Y" target="_blank" rel="noopener" class="livro-overlay-btn">Ver no Amazon</a>
+          </div>
+        </div>
+        <div class="livro-info">
+          <h3 class="livro-titulo">A Sétima Lei</h3>
+          <p class="livro-genero">A guerra silenciosa no casamento</p>
+        </div>
+      </article>
+
+      <article class="livro-card reveal reveal-delay-2">
+        <div class="livro-capa-wrap">
+          <img src="img/genesis.jpg" alt="Gênesis" class="livro-capa" loading="lazy" />
+          <div class="livro-overlay">
+            <span class="livro-overlay-genero">Ficção · Romance</span>
+            <a href="livros/genesis.html" class="livro-overlay-btn">Saiba Mais</a>
+          </div>
+        </div>
+        <div class="livro-info">
+          <h3 class="livro-titulo">Gênesis</h3>
+          <p class="livro-genero">Um novo começo</p>
+        </div>
+      </article>
+
+      <article class="livro-card reveal reveal-delay-3">
+        <div class="livro-capa-wrap">
+          <img src="img/lumen.jpg" alt="Lúmen" class="livro-capa" loading="lazy" />
+          <div class="livro-overlay">
+            <span class="livro-overlay-genero">Ficção · Romance</span>
+            <a href="livros/lumen.html" class="livro-overlay-btn">Saiba Mais</a>
+          </div>
+        </div>
+        <div class="livro-info">
+          <h3 class="livro-titulo">Lúmen</h3>
+          <p class="livro-genero">A outra metade do céu</p>
+        </div>
+      </article>
+
+      <article class="livro-card reveal reveal-delay-4">
+        <div class="livro-capa-wrap">
+          <img src="img/rosas-e-espinhos.jpg" alt="Rosas & Espinhos" class="livro-capa" loading="lazy" />
+          <div class="livro-overlay">
+            <span class="livro-overlay-genero">Drama · Romance</span>
+            <a href="livros/rosas-e-espinhos.html" class="livro-overlay-btn">Saiba Mais</a>
+          </div>
+        </div>
+        <div class="livro-info">
+          <h3 class="livro-titulo">Rosas & Espinhos</h3>
+          <p class="livro-genero">O diário secreto de uma alma apaixonada</p>
+        </div>
+      </article>
+
+      <article class="livro-card reveal reveal-delay-1">
+        <div class="livro-capa-wrap">
+          <img src="img/cartas-do-passado.jpg" alt="Cartas do Passado" class="livro-capa" loading="lazy" />
+          <div class="livro-overlay">
+            <span class="livro-overlay-genero">Ficção · Romance</span>
+            <a href="livros/cartas-do-passado.html" class="livro-overlay-btn">Saiba Mais</a>
+          </div>
+        </div>
+        <div class="livro-info">
+          <h3 class="livro-titulo">Cartas do Passado</h3>
+          <p class="livro-genero">O verdadeiro amor nunca morre</p>
+        </div>
+      </article>
+
+      <article class="livro-card reveal reveal-delay-2">
+        <div class="livro-capa-wrap">
+          <img src="img/mares-secretas.jpg" alt="As Marés Secretas do Amor" class="livro-capa" loading="lazy" />
+          <div class="livro-overlay">
+            <span class="livro-overlay-genero">Romance · Drama</span>
+            <a href="livros/mares-secretas.html" class="livro-overlay-btn">Saiba Mais</a>
+          </div>
+        </div>
+        <div class="livro-info">
+          <h3 class="livro-titulo">As Marés Secretas do Amor</h3>
+          <p class="livro-genero">Nada é tão profundo quanto o que se esconde no coração</p>
+        </div>
+      </article>
+
+      <article class="livro-card reveal reveal-delay-3">
+        <div class="livro-capa-wrap">
+          <img src="img/coisas-que-o-amor-faz.jpg" alt="Das Coisas que o Amor Faz" class="livro-capa" loading="lazy" />
+          <div class="livro-overlay">
+            <span class="livro-overlay-genero">Poesias</span>
+            <a href="livros/coisas-que-o-amor-faz.html" class="livro-overlay-btn">Saiba Mais</a>
+          </div>
+        </div>
+        <div class="livro-info">
+          <h3 class="livro-titulo">Das Coisas que o Amor Faz</h3>
+          <p class="livro-genero">Pequena anatomia do sentir</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div style="text-align:center; margin-top: var(--espaco-2xl);">
+      <a href="livros.html" class="btn btn-secundario reveal">Ver Todos os Livros →</a>
+    </div>
+  </section>
+
+  <!-- Divisor -->
+  <div class="divisor" aria-hidden="true">
+    <div class="divisor-linha"></div>
+    <span class="divisor-simbolo">✦</span>
+    <div class="divisor-linha"></div>
+  </div>
+
+  <!-- ===== SOBRE O AUTOR ===== -->
+  <section id="autor">
+    <div class="autor-wrap">
+      <div class="autor-foto-wrap reveal">
+        <img src="img/autor.jpg" alt="Robério Diógenes — Fotografia" class="autor-foto" loading="lazy" />
+        <div class="autor-foto-borda"></div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <p class="autor-pretitulo">Conheça o Escritor</p>
+        <h2 class="autor-nome">Robério<br />Diógenes</h2>
+        <blockquote class="autor-frase">
+          "Escrevo sobre o que nos assombra no silêncio, sobre os abismos que escondemos atrás das telas e das convenções sociais."
+        </blockquote>
+        <div class="autor-bio">
+          <p>Nascido no Ceará, em 28 de fevereiro de 1974, Robério Diógenes é um observador arguto da alma humana e de seus labirintos mais discretos. Sua trajetória singular reúne a vivência das ruas e das estradas, onde atuou como entregador, à sensibilidade de quem também trilhou caminhos como fotógrafo e professor de informática.</p>
+          <p>Autor independente, dedica-se à construção de thrillers psicológicos e narrativas de drama e romances, explorando as fissuras da vida moderna, os dilemas das relações humanas e os perigos silenciosos que se escondem sob a superfície do cotidiano.</p>
+        </div>
+        <div class="autor-stats">
+          <div class="stat">
+            <span class="stat-numero">10+</span>
+            <span class="stat-label">Livros Escritos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-numero">50+</span>
+            <span class="stat-label">Anos de vida vivida</span>
+          </div>
+          <div class="stat">
+            <span class="stat-numero">∞</span>
+            <span class="stat-label">Histórias a contar</span>
+          </div>
+        </div>
+        <a href="autor.html" class="btn btn-secundario">Ler Biografia Completa →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divisor -->
+  <div class="divisor" aria-hidden="true">
+    <div class="divisor-linha"></div>
+    <span class="divisor-simbolo">✦</span>
+    <div class="divisor-linha"></div>
+  </div>
+
+  <!-- ===== BLOG ===== -->
+  <section id="blog">
+    <p class="secao-subtitulo reveal">Reflexões & Narrativas</p>
+    <h2 class="secao-titulo reveal reveal-delay-1">O Diário de um <em>Escritor</em></h2>
+    <p class="secao-intro reveal reveal-delay-2">Pensamentos que não cabem nos livros. Bastidores, reflexões e as histórias que a vida escreve antes da caneta.</p>
+
+    <div class="blog-grid">
+      <a href="blog/post-01.html" class="post-card post-card-grande reveal">
+        <div style="overflow:hidden;">
+          <img src="img/post-01.jpg" alt="Post do blog" class="post-card-img" loading="lazy" />
+        </div>
+        <div class="post-card-corpo">
+          <p class="post-card-categoria">Bastidores</p>
+          <h3 class="post-card-titulo">Por trás da serpente e da maçã: os bastidores de A Sétima Lei</h3>
+          <p class="post-card-resumo">Cada livro começa muito antes da primeira palavra. Aqui conto como nasceu a capa, a ideia, e o silêncio que precedeu tudo isso.</p>
+          <p class="post-card-data">Abril de 2025</p>
+        </div>
+      </a>
+
+      <a href="blog.html" class="post-card reveal reveal-delay-2">
+        <div style="overflow:hidden;">
+          <img src="img/bastidores-setima-lei.jpg" alt="A Sétima Lei - bastidores" class="post-card-img" loading="lazy" />
+        </div>
+        <div class="post-card-corpo">
+          <p class="post-card-categoria">Reflexão</p>
+          <h3 class="post-card-titulo">O peso do silêncio entre duas pessoas que se amaram</h3>
+          <p class="post-card-data">Março de 2025</p>
+        </div>
+      </a>
+
+      <a href="blog.html" class="post-card reveal reveal-delay-3">
+        <div class="post-card-corpo" style="padding: var(--espaco-xl);">
+          <p class="post-card-categoria">Do Escritor</p>
+          <h3 class="post-card-titulo">Por que escrevo sobre dor — e por que não me arrependo</h3>
+          <p class="post-card-resumo">Há quem prefira histórias que consolam. Eu prefiro as que arrancam a venda dos olhos.</p>
+          <p class="post-card-data">Fevereiro de 2025</p>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align:center; margin-top: var(--espaco-xl);">
+      <a href="blog.html" class="btn btn-secundario reveal">Ler Todos os Posts →</a>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section id="newsletter">
+    <div class="newsletter-wrap reveal">
+      <div class="newsletter-icone" aria-hidden="true">✉</div>
+      <h2 class="newsletter-titulo">Receba as <em>novidades</em></h2>
+      <p class="newsletter-desc">Seja o primeiro a saber sobre novos lançamentos, capítulos exclusivos, reflexões do escritor e promoções especiais. Sem spam — só palavras que valem a pena.</p>
+      <form class="newsletter-form" onsubmit="inscricao(event)">
+        <input
+          type="email"
+          class="newsletter-input"
+          placeholder="Seu melhor e-mail..."
+          aria-label="Endereço de e-mail"
+          required
+        />
+        <button type="submit" class="btn btn-primario">Inscrever-se</button>
+      </form>
+      <p class="newsletter-aviso">Sem spam. Cancele quando quiser.</p>
+    </div>
+  </section>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer>
+    <div class="footer-wrap">
+      <div>
+  <a href="index.html" class="footer-logo">Robério Diógenes</a>
+  <p class="footer-desc">"Escrevo sobre o que nos assombra no silêncio, sobre os abismos que escondemos atrás das telas e das convenções sociais."</p>
+  <div class="footer-social">
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/diogenesroberio" target="_blank" rel="noopener" aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
     
-<!-- 2. SEÇÃO HERO (LANÇAMENTO) -->
-    <section id="hero" class="hero-section">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <span class="badge">Lançamento 1º de Maio</span>
-                <h1>A Sétima Lei</h1>
-                <h2>A Guerra Silenciosa no Casamento</h2>
-                <p class="tagline">Aliança, Traição e Recomeço</p>
-                
-                <!-- Contador Regressivo -->
-                <div id="countdown" class="countdown-container">
-                    <div class="time-block"><span id="days">00</span><small>Dias</small></div>
-                    <div class="time-block"><span id="hours">00</span><small>Horas</small></div>
-                    <div class="time-block"><span id="minutes">00</span><small>Min</small></div>
-                </div>
-
-                <a href="https://www.amazon.com.br/dp/B0GXGZJV1Y" class="btn-primary" target="_blank">Garanta seu Exemplar</a>
-            </div>
-            
-            <div class="hero-visual">
-                <!-- Animação da Capa -->
-                <div class="book-mockup animate-in">
-                    <img src="assets/img/a-setima-lei.jpg" alt="Capa do Livro A Sétima Lei">
-                </div>
-            </div>
-        </div>
-    </section>
-
-   <!-- 3. SEÇÃO: O LIVRO (SINOPSE) -->
-<section id="livro" class="section-padding">
-    <div class="container">
-        <div class="book-intro text-center">
-            <h3 class="gold-title">A Sétima Lei</h3>
-            
-            <!-- Frase de Impacto (Abstinência) -->
-            <blockquote class="impact-quote">
-                "Por que seu corpo ainda sente falta de quem te humilhou, te traiu, te abandonou? <br>
-                <strong>Porque isso não é amor, é abstinência.</strong>"
-            </blockquote>
-
-            <!-- Sinopse com efeito de revelação -->
-            <div class="synopsis-container">
-                <p class="synopsis-reveal">
-                    Você já acordou no meio da noite com o peito apertado, sentindo falta de quem te traiu? 
-                    Já se perguntou por que dói tanto e por que você ainda quer voltar, mesmo sabendo que vai doer de novo?<br><br>
-                    
-                    <em>A Guerra Invisível no Casamento</em> não é um manual de autoajuda romântica. É um soco no estômago de quem está cansado de respostas prontas. 
-                    Com base na Bíblia, na neurociência do apego e em anos de dor vivida, o autor enfrenta perguntas que poucos têm coragem de fazer: 
-                    quando o arrependimento é real? Por que “Deus odeia o divórcio” não é a frase completa? Como reconstruir a própria identidade quando o casamento vira cinzas?<br><br>
-                    
-                    <strong>Robério Diógenes</strong> escreve de onde poucos têm coragem: do fundo do poço. Ele viveu a traição, a separação, a tentativa desesperada de reconciliar, o sexo vazio, a perda da dignidade. E sobreviveu. 
-                    Este livro é para quem quer a verdade, mesmo que primeiro ela destrua. Se você quer flores e promessas falsas, feche esta página. 
-                    Se quer a coragem de encarar a realidade, abra este livro.
-                </p>
-            </div>
-
-            <!-- Opções de Compra / Ficha Técnica -->
-            <div class="purchase-options">
-                <div class="option-card">
-                    <h4>Versão Digital</h4>
-                    <p>Kindle / Kindle Unlimited</p>
-                    <span class="price">R$ 9,90</span>
-                    <ul class="specs-list">
-                        <li>234 Páginas</li>
-                        <li>Entrega imediata</li>
-                    </ul>
-                </div>
-                
-                <div class="option-card highlight">
-                    <h4>Versão Física</h4>
-                    <p>Impressão sob Demanda</p>
-                    <span class="price">R$ 50,00</span>
-                    <ul class="specs-list">
-                        <li>Papel Pólen Soft 80g</li>
-                        <li>6 Ilustrações Exclusivas</li>
-                        <li>200 Páginas | 16x23 cm</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/rob%C3%A9rio-di%C3%B3genes-47977b210/" target="_blank" rel="noopener" aria-label="LinkedIn">
+      <i class="fa-brands fa-linkedin-in"></i>
+    </a>
+    
+    <!-- Amazon -->
+    <a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank" rel="noopener" aria-label="Amazon">
+      <i class="fa-brands fa-amazon"></i>
+    </a>
+  </div>
+</div>
+      <div>
+        <p class="footer-col-titulo">Navegação</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="livros.html">Biblioteca</a></li>
+          <li><a href="autor.html">O Autor</a></li>
+          <li><a href="blog.html">Diário</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-titulo">Livros em Destaque</p>
+        <ul class="footer-links">
+          <li><a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener">O Jogo das Máscaras</a></li>
+          <li><a href="https://www.amazon.com.br/dp/B0GXGZJV1Y" target="_blank" rel="noopener">A Sétima Lei</a></li>
+          <li><a href="livros.html">Ver todos →</a></li>
+        </ul>
+        <br />
+        <p class="footer-col-titulo">Contato</p>
+        <ul class="footer-links">
+          <li><a href="mailto:diogenes.escritor@gmail.com">diogenes.escritor@gmail.com</a></li>
+        </ul>
+      </div>
     </div>
-</section>
-
-<!-- 4. SEÇÃO: CAPÍTULOS (A JORNADA) -->
-<section id="capitulos" class="section-padding bg-light">
-    <div class="container">
-        <h3 class="text-center gold-title">A Jornada do Leitor</h3>
-        <p class="text-center sub-header">O caminho da dor à restauração, sem atalhos.</p>
-        
-        <div class="capitulos-grid">
-            <!-- Card I -->
-            <div class="chapter-card" data-aos="fade-up">
-                <div class="chapter-number">01</div>
-                <h4>Serpentes no Paraíso</h4>
-                <p>A origem da solidão e como o isolamento se instala onde deveria haver comunhão.</p>
-            </div>
-
-            <!-- Card II -->
-            <div class="chapter-card" data-aos="fade-up" data-aos-delay="100">
-                <div class="chapter-number">02</div>
-                <h4>As Fissuras</h4>
-                <p>Identificando os pequenos tijolos de indiferença que constroem muros intransponíveis.</p>
-            </div>
-
-            <!-- Card III -->
-            <div class="chapter-card" data-aos="fade-up" data-aos-delay="200">
-                <div class="chapter-number">03</div>
-                <h4>A Aliança</h4>
-                <p>O resgate do compromisso inegociável e a diferença entre contrato e pacto de sangue.</p>
-            </div>
-
-            <!-- Card IV (Opcional, baseado no seu prefácio) -->
-            <div class="chapter-card" data-aos="fade-up" data-aos-delay="300">
-                <div class="chapter-number">04</div>
-                <h4>O Recomeço</h4>
-                <p>Como recolher os estilhaços e reconstruir a identidade sobre o que é eterno.</p>
-            </div>
-        </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Robério Diógenes. Todos os direitos reservados.</p>
+      <p class="footer-copy">Feito com tinta e silêncio · Cascavel, Ceará</p>
     </div>
-</section>
+  </footer>
 
-    <!-- 5. SEÇÃO: OUTRAS OBRAS -->
-    <section id="obras" class="section-padding">
-        <div class="container">
-            <h3 class="text-center">Outras Obras</h3>
-            <div class="obras-grid">
-                <!-- Grid de livros anteriores -->
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. SEÇÃO: O AUTOR -->
-    <section id="autor" class="section-padding bg-dark">
-        <div class="container author-flex">
-            <div class="author-img"></div>
-            <div class="author-info">
-                <h3>O Autor</h3>
-                <p>[Breve biografia...]</p>
-                <a href="pagina-autor.html" class="link-more">Conheça a trajetória completa</a>
-            </div>
-        </div>
-    </section>
-
-</main>
-
-    <footer class="footer-main">
-        <div class="container">
-            <div class="footer-grid">
-                
-                <!-- Coluna 1: Sobre -->
-                <div class="footer-col">
-                    <h3>Robério Diógenes</h3>
-                    <p>Explorando as nuances do mistério e da alma humana através das palavras.</p>
-                    <div class="social-icons">
-                    <a href="https://www.instagram.com/diogenesroberio" target="_blank" class="btn-social" title="Instagram">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/rob%C3%A9rio-di%C3%B3genes-47977b210/" target="_blank" class="btn-social" title="LinkedIn">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank" class="btn-social btn-amazon" title="Página do Autor na Amazon">
-                        <i class="fa-brands fa-amazon"></i>
-                    </a>
-                </div>
-
-                </div>
-
-                <!-- Coluna 2: Navegação -->
-                <div class="footer-col">
-                    <h4>Mapa do Site</h4>
-                    <ul class="footer-links">
-                        <li><a href="autor.html">Sobre o Autor</a></li>
-                        <li><a href="livros.html">Obras</a></li>
-                        <li><a href="blog.html">Blog Literário</a></li>
-                        <li><a href="newsletter.html">Newsletter</a></li>
-                    </ul>
-                </div>
-
-                <!-- Coluna 3: Obras em Destaque na Amazon -->
-                <div class="footer-col">
-                    <h4>Compre na Amazon</h4>
-                    <ul class="footer-links">
-                        <li><a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank">Página do Autor</a></li>
-                        <li><a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank">O Jogo das Máscaras</a></li>
-                        <li><a href="https://www.amazon.com.br/dp/B0GXGZJV1Y" target="_blank">A Sétima Lei</a></li>
-                    </ul>
-                </div>
-
-                <!-- Coluna 4: Contato -->
-                <div class="footer-col">
-                    <h4>Contato</h4>
-                    <p>Para palestras e parcerias:</p>
-                    <a href="mailto:diogenes.escritor@gmail.com" class="email-link">diogenes.escritor@gmail.com</a>
-                </div>
-
-            </div>
-            
-            <div class="footer-copy">
-                <p>&copy; 2026 Escritor Livre - Robério Diógenes. Todos os direitos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="assets/js/menu-config.js"></script> <!-- O novo arquivo primeiro -->
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/script.js"></script>
+  <!-- ===== JAVASCRIPT ===== -->
+  <script src="js/script-index.js"></script>
 </body>
 </html>

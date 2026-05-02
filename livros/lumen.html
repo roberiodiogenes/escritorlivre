@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lúmen — A Outra Metade do Céu. Thriller psicológico de Robério Diógenes. Onde a escuridão nasce? Hannah vive entre dois mundos — mas apenas um deles é real." />
+  <meta property="og:title" content="Lúmen — A Outra Metade do Céu | Robério Diógenes" />
+  <meta property="og:description" content="Onde a escuridão nasce? Um thriller psicológico sobre desejo, culpa, labirintos e os segredos que a mente enterra." />
+  <title>Lúmen — A Outra Metade do Céu | Robério Diógenes</title>
+  <link rel="icon" type="image/png" href="../img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" />
+
+ <link rel="stylesheet" href="../css/lumen.css" />
+
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-anel" id="cursorAnel"></div>
+  <a href="#" class="topo-btn" id="topoBtn">↑</a>
+
+  <!-- LABIRINTO DE FUNDO -->
+  <div class="labirinto-bg" aria-hidden="true">
+    <svg viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <!-- Labirinto concêntrico -->
+      <circle cx="400" cy="400" r="380" stroke="#4ecdc4" stroke-width=".5"/>
+      <circle cx="400" cy="400" r="320" stroke="#4ecdc4" stroke-width=".5"/>
+      <circle cx="400" cy="400" r="260" stroke="#4ecdc4" stroke-width=".5"/>
+      <circle cx="400" cy="400" r="200" stroke="#4ecdc4" stroke-width=".5"/>
+      <circle cx="400" cy="400" r="140" stroke="#4ecdc4" stroke-width=".5"/>
+      <circle cx="400" cy="400" r="80"  stroke="#4ecdc4" stroke-width=".5"/>
+      <!-- Corredores do labirinto -->
+      <line x1="400" y1="20"  x2="400" y2="140" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="400" y1="200" x2="400" y2="260" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="400" y1="320" x2="400" y2="380" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="20"  y1="400" x2="80"  y2="400" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="140" y1="400" x2="200" y2="400" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="260" y1="400" x2="320" y2="400" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="460" y1="400" x2="520" y2="400" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="580" y1="400" x2="640" y2="400" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="700" y1="400" x2="780" y2="400" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="400" y1="460" x2="400" y2="520" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="400" y1="580" x2="400" y2="640" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="400" y1="700" x2="400" y2="780" stroke="#4ecdc4" stroke-width=".5"/>
+      <!-- Diagonais -->
+      <line x1="130" y1="130" x2="173" y2="173" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="670" y1="130" x2="627" y2="173" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="130" y1="670" x2="173" y2="627" stroke="#4ecdc4" stroke-width=".5"/>
+      <line x1="670" y1="670" x2="627" y2="627" stroke="#4ecdc4" stroke-width=".5"/>
+      <!-- Ponto central - porta do labirinto -->
+      <circle cx="400" cy="400" r="8" fill="#4ecdc4" opacity=".6"/>
+      <circle cx="400" cy="400" r="4" fill="#4ecdc4"/>
+    </svg>
+  </div>
+
+  <div class="nevoa" aria-hidden="true"></div>
+
+  <!-- ===== NAVEGAÇÃO ===== -->
+  <nav id="nav">
+    <a href="../index.html" class="nav-logo">
+      Robério Diógenes
+      <span>Escritor Independente</span>
+    </a>
+    <a href="../livros.html" class="nav-voltar">← Biblioteca</a>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="inicio">
+    <div class="hero-grad"></div>
+    <div class="hero-labirinto-linhas" aria-hidden="true"></div>
+
+    <!-- Capa 3D -->
+    <div class="hero-capa-area">
+      <div class="livro-brilho" aria-hidden="true"></div>
+      <div class="livro-3d" id="livro3d">
+        <div class="livro-lombada"><span>Lúmen · Robério Diógenes</span></div>
+        <div class="livro-frente">
+          <img src="../img/lumen.jpg" alt="Capa do livro Lúmen — A Outra Metade do Céu" />
+        </div>
+        <div class="livro-reflexo" aria-hidden="true">
+          <img src="../img/lumen.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Texto -->
+    <div class="hero-texto">
+      <p class="hero-pretitulo">Thriller Psicológico · Robério Diógenes</p>
+      <h1 class="hero-titulo">Lúmen</h1>
+      <span class="hero-titulo-sub">A outra metade do céu</span>
+
+      <div class="hero-linha"></div>
+
+      <p class="hero-sinopse-curta">
+        Onde a escuridão nasce?<br /><br />
+        Hannah convive com <strong>sonhos que parecem avisos</strong>, um labirinto de portas fechadas, quadros sem rosto e um silêncio que sussurra verdades que ela não quer ouvir.<br /><br />
+        <em>Mas nem tudo que parece real… é real.</em>
+      </p>
+
+      <div class="hero-badges">
+        <span class="badge badge-filled">Thriller Psicológico</span>
+        <span class="badge">+18</span>
+        <span class="badge">1ª Edição</span>
+      </div>
+
+      <div class="hero-acoes">
+        <a href="https://www.amazon.com.br" target="_blank" rel="noopener" class="btn btn-ciano">
+          <span>📱</span> Comprar no Kindle
+        </a>
+        <a href="#amostra" class="btn btn-borda">
+          <span>📖</span> Ler Capítulo Grátis
+        </a>
+      </div>
+
+      <p class="hero-formatos">
+        Disponível em: <span>Digital (Kindle)</span> &nbsp;·&nbsp; <span>Físico sob encomenda</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="div-linha"></div>
+
+  <!-- ============================================================
+       A PERGUNTA
+  ============================================================ -->
+  <section class="a-pergunta">
+    <span class="pergunta-deco" aria-hidden="true">?</span>
+    <p class="pergunta-texto r">
+      E se o mundo que você habita —<br />
+      seus amores, suas escolhas, seus segredos —<br />
+      fosse apenas o que sua mente <em>inventou</em><br />
+      para sobreviver ao que ela não suporta lembrar?
+    </p>
+    <p class="pergunta-sub r d2">Lúmen. O livro que vira o espelho na sua direção.</p>
+  </section>
+
+  <!-- ============================================================
+       SINOPSE
+  ============================================================ -->
+  <section class="sinopse-section">
+    <div class="sinopse-wrap">
+      <div>
+        <p class="sinopse-label r">A História</p>
+        <h2 class="sinopse-titulo r d1">O labirinto <em>tem portas.</em><br />Só nem todas levam para fora.</h2>
+
+        <div class="sinopse-texto r d2">
+          <p>Hannah vive presa entre dois mundos: um relacionamento que esfriou, uma amizade que pulsa com segredos, um desejo que ela tenta enterrar. À noite, os sonhos a levam a um <strong>labirinto de mármore negro</strong> — o chão molhado reflete a luz como um espelho, as paredes exibem quadros sem rosto, e cada porta esconde uma memória que ela não consegue acessar.</p>
+
+          <p>Acordada, Hannah orbita ao redor de <strong>três pessoas</strong>: Nattan, seu marido; Ebbe, sua melhor amiga; e Renner — um homem que ela não deveria desejar, mas não consegue ignorar. Entre eles, uma intimidade que vai além das regras comuns. Uma cumplicidade que parece generosa demais para ser inocente.</p>
+
+          <p>E há Izzi — a pintora, a amiga silenciosa. <em>Até que Izzi é encontrada morta.</em></p>
+
+          <p>A partir daí, as paredes do labirinto começam a rachar. Os quadros ganham rostos. E Hannah percebe que as portas que ela tanto teme abrir podem não ser sonhos — podem ser a única coisa que ainda a separa da verdade.</p>
+        </div>
+      </div>
+
+      <!-- Ficha técnica lateral -->
+      <div class="sinopse-ficha r d3">
+        <p class="ficha-titulo">Ficha do Livro</p>
+        <div class="ficha-item"><span class="ficha-key">Autor</span><span class="ficha-val">Robério Diógenes</span></div>
+        <div class="ficha-item"><span class="ficha-key">Gênero</span><span class="ficha-val ciano">Thriller Psicológico</span></div>
+        <div class="ficha-item"><span class="ficha-key">Subtítulo</span><span class="ficha-val">A outra metade do céu</span></div>
+        <div class="ficha-item"><span class="ficha-key">Edição</span><span class="ficha-val">1ª Edição</span></div>
+        <div class="ficha-item"><span class="ficha-key">Classificação</span><span class="ficha-val">+18</span></div>
+        <div class="ficha-item"><span class="ficha-key">Digital</span><span class="ficha-val ciano">Amazon Kindle</span></div>
+        <div class="ficha-item"><span class="ficha-key">Físico</span><span class="ficha-val">Sob Encomenda</span></div>
+        <div class="ficha-acoes">
+          <a href="https://www.amazon.com.br" target="_blank" rel="noopener" class="btn btn-ciano" style="justify-content:center; width:100%;">Comprar no Kindle</a>
+          <a href="../contato.html" class="btn btn-borda" style="justify-content:center; width:100%;">Solicitar Físico</a>
+          <a href="#amostra" class="btn btn-borda btn-sm" style="justify-content:center; width:100%;">📖 Ler Grátis — Cap. 1</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="div-linha" style="margin: 0 clamp(1.5rem,5vw,5rem);"></div>
+
+  <!-- ============================================================
+       PERSONAGENS / PALÍNDROMOS
+  ============================================================ -->
+  <section class="personagens-section">
+    <div class="personagens-header">
+      <p class="sinopse-label r">O Elenco</p>
+      <h2 class="personagens-titulo r d1">Os <em>Personagens</em> do Labirinto</h2>
+      <p class="personagens-intro r d2">Passe o mouse sobre os nomes. Há algo que o autor escondeu — uma pista que muda tudo o que você pensa que sabe sobre esta história.</p>
+    </div>
+
+    <div class="personagens-grade">
+
+      <div class="personagem-card r d1">
+        <span class="personagem-icone">🔦</span>
+        <div class="personagem-nome-wrap" title="Passe o mouse para revelar">
+          <span class="personagem-nome">Hannah</span>
+          <span class="personagem-palindromo">hannAH ←→</span>
+        </div>
+        <span class="personagem-hint">Protagonista · Passe o mouse ↑</span>
+        <p class="personagem-desc">Uma mulher entre dois mundos. Casada, apaixonada e presa — sem saber ao certo por quê. Seus sonhos são mais nítidos do que sua vida desperta.</p>
+      </div>
+
+      <div class="personagem-card r d2">
+        <span class="personagem-icone">🌊</span>
+        <div class="personagem-nome-wrap" title="Passe o mouse para revelar">
+          <span class="personagem-nome">Nattan</span>
+          <span class="personagem-palindromo">nattAN ←→</span>
+        </div>
+        <span class="personagem-hint">O Marido · Passe o mouse ↑</span>
+        <p class="personagem-desc">Há mais de uma pessoa dentro de Nattan. Uma delas ama Hannah. A outra... é uma questão que o livro responde da pior forma possível.</p>
+      </div>
+
+      <div class="personagem-card r d3">
+        <span class="personagem-icone">🦋</span>
+        <div class="personagem-nome-wrap" title="Passe o mouse para revelar">
+          <span class="personagem-nome">Ebbe</span>
+          <span class="personagem-palindromo">ebbE ←→</span>
+        </div>
+        <span class="personagem-hint">A Melhor Amiga · Passe o mouse ↑</span>
+        <p class="personagem-desc">Generosa demais. Compreensiva demais. Há algo em Ebbe que desafia a lógica — e que só fará sentido muito mais tarde.</p>
+      </div>
+
+      <div class="personagem-card r d4">
+        <span class="personagem-icone">🔥</span>
+        <div class="personagem-nome-wrap" title="Passe o mouse para revelar">
+          <span class="personagem-nome">Renner</span>
+          <span class="personagem-palindromo">rennER ←→</span>
+        </div>
+        <span class="personagem-hint">O Desejo · Passe o mouse ↑</span>
+        <p class="personagem-desc">O namorado de Ebbe. O homem mais perigoso de todos — não pela violência, mas pela atração que cria sem esforço. A chama que Hannah não deveria tocar.</p>
+      </div>
+
+      <div class="personagem-card r d5">
+        <span class="personagem-icone">🖼️</span>
+        <div class="personagem-nome-wrap" title="Passe o mouse para revelar">
+          <span class="personagem-nome">Izzi</span>
+          <span class="personagem-palindromo">izZI ←→</span>
+        </div>
+        <span class="personagem-hint">A Pintora · Passe o mouse ↑</span>
+        <p class="personagem-desc">Artista. Silenciosa. Pinta quadros que parecem retirados dos sonhos de Hannah. Sua morte é o evento que faz o labirinto começar a desmoronar.</p>
+      </div>
+
+    </div>
+
+    <div class="palindromo-nota r d2">
+      <span class="palindromo-nota-icone">⟺</span>
+      <p class="palindromo-nota-texto">
+        <strong>Palíndromos:</strong> todos os nomes dos personagens de Lúmen podem ser lidos de trás para frente — Hannah, Nattan, Ebbe, Renner, Izzi. Uma pista deixada pelo autor: <strong>em mundos que se fecham sobre si mesmos, até os nomes são espelhos.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3 ATOS — ESTRUTURA NARRATIVA
+  ============================================================ -->
+  <section class="atos-section">
+    <div class="atos-wrap">
+      <div class="atos-header">
+        <p class="sinopse-label r">A Estrutura</p>
+        <h2 class="atos-titulo r d1">Três <em>portas.</em> Cada uma revela um mundo diferente.</h2>
+        <p class="atos-sub r d2">Lúmen é construído em três atos. Cada um muda completamente o que você acreditou sobre o anterior.</p>
+      </div>
+
+      <div class="atos-grade">
+        <div class="ato-card r d2">
+          <span class="ato-numero" aria-hidden="true">I</span>
+          <p class="ato-label">Primeiro Ato</p>
+          <h3 class="ato-titulo">O Mundo de Hannah</h3>
+          <p class="ato-desc">Você vai entrar nesta história convicto de que entende o que está acontecendo. Um relacionamento, uma amizade incomum, um desejo proibido. Tudo parece ter uma explicação. E é exatamente isso que o autor quer que você pense.</p>
+        </div>
+        <div class="ato-card r d3">
+          <span class="ato-numero" aria-hidden="true">II</span>
+          <p class="ato-label">Segundo Ato</p>
+          <h3 class="ato-titulo">A Primeira Fratura</h3>
+          <p class="ato-desc">Algo não fecha. Os sonhos ficam mais nítidos do que a realidade. Uma porta no labirinto se abre — e o que está do outro lado não era o que você esperava. A primeira grande reviravolta muda tudo o que você leu até aqui.</p>
+        </div>
+        <div class="ato-card ato-3 r d4">
+          <span class="ato-numero" aria-hidden="true">III</span>
+          <p class="ato-label">Terceiro Ato</p>
+          <h3 class="ato-titulo">O Espelho Final</h3>
+          <p class="ato-desc">A segunda reviravolta não apenas surpreende, ela destrói e reconstrói tudo. Você vai reler mentalmente cada cena. Cada detalhe. Cada nome. E vai entender por que o autor os escolheu assim. O labirinto, afinal, sempre teve uma saída.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       O QUADRO DE IZZI — Canvas art + texto
+  ============================================================ -->
+  <section class="quadro-section">
+    <div class="quadro-fundo" aria-hidden="true"></div>
+    <div class="quadro-espelho" aria-hidden="true"></div>
+
+    <div class="quadro-conteudo">
+      <div class="re">
+        <div class="quadro-canvas-wrap">
+          <canvas id="quadroCanvas" width="400" height="400" aria-label="O labirinto de mármore — arte generativa inspirada nos quadros de Izzi"></canvas>
+          <p class="quadro-canvas-legenda">
+            <strong>O Labirinto de Mármore</strong> — arte gerada a partir do universo de Lúmen.<br />
+            Inspirada nos quadros de Izzi: portas que são memórias.
+          </p>
+        </div>
+      </div>
+
+      <div class="rd">
+        <p class="quadro-texto-label">O Mundo Interior</p>
+        <h2 class="quadro-texto-titulo">O labirinto de <em>mármore negro</em></h2>
+        <div class="quadro-texto-corpo">
+          <p>Todas as noites, Hannah volta ao mesmo lugar: um labirinto de paredes de mármore negro, chão que reflete a luz como água parada, silêncio que pulsa. Quadros nas paredes — pinturas de Izzi — sem rostos, sem respostas.</p>
+          <p>Cada porta é uma memória. Mas as memórias às vezes mentem. E o labirinto sabe disso melhor do que ninguém.</p>
+          <p>Em <em>Lúmen</em>, o sonho não é fuga — é o único lugar onde a verdade ainda existe.</p>
+        </div>
+        <a href="#amostra" class="btn btn-borda">Entrar no labirinto — Capítulo 1 grátis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TRECHO
+  ============================================================ -->
+  <section class="trecho-section">
+    <span class="trecho-deco r" aria-hidden="true">"</span>
+    <div class="trecho-linha r"></div>
+    <p class="trecho-texto r d1">
+      O chão era mármore. Negro e frio como pele depois da morte.<br />
+      E o silêncio — o silêncio ali tinha peso.<br />
+      Tinha o peso de tudo que <em>ela ainda não conseguia lembrar.</em>
+    </p>
+    <div class="trecho-linha r d2"></div>
+    <p class="trecho-origem r d3">Lúmen — A Outra Metade do Céu · Robério Diógenes</p>
+  </section>
+
+  <!-- ============================================================
+       DOWNLOAD — AMOSTRA GRÁTIS
+  ============================================================ -->
+  <section class="amostra-section" id="amostra">
+    <div class="amostra-wrap">
+      <div>
+        <p class="amostra-texto-label r">Gratuito · Sem compromisso</p>
+        <h2 class="amostra-titulo r d1">Entre no labirinto.<br /><em>O primeiro capítulo é seu.</em></h2>
+        <p class="amostra-desc r d2">Antes de decidir, leia. O primeiro capítulo de Lúmen está disponível gratuitamente — e ele já é suficiente para você entender por que este livro não sai da cabeça.</p>
+        <ul class="amostra-lista r d3">
+          <li>Capítulo completo — sem cortes</li>
+          <li>Formato PDF — leia em qualquer dispositivo</li>
+          <li>Sem cadastro obrigatório</li>
+          <li>Entregue imediatamente</li>
+        </ul>
+      </div>
+
+      <div class="amostra-card rd">
+        <span class="amostra-card-icone">🚪</span>
+        <h3 class="amostra-card-titulo">Capítulo 1 — O Labirinto</h3>
+        <p class="amostra-card-sub">Lúmen · Robério Diógenes</p>
+        <form class="amostra-form" onsubmit="baixarAmostra(event)" id="formAmostra">
+          <input type="email" class="amostra-input" placeholder="Seu e-mail (opcional para novidades)" id="emailAmostra" />
+          <button type="submit" class="btn btn-ciano" style="width:100%; justify-content:center;">
+            📥 &nbsp;Baixar Capítulo Grátis
+          </button>
+        </form>
+        <p class="amostra-card-info">⚠ Arquivo de amostra. Substitua por PDF real do Capítulo 1.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       AQUISIÇÃO
+  ============================================================ -->
+  <section class="aquisicao-section" id="adquirir">
+    <div class="aquisicao-wrap">
+      <div class="aquisicao-header r">
+        <p class="sinopse-label">Levar para casa</p>
+        <h2 class="aquisicao-titulo">Escolha como <em>ler Lúmen</em></h2>
+      </div>
+
+      <div class="aquisicao-grade">
+        <!-- Kindle -->
+        <div class="aquisicao-card r d2">
+          <span class="aquisicao-card-badge badge-destaque">Mais rápido</span>
+          <span class="aquisicao-card-icone">📱</span>
+          <h3 class="aquisicao-card-titulo">Digital — Amazon Kindle</h3>
+          <p class="aquisicao-card-sub">Leia em minutos, em qualquer dispositivo</p>
+          <p class="aquisicao-card-desc">Disponível no Amazon Kindle. Compre agora e comece a leitura imediatamente — no celular, tablet, computador ou e-reader. Sem espera, sem frete.</p>
+          <a href="https://www.amazon.com.br" target="_blank" rel="noopener" class="btn btn-ciano" style="width:100%; justify-content:center;">
+            Comprar no Kindle →
+          </a>
+        </div>
+
+        <!-- Físico -->
+        <div class="aquisicao-card r d3">
+          <span class="aquisicao-card-badge badge-encomenda">Sob Encomenda</span>
+          <span class="aquisicao-card-icone">📦</span>
+          <h3 class="aquisicao-card-titulo">Físico — Exemplar Impresso</h3>
+          <p class="aquisicao-card-sub">Sob encomenda · Entrega via correios</p>
+          <p class="aquisicao-card-desc">Para quem prefere o livro nas mãos. Entre em contato por e-mail ou pelo formulário de contato para verificar disponibilidade, valor e prazo de entrega.</p>
+          <a href="mailto:diogenes.escritor@gmail.com?subject=Pedido%20Físico%20-%20Lúmen" class="btn btn-borda" style="width:100%; justify-content:center;">
+            Solicitar por E-mail →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMENTÁRIOS
+  ============================================================ -->
+  <section class="comentarios-section" id="comentarios">
+    <div class="comentarios-wrap">
+      <div class="comentarios-header r">
+        <h2 class="comentarios-titulo">O que os <em>leitores dizem</em></h2>
+        <p class="comentarios-sub">Deixe sua impressão — antes ou depois de ler. Cada voz que entra no labirinto deixa um rastro.</p>
+      </div>
+
+      <!-- Comentários placeholder — substitua com sistema real ou deixe crescer organicamente -->
+      <div class="comentarios-lista">
+        <div class="comentario-card r d1">
+          <span class="comentario-aspas">"</span>
+          <p class="comentario-texto">Terminei em uma madrugada. Não consegui parar — e quando terminou, fiquei parado olhando para o teto tentando entender o que tinha acabado de ler. A segunda reviravolta me destruiu.</p>
+          <p class="comentario-autor">— Leitor Beta · Cascavel, CE</p>
+        </div>
+        <div class="comentario-card r d2">
+          <span class="comentario-aspas">"</span>
+          <p class="comentario-texto">Percebi os palíndromos só quando fechei o livro. Voltei e reli os primeiros capítulos com outros olhos. Tudo estava lá desde o início — o autor nos avisou e ainda assim nos enganou completamente.</p>
+          <p class="comentario-autor">— [Seu nome aqui — deixe o primeiro comentário real] </p>
+        </div>
+      </div>
+
+      <!-- Formulário de comentário -->
+      <div class="r d2">
+        <h3 class="comentario-form-titulo">Deixe o seu <em>comentário</em></h3>
+        <form onsubmit="enviarComentario(event)" id="formComentario">
+          <div class="form-grade-2">
+            <div class="form-grupo">
+              <label class="form-label" for="c-nome">Seu nome</label>
+              <input type="text" id="c-nome" class="form-input" placeholder="Como quer ser identificado?" required />
+            </div>
+            <div class="form-grupo">
+              <label class="form-label" for="c-cidade">Cidade / Estado</label>
+              <input type="text" id="c-cidade" class="form-input" placeholder="Opcional" />
+            </div>
+          </div>
+          <div class="form-grupo">
+            <label class="form-label" for="c-leu">Você já leu o livro?</label>
+            <select id="c-leu" class="form-input" style="cursor:pointer; background-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%234ecdc4'/%3E%3C/svg%3E\"); background-repeat:no-repeat; background-position: right 14px center; padding-right:40px; appearance:none;">
+              <option value="" style="background:#090d12">Selecione...</option>
+              <option value="sim" style="background:#090d12">Sim, já li completo</option>
+              <option value="parte" style="background:#090d12">Li a amostra grátis</option>
+              <option value="nao" style="background:#090d12">Ainda não li</option>
+            </select>
+          </div>
+          <div class="form-grupo">
+            <label class="form-label" for="c-texto">Seu comentário</label>
+            <textarea id="c-texto" class="form-textarea" placeholder="O que você sentiu? O que te surpreendeu? O labirinto te prendeu?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-ciano">Publicar Comentário</button>
+          <p class="form-aviso">⚠ Comentários ficam aguardando moderação antes de serem publicados. Evite spoilers nas primeiras linhas — outros leitores agradecem.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       MAIS LIVROS
+  ============================================================ -->
+  <section class="mais-livros">
+    <div class="mais-livros-wrap">
+      <p class="mais-label r">Outros universos de Robério Diógenes</p>
+      <div class="mais-grade r d1">
+        <a href="../livros/jogo-das-mascaras.html" class="mais-card">
+          <img src="../img/jogo-das-mascaras.jpg" alt="O Jogo das Máscaras" class="mais-capa" loading="lazy" />
+          <p class="mais-titulo">O Jogo das Máscaras</p>
+        </a>
+        <a href="../livros/a-setima-lei.html" class="mais-card">
+          <img src="../img/a-setima-lei.jpg" alt="A Sétima Lei" class="mais-capa" loading="lazy" />
+          <p class="mais-titulo">A Sétima Lei</p>
+        </a>
+        <a href="../livros/cartas-do-passado.html" class="mais-card">
+          <img src="../img/cartas-do-passado.jpg" alt="Cartas do Passado" class="mais-capa" loading="lazy" />
+          <p class="mais-titulo">Cartas do Passado</p>
+        </a>
+        <a href="../livros/genesis.html" class="mais-card">
+          <img src="../img/genesis.jpg" alt="Gênesis" class="mais-capa" loading="lazy" />
+          <p class="mais-titulo">Gênesis</p>
+        </a>
+        <a href="../livros.html" class="mais-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:180px;border:var(--borda-ciano);background:var(--preto-3);">
+          <span style="font-size:2rem; color:var(--ciano); margin-bottom:.5rem;">→</span>
+          <p class="mais-titulo" style="color:var(--ciano); text-align:center;">Ver toda a biblioteca</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RODAPÉ
+  ============================================================ -->
+  <footer>
+    <div class="footer-inner">
+      <a href="../index.html" class="footer-logo">Robério Diógenes</a>
+      <ul class="footer-links">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="../livros.html">Biblioteca</a></li>
+        <li><a href="../autor.html">O Autor</a></li>
+        <li><a href="../blog.html">Diário</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+      </ul>
+      <p class="footer-copy">© 2025 Robério Diógenes · Lúmen</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script src="../js/script-lumen.js"></script>
+
+</body>
+</html>

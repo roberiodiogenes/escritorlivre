@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="O Jogo das Máscaras — Toda verdade usa disfarce. Thriller psicológico de Robério Diógenes. Você consegue distinguir o jogo da realidade?" />
+  <meta property="og:title" content="O Jogo das Máscaras | Robério Diógenes" />
+  <meta property="og:description" content="Nem toda coleira é visível. Nem toda entrega é fraqueza. Algumas prisões têm o gosto doce da liberdade." />
+  <title>O Jogo das Máscaras | Robério Diógenes</title>
+  <link rel="icon" type="image/png" href="../img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" />
+
+  <style>
+    /* ============================================================
+       VARIÁVEIS — TEMA JOGO DAS MÁSCARAS
+       Preto-veludo + Dourado-antigo + Bordô-misterioso + Pérola
+    ============================================================ */
+    :root {
+      --preto:        #050305;
+      --preto-2:      #0a070a;
+      --preto-3:      #110c11;
+      --preto-4:      #18101a;
+      --ouro:         #c9a84c;       /* dourado antigo */
+      --ouro-2:       #e8c96e;       /* ouro brilhante hover */
+      --ouro-pale:    rgba(201,168,76,.12);
+      --ouro-glow:    rgba(201,168,76,.3);
+      --bordô:        #6b1a2a;       /* bordô profundo — mistério + desejo */
+      --bordô-2:      rgba(107,26,42,.2);
+      --perola:       #e8dcc8;       /* pérola — texto principal */
+      --perola-suave: #a08868;
+      --perola-muted: #5a4030;
+      --veludo:       rgba(201,168,76,.08); /* textura veludo */
+      --borda-o:      1px solid rgba(201,168,76,.2);
+      --borda-f:      1px solid rgba(201,168,76,.07);
+      --sombra-o:     0 0 50px rgba(201,168,76,.12);
+      --ft:           'Playfair Display', Georgia, serif;
+      --fc:           'Lora', Georgia, serif;
+      --fd:           'Cinzel Decorative', serif;
+      --fu:           'Cormorant Garamond', Georgia, serif;
+      --ease:         cubic-bezier(.25,.46,.45,.94);
+    }
+
+    /* ============================================================ RESET */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{background:var(--preto);color:var(--perola);font-family:var(--fc);line-height:1.7;overflow-x:hidden;cursor:none}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:300;opacity:.6}
+    img{max-width:100%;display:block}
+    a{text-decoration:none}
+
+    /* ============================================================ CURSOR — dourado */
+    .cursor{width:10px;height:10px;background:var(--ouro);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:999;transform:translate(-50%,-50%);mix-blend-mode:screen;box-shadow:0 0 14px var(--ouro);transition:width .3s,height .3s,background .3s}
+    .cursor-anel{width:34px;height:34px;border:1px solid rgba(201,168,76,.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:999;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+    /* Cursor vira máscara ao hover de links */
+    body:has(a:hover) .cursor{width:18px;height:18px}
+    body:has(a:hover) .cursor-anel{width:52px;height:52px;opacity:.5}
+
+    /* ============================================================ NÉVOA */
+    .nevoa{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 20% 80%,rgba(107,26,42,.06),transparent 70%),radial-gradient(ellipse 40% 60% at 80% 20%,rgba(201,168,76,.03),transparent 70%);animation:mN 20s ease-in-out infinite alternate}
+    @keyframes mN{from{transform:translate(0,0)}to{transform:translate(25px,-18px)}}
+
+    /* ============================================================ NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 clamp(1.2rem,4vw,4rem);display:flex;align-items:center;justify-content:space-between;height:66px;transition:background .4s,backdrop-filter .4s}
+    nav.scrolled{background:rgba(5,3,5,.94);backdrop-filter:blur(16px);border-bottom:var(--borda-f)}
+    .nav-logo{font-family:var(--fd);font-size:.78rem;color:var(--perola-suave);letter-spacing:.15em;text-transform:uppercase;transition:color .3s}
+    .nav-logo:hover{color:var(--ouro)}
+    .nav-logo span{color:var(--ouro);font-size:.62em;display:block;letter-spacing:.3em}
+    .nav-voltar{font-family:var(--fu);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;color:var(--perola-muted);display:flex;align-items:center;gap:8px;transition:color .3s}
+    .nav-voltar:hover{color:var(--ouro)}
+
+    /* ============================================================ BOTÕES */
+    .btn{font-family:var(--fu);font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;padding:15px 32px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:all .35s;position:relative;overflow:hidden}
+    .btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.04);transform:translateX(-100%);transition:transform .35s}
+    .btn:hover::before{transform:translateX(0)}
+    .btn-o{background:var(--ouro);color:var(--preto);font-weight:700}
+    .btn-o:hover{background:var(--ouro-2);box-shadow:0 0 40px rgba(201,168,76,.5);transform:translateY(-2px)}
+    .btn-b{background:transparent;color:var(--ouro);border:var(--borda-o)}
+    .btn-b:hover{background:var(--ouro-pale);border-color:var(--ouro);transform:translateY(-2px);box-shadow:var(--sombra-o)}
+    .btn-sm{padding:10px 22px;font-size:.72rem}
+
+    /* ============================================================ TOPO */
+    .topo-btn{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--preto-3);border:var(--borda-o);color:var(--ouro);display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;font-size:.9rem}
+    .topo-btn.v{opacity:1;pointer-events:all}
+    .topo-btn:hover{transform:translateY(-4px);background:var(--ouro);color:var(--preto)}
+
+    /* ============================================================ REVEAL */
+    .r{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .re{opacity:0;transform:translateX(-26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .rd{opacity:0;transform:translateX(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .r.v,.re.v,.rd.v{opacity:1;transform:translate(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+    .d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+
+    /* ============================================================ DIVISOR */
+    .div-l{height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,.22),transparent);max-width:1200px;margin:0 auto}
+
+    /* ============================================================
+       ░░░ 1. HERO — CORTINA DE VELUDO ░░░
+       Máscara gigante no fundo + título + capa 3D
+    ============================================================ */
+    .hero{min-height:100vh;position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:2rem;padding:100px clamp(1.2rem,5vw,5rem) 4rem;overflow:hidden}
+
+    /* Fundo: máscara veneziana gigante em SVG */
+    .hero-mask-bg{position:absolute;inset:0;z-index:0;display:flex;align-items:center;justify-content:center;pointer-events:none;overflow:hidden}
+    .hero-mask-bg svg{width:min(800px,90vw);opacity:.04;animation:mPulse 8s ease-in-out infinite}
+    @keyframes mPulse{0%,100%{opacity:.04;transform:scale(1) rotate(-2deg)}50%{opacity:.07;transform:scale(1.02) rotate(0deg)}}
+
+    /* Luz de vela animada */
+    .hero-candlelight{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 50% 60% at 65% 40%,rgba(107,26,42,.12),transparent 70%),radial-gradient(ellipse 40% 50% at 35% 60%,rgba(201,168,76,.04),transparent 60%),linear-gradient(180deg,var(--preto) 0%,#080508 50%,var(--preto) 100%)}
+
+    /* Partículas douradas */
+    .particulas{position:absolute;inset:0;z-index:0;pointer-events:none}
+    .particula{position:absolute;width:2px;height:2px;background:var(--ouro);border-radius:50%;opacity:0;animation:pFloat var(--dur,8s) var(--delay,0s) infinite ease-in-out}
+    @keyframes pFloat{0%{opacity:0;transform:translateY(0) scale(0)}20%{opacity:.5;transform:translateY(-30px) scale(1)}80%{opacity:.2;transform:translateY(-120px) scale(.8)}100%{opacity:0;transform:translateY(-180px) scale(0)}}
+
+    /* Capa 3D */
+    .hero-capa-area{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;perspective:1100px;opacity:0;animation:sE 1.2s .3s forwards}
+    @keyframes sE{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes sD{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+
+    .livro-3d{position:relative;transform-style:preserve-3d;transform:rotateY(-18deg) rotateX(3deg);transition:transform .8s var(--ease);width:min(280px,75vw)}
+    .livro-3d:hover{transform:rotateY(-5deg) rotateX(1deg) scale(1.03)}
+    .livro-lombada{position:absolute;top:0;right:100%;bottom:0;width:32px;background:linear-gradient(180deg,#1a0c10 0%,#100809 50%,#0c0608 100%);transform-origin:right;transform:rotateY(90deg);display:flex;align-items:center;justify-content:center;box-shadow:inset -4px 0 12px rgba(0,0,0,.6)}
+    .livro-lombada span{font-family:var(--ft);font-size:.52rem;font-weight:600;color:rgba(201,168,76,.5);letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg)}
+    .livro-frente{position:relative;box-shadow:-22px 22px 60px rgba(0,0,0,.9),-4px 4px 0 rgba(201,168,76,.06),0 0 80px rgba(201,168,76,.08)}
+    .livro-frente img{width:100%}
+    .livro-reflexo{position:absolute;left:0;right:0;top:100%;height:80px;overflow:hidden;pointer-events:none}
+    .livro-reflexo img{width:100%;transform:scaleY(-1);filter:brightness(.1) blur(4px);mask-image:linear-gradient(to bottom,rgba(0,0,0,.5),transparent);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.5),transparent)}
+    .livro-brilho{position:absolute;inset:-30px;background:radial-gradient(ellipse at center,rgba(201,168,76,.07),transparent 70%);pointer-events:none;animation:pBrilho 5s ease-in-out infinite}
+    @keyframes pBrilho{0%,100%{opacity:.5}50%{opacity:1}}
+
+    /* Texto hero */
+    .hero-texto{position:relative;z-index:2;opacity:0;animation:sD 1.2s .5s forwards}
+    .hero-cavaleiro{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem}
+    .hero-cavaleiro img{width:28px;opacity:.6;filter:invert(1) sepia(1) saturate(2) hue-rotate(15deg)}
+    .hero-cavaleiro-txt{font-family:var(--fd);font-size:.52rem;letter-spacing:.5em;text-transform:uppercase;color:var(--ouro)}
+    .hero-titulo{font-family:var(--ft);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:700;line-height:.93;color:var(--perola);margin-bottom:.5rem}
+    .hero-titulo em{font-style:italic;color:var(--ouro);display:block}
+    .hero-sub{font-family:var(--ft);font-style:italic;font-size:clamp(.9rem,1.8vw,1.25rem);color:var(--ouro);margin-bottom:2rem;display:block;letter-spacing:.04em}
+    .hero-linha{width:56px;height:1px;background:linear-gradient(90deg,var(--ouro),transparent);margin:1.8rem 0}
+    .hero-frase{font-family:var(--ft);font-style:italic;font-size:1.02rem;color:var(--perola-suave);line-height:1.95;max-width:500px;margin-bottom:2rem;padding-left:1.2rem;border-left:2px solid rgba(201,168,76,.4)}
+    .hero-badges{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+    .badge{font-family:var(--fd);font-size:.44rem;letter-spacing:.35em;text-transform:uppercase;padding:5px 11px;border:var(--borda-o);color:var(--ouro)}
+    .badge-f{background:var(--ouro-pale)}
+    .badge-v{background:rgba(107,26,42,.25);color:#e0a0a0;border-color:rgba(107,26,42,.4)}
+    .hero-acoes{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+    .hero-fmt{font-family:var(--fu);font-size:.8rem;color:var(--perola-muted);font-style:italic;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+    .hero-fmt span{color:var(--ouro);font-style:normal}
+
+    /* Cavaleiro decorativo no canto */
+    .hero-cavaleiro-deco{position:absolute;bottom:2rem;right:clamp(1.2rem,5vw,5rem);z-index:2;opacity:.06;pointer-events:none}
+    .hero-cavaleiro-deco img{width:120px;filter:invert(1) sepia(1) saturate(1.5) hue-rotate(15deg)}
+
+    /* ============================================================
+       ░░░ 2. EPÍGRAFE ░░░
+    ============================================================ */
+    .epigrafe{padding:5rem clamp(1.2rem,5vw,5rem);text-align:center;position:relative;z-index:2;background:var(--preto-2);border-top:var(--borda-f);border-bottom:var(--borda-f);overflow:hidden}
+    .epigrafe::before{content:'♞';position:absolute;font-size:clamp(8rem,15vw,14rem);color:var(--ouro);opacity:.04;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;user-select:none;font-family:serif}
+    .epigrafe-aspas{font-family:var(--ft);font-size:clamp(4rem,8vw,7rem);color:var(--ouro);opacity:.12;line-height:.8;display:block;font-style:italic;user-select:none;margin-bottom:-1.5rem}
+    .epigrafe-frase{font-family:var(--ft);font-style:italic;font-size:clamp(1.15rem,2.2vw,1.75rem);color:var(--perola);line-height:1.65;max-width:720px;margin:0 auto 1.5rem;position:relative;z-index:1}
+    .epigrafe-frase em{color:var(--ouro)}
+    .epigrafe-attr{font-family:var(--fd);font-size:.5rem;letter-spacing:.5em;text-transform:uppercase;color:var(--perola-muted);position:relative;z-index:1}
+
+    /* ============================================================
+       ░░░ 3. SINOPSE + FICHA ░░░
+    ============================================================ */
+    .sinopse-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .sinopse-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:4.5rem;align-items:start}
+    .slabel{font-family:var(--fd);font-size:.52rem;letter-spacing:.5em;text-transform:uppercase;color:var(--ouro);margin-bottom:1rem;display:block}
+    .stit{font-family:var(--ft);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:400;color:var(--perola);line-height:1.2;margin-bottom:2rem}
+    .stit em{font-style:italic;color:var(--ouro)}
+    .stexto{font-family:var(--fc);font-size:.92rem;color:var(--perola-suave);line-height:2}
+    .stexto p+p{margin-top:1.2rem}
+    .stexto strong{color:var(--perola)}
+    .stexto em{color:var(--ouro);font-style:italic}
+    .ficha{background:var(--preto-3);border:var(--borda-o);padding:2rem;position:sticky;top:84px;box-shadow:var(--sombra-o)}
+    .ficha-tit{font-family:var(--fd);font-size:.5rem;letter-spacing:.5em;text-transform:uppercase;color:var(--ouro);margin-bottom:1.5rem}
+    .fi{display:flex;justify-content:space-between;padding:.7rem 0;border-bottom:var(--borda-f);font-family:var(--fu)}
+    .fi:last-of-type{border-bottom:none}
+    .fi-k{font-size:.78rem;color:var(--perola-muted);text-transform:uppercase;letter-spacing:.08em}
+    .fi-v{font-size:.88rem;color:var(--perola);text-align:right}
+    .fi-v.o{color:var(--ouro)}
+    .ficha-acoes{margin-top:1.5rem;display:flex;flex-direction:column;gap:.7rem}
+
+    /* ============================================================
+       ░░░ 4. IMAGEM ATMOSFÉRICA — Aldo ░░░
+    ============================================================ */
+    .aldo-sec{position:relative;z-index:2;overflow:hidden;border-top:var(--borda-f);border-bottom:var(--borda-f)}
+    .aldo-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;align-items:center;min-height:70vh}
+    .aldo-img-wrap{position:relative;height:100%;min-height:500px}
+    .aldo-img{width:100%;height:100%;object-fit:cover;object-position:top;filter:brightness(.75) contrast(1.1) sepia(.15);transition:filter .6s}
+    .aldo-img:hover{filter:brightness(.85) contrast(1.1) sepia(.05)}
+    .aldo-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,transparent 60%,var(--preto) 100%)}
+    .aldo-texto{padding:4rem clamp(1.2rem,3vw,4rem);position:relative;z-index:1}
+    .aldo-nome{font-family:var(--ft);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:700;color:var(--perola);line-height:.95;margin-bottom:.5rem}
+    .aldo-nome em{font-style:italic;color:var(--ouro);display:block}
+    .aldo-epiteto{font-family:var(--fd);font-size:.55rem;letter-spacing:.5em;text-transform:uppercase;color:var(--ouro);margin-bottom:2rem}
+    .aldo-desc{font-family:var(--fc);font-style:italic;font-size:.92rem;color:var(--perola-suave);line-height:1.95;margin-bottom:1.5rem}
+    .aldo-frase{font-family:var(--ft);font-style:italic;font-size:1.05rem;color:var(--perola);border-left:2px solid var(--ouro);padding-left:1.2rem;line-height:1.7;margin-bottom:2rem}
+    .aldo-frase em{color:var(--ouro)}
+    .aldo-cavalo{position:absolute;bottom:2rem;right:2rem;opacity:.07;pointer-events:none}
+    .aldo-cavalo img{width:80px;filter:invert(1) sepia(1) saturate(2) hue-rotate(15deg)}
+
+    /* ============================================================
+       ░░░ 5. A CAIXA DO CAVALEIRO — Presente interativo ░░░
+    ============================================================ */
+    .caixa-sec{padding:6rem clamp(1.2rem,5vw,5rem);text-align:center;position:relative;z-index:2;background:var(--preto-2);border-top:var(--borda-f);overflow:hidden}
+    .caixa-sec::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse at top,rgba(201,168,76,.07),transparent 70%);pointer-events:none}
+    .caixa-header{max-width:600px;margin:0 auto 3rem}
+    .caixa-pretitulo{font-family:var(--fd);font-size:.55rem;letter-spacing:.6em;text-transform:uppercase;color:var(--ouro);margin-bottom:1rem}
+    .caixa-titulo{font-family:var(--ft);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:400;color:var(--perola);line-height:1.2;margin-bottom:1rem}
+    .caixa-titulo em{font-style:italic;color:var(--ouro)}
+    .caixa-desc{font-family:var(--fc);font-style:italic;font-size:.9rem;color:var(--perola-suave);line-height:1.9}
+
+    /* A caixa 3D interativa */
+    .caixa-container{max-width:460px;margin:0 auto;position:relative}
+    .caixa-wrap{position:relative;cursor:pointer;perspective:1000px}
+    .caixa-img-wrap{position:relative;transition:transform .6s var(--ease);transform-style:preserve-3d}
+    .caixa-wrap:hover .caixa-img-wrap{transform:rotateX(-8deg) rotateY(8deg) scale(1.04)}
+    .caixa-img{width:100%;filter:brightness(.8) contrast(1.1)}
+    .caixa-brilho{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 30%,rgba(201,168,76,.15),transparent 60%);pointer-events:none;opacity:0;transition:opacity .4s}
+    .caixa-wrap:hover .caixa-brilho{opacity:1}
+
+    /* Sombra da caixa */
+    .caixa-sombra{position:absolute;bottom:-20px;left:10%;right:10%;height:30px;background:radial-gradient(ellipse at center,rgba(201,168,76,.2),transparent 70%);filter:blur(8px);pointer-events:none}
+
+    /* Partículas douradas ao redor da caixa */
+    .caixa-particulas{position:absolute;inset:-40px;pointer-events:none}
+    .caixa-particula{position:absolute;width:3px;height:3px;background:var(--ouro);border-radius:50%;opacity:0;animation:cpFloat var(--dur,4s) var(--delay,0s) infinite ease-in-out}
+    @keyframes cpFloat{0%,100%{opacity:0;transform:translateY(0)}50%{opacity:.6;transform:translateY(-20px)}}
+
+    /* Texto e botão abaixo da caixa */
+    .caixa-convite{margin-top:2.5rem}
+    .caixa-convite p{font-family:var(--ft);font-style:italic;font-size:1rem;color:var(--perola-suave);margin-bottom:1.5rem;line-height:1.7}
+    .caixa-convite em{color:var(--ouro)}
+
+    /* Modal da caixa */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .5s;backdrop-filter:blur(8px)}
+    .modal-overlay.aberto{opacity:1;pointer-events:all}
+    .modal{background:var(--preto-3);border:var(--borda-o);max-width:560px;width:90%;padding:3rem;position:relative;box-shadow:0 0 80px rgba(201,168,76,.15);transform:translateY(30px) scale(.96);transition:transform .5s var(--ease)}
+    .modal-overlay.aberto .modal{transform:translateY(0) scale(1)}
+    .modal-fechar{position:absolute;top:1.2rem;right:1.2rem;background:none;border:none;color:var(--perola-muted);cursor:pointer;font-size:1.5rem;line-height:1;transition:color .3s}
+    .modal-fechar:hover{color:var(--ouro)}
+    .modal-cavaleiro{width:60px;margin:0 auto 1.5rem;filter:invert(1) sepia(1) saturate(2) hue-rotate(15deg);opacity:.7}
+    .modal-titulo{font-family:var(--ft);font-size:1.6rem;font-weight:700;color:var(--perola);text-align:center;margin-bottom:.5rem}
+    .modal-sub{font-family:var(--ft);font-style:italic;font-size:.9rem;color:var(--ouro);text-align:center;margin-bottom:1.5rem}
+    .modal-texto{font-family:var(--fc);font-style:italic;font-size:.88rem;color:var(--perola-suave);line-height:1.9;text-align:center;margin-bottom:2rem}
+    .modal-form{display:flex;flex-direction:column;gap:.7rem;margin-bottom:.6rem}
+    .modal-input{background:var(--preto-2);border:var(--borda-o);color:var(--perola);font-family:var(--fc);font-size:.88rem;padding:12px 1rem;outline:none;transition:border-color .3s;width:100%;text-align:center}
+    .modal-input::placeholder{color:var(--perola-muted);font-style:italic}
+    .modal-input:focus{border-color:var(--ouro)}
+    .modal-aviso{font-family:var(--fu);font-size:.72rem;color:var(--perola-muted);font-style:italic;text-align:center;margin-top:.75rem}
+    .modal-linha{width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--ouro),transparent);margin:1.5rem auto}
+
+    /* ============================================================
+       ░░░ 6. CAPÍTULOS — PORTAS DO MISTÉRIO ░░░
+    ============================================================ */
+    .caps-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .caps-wrap{max-width:1200px;margin:0 auto}
+    .caps-header{text-align:center;margin-bottom:3.5rem}
+    .caps-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
+
+    .cap-card{background:var(--preto-3);border:var(--borda-f);padding:2rem 1.8rem;position:relative;overflow:hidden;cursor:default;transition:border-color .4s,transform .3s,box-shadow .4s}
+    .cap-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.06),transparent 60%);opacity:0;transition:opacity .4s}
+    .cap-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--ouro),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+    .cap-card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.5)}
+    .cap-card:hover::before{opacity:1}
+    .cap-card:hover::after{transform:scaleX(1)}
+
+    .cap-cavaleiro{font-size:1.2rem;color:var(--ouro);opacity:.2;margin-bottom:.5rem;display:block;font-family:serif;transition:opacity .4s}
+    .cap-card:hover .cap-cavaleiro{opacity:.5}
+    .cap-num{font-family:var(--fd);font-size:.46rem;letter-spacing:.4em;text-transform:uppercase;color:var(--ouro);margin-bottom:.6rem;display:block}
+    .cap-nome{font-family:var(--ft);font-size:1rem;font-weight:600;color:var(--perola);line-height:1.3;margin-bottom:.6rem}
+    .cap-hint{font-family:var(--fc);font-style:italic;font-size:.8rem;color:var(--perola-muted);line-height:1.75}
+    .cap-pginas{font-family:var(--fu);font-size:.75rem;color:var(--ouro);opacity:.5;margin-top:.75rem}
+
+    /* ============================================================
+       ░░░ 7. PERSONAGENS — MÁSCARAS MISTERIOSAS ░░░
+    ============================================================ */
+    .pers-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--preto-2);border-top:var(--borda-f);position:relative;z-index:2;overflow:hidden}
+    /* Máscara decorativa de fundo */
+    .pers-sec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(500px,80vw);height:min(500px,80vw);background:radial-gradient(ellipse at center,rgba(201,168,76,.04),transparent 70%);pointer-events:none;border-radius:50%}
+
+    .pers-wrap{max-width:1200px;margin:0 auto}
+    .pers-header{text-align:center;margin-bottom:3.5rem}
+    .pers-intro{font-family:var(--fc);font-style:italic;font-size:.9rem;color:var(--perola-muted);max-width:560px;margin:.75rem auto 0;line-height:1.9}
+
+    .pers-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem}
+
+    .pers-card{background:var(--preto-4);border:var(--borda-f);overflow:hidden;position:relative;transition:border-color .5s,transform .4s,box-shadow .5s;cursor:default}
+    .pers-card:hover{border-color:rgba(201,168,76,.35);transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,.7),var(--sombra-o)}
+
+    /* Máscara como imagem de fundo do card */
+    .pers-mascara{width:100%;aspect-ratio:3/4;position:relative;overflow:hidden;background:var(--preto-3)}
+    .pers-mascara-img{width:100%;height:100%;object-fit:cover;filter:brightness(.35) saturate(.4) contrast(1.2);transition:filter .6s,transform .6s}
+    .pers-card:hover .pers-mascara-img{filter:brightness(.5) saturate(.6) contrast(1.1);transform:scale(1.05)}
+
+    /* Máscara SVG sobreposta */
+    .pers-mascara-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+    .pers-mascara-svg{width:60%;opacity:.12;transition:opacity .5s;filter:drop-shadow(0 0 20px rgba(201,168,76,.4))}
+    .pers-card:hover .pers-mascara-svg{opacity:.22}
+
+    /* Gradiente de baixo */
+    .pers-mascara-grad{position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,var(--preto-4) 0%,transparent 100%)}
+
+    /* Pérola / código do personagem */
+    .pers-codigo{position:absolute;top:1rem;right:1rem;font-family:var(--fd);font-size:.42rem;letter-spacing:.4em;text-transform:uppercase;color:var(--ouro);opacity:.6}
+
+    .pers-info{padding:1.5rem}
+    .pers-nome{font-family:var(--ft);font-size:1.2rem;font-weight:700;color:var(--perola);margin-bottom:.3rem}
+    .pers-papel{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--ouro);margin-bottom:.75rem;display:block}
+    .pers-desc{font-family:var(--fc);font-style:italic;font-size:.82rem;color:var(--perola-muted);line-height:1.75}
+
+    /* ============================================================
+       ░░░ 8. FRASES DO CAVALEIRO — Carrossel ░░░
+    ============================================================ */
+    .frases-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2;text-align:center}
+    .frases-tit{font-family:var(--fd);font-size:.55rem;letter-spacing:.5em;text-transform:uppercase;color:var(--ouro);margin-bottom:3rem}
+    .frases-carrossel{max-width:800px;margin:0 auto;position:relative}
+    .frase-item{display:none;animation:fadeInFrase .6s ease forwards}
+    .frase-item.ativa{display:block}
+    @keyframes fadeInFrase{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .frase-aspas{font-family:var(--ft);font-size:clamp(4rem,8vw,6rem);color:var(--ouro);opacity:.1;line-height:.8;display:block;font-style:italic;user-select:none;margin-bottom:-1.5rem}
+    .frase-texto{font-family:var(--ft);font-style:italic;font-size:clamp(1.1rem,2vw,1.5rem);color:var(--perola);line-height:1.8;margin-bottom:1.5rem}
+    .frase-texto em{color:var(--ouro)}
+    .frase-origem{font-family:var(--fd);font-size:.48rem;letter-spacing:.5em;text-transform:uppercase;color:var(--perola-muted)}
+    .frases-dots{display:flex;justify-content:center;gap:10px;margin-top:2rem}
+    .frase-dot{width:6px;height:6px;border-radius:50%;background:var(--perola-muted);cursor:pointer;transition:background .3s,transform .3s}
+    .frase-dot.ativa{background:var(--ouro);transform:scale(1.4)}
+
+    /* ============================================================
+       ░░░ 9. TEMAS — O que o livro carrega ░░░
+    ============================================================ */
+    .temas-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--preto-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .temas-wrap{max-width:1200px;margin:0 auto}
+    .temas-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;margin-top:3rem}
+    .tema-card{background:var(--preto-4);border:var(--borda-f);padding:2rem;position:relative;overflow:hidden;transition:all .4s}
+    .tema-card:hover{border-color:rgba(201,168,76,.28);transform:translateY(-4px)}
+    .tema-icone{font-size:2rem;margin-bottom:1rem;display:block;opacity:.7;filter:sepia(1) saturate(.5) hue-rotate(15deg)}
+    .tema-tit{font-family:var(--ft);font-size:1rem;font-weight:600;color:var(--perola);margin-bottom:.5rem}
+    .tema-desc{font-family:var(--fc);font-style:italic;font-size:.82rem;color:var(--perola-muted);line-height:1.75}
+
+    /* ============================================================
+       ░░░ 10. NOTA DE SENSIBILIDADE ░░░
+    ============================================================ */
+    .nota-sec{padding:3rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .nota-wrap{max-width:800px;margin:0 auto;background:rgba(107,26,42,.08);border:1px solid rgba(107,26,42,.2);padding:2rem;display:flex;gap:1.5rem;align-items:flex-start}
+    .nota-icone{font-size:1.5rem;flex-shrink:0;color:rgba(224,160,160,.6)}
+    .nota-texto{font-family:var(--fu);font-size:.88rem;color:var(--perola-muted);line-height:1.8;font-style:italic}
+    .nota-texto strong{color:var(--perola);font-style:normal}
+
+    /* ============================================================
+       ░░░ 11. AQUISIÇÃO ░░░
+    ============================================================ */
+    .aq-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--preto-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .aq-wrap{max-width:1200px;margin:0 auto}
+    .aq-header{text-align:center;margin-bottom:3rem}
+    .aq-grade{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .aq-card{background:var(--preto-3);border:var(--borda-f);padding:3rem;position:relative;overflow:hidden;transition:border-color .4s,transform .3s}
+    .aq-card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-4px)}
+    .aq-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.05),transparent 50%);opacity:0;transition:opacity .4s}
+    .aq-card:hover::before{opacity:1}
+    .aq-badge{position:absolute;top:1.5rem;right:1.5rem;font-family:var(--fd);font-size:.44rem;letter-spacing:.4em;text-transform:uppercase;padding:4px 10px}
+    .aq-badge-d{background:var(--ouro);color:var(--preto)}
+    .aq-badge-e{border:var(--borda-o);color:var(--ouro)}
+    .aq-icone{font-size:2.4rem;margin-bottom:1.5rem;display:block}
+    .aq-tit{font-family:var(--ft);font-size:1.35rem;font-weight:700;color:var(--perola);margin-bottom:.4rem}
+    .aq-sub{font-family:var(--ft);font-style:italic;font-size:.88rem;color:var(--ouro);margin-bottom:1.5rem}
+    .aq-desc{font-family:var(--fc);font-size:.85rem;color:var(--perola-muted);line-height:1.9;margin-bottom:2rem;font-style:italic}
+
+    /* ============================================================
+       ░░░ 12. COMENTÁRIOS ░░░
+    ============================================================ */
+    .com-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2;border-top:var(--borda-f)}
+    .com-wrap{max-width:880px;margin:0 auto}
+    .com-header{text-align:center;margin-bottom:3rem}
+    .com-lista{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem}
+    .com-card{background:var(--preto-3);border:var(--borda-f);padding:1.5rem 2rem;transition:border-color .3s}
+    .com-card:hover{border-color:rgba(201,168,76,.2)}
+    .com-aspas{font-family:var(--ft);font-size:2.8rem;color:var(--ouro);opacity:.15;line-height:.8;display:block;margin-bottom:.25rem;font-style:italic;user-select:none}
+    .com-texto{font-family:var(--fc);font-style:italic;font-size:.88rem;color:var(--perola-suave);line-height:1.85;margin-bottom:1rem}
+    .com-autor{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--ouro)}
+    .cf-tit{font-family:var(--ft);font-size:1.25rem;font-weight:600;color:var(--perola);margin-bottom:1.5rem}
+    .cf-tit em{font-style:italic;color:var(--ouro)}
+    .fg{margin-bottom:.9rem}
+    .flabel{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--ouro);display:block;margin-bottom:5px}
+    .finput,.ftextarea,.fselect{width:100%;background:var(--preto-4);border:var(--borda-f);color:var(--perola);font-family:var(--fc);font-size:.88rem;padding:12px 1rem;outline:none;transition:border-color .3s}
+    .finput::placeholder,.ftextarea::placeholder{color:var(--perola-muted);font-style:italic}
+    .finput:focus,.ftextarea:focus,.fselect:focus{border-color:rgba(201,168,76,.4)}
+    .ftextarea{resize:vertical;min-height:110px;font-family:var(--fc)}
+    .fg2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .faviso{font-family:var(--fu);font-size:.72rem;color:var(--perola-muted);font-style:italic;margin-top:.8rem}
+
+    /* ============================================================
+       MAIS LIVROS + RODAPÉ
+    ============================================================ */
+    .mais-sec{padding:4.5rem clamp(1.2rem,5vw,5rem);background:var(--preto-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .mais-wrap{max-width:1200px;margin:0 auto}
+    .mais-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1.5rem;margin-top:2rem}
+    .mais-card{display:block;transition:transform .3s}
+    .mais-card:hover{transform:translateY(-6px)}
+    .mais-capa{width:100%;filter:brightness(.6) saturate(.5);transition:filter .3s;box-shadow:-4px 6px 20px rgba(0,0,0,.7)}
+    .mais-card:hover .mais-capa{filter:brightness(.9) saturate(.9)}
+    .mais-tit{font-family:var(--ft);font-size:.8rem;color:var(--perola-suave);margin-top:.55rem;line-height:1.3;transition:color .3s}
+    .mais-card:hover .mais-tit{color:var(--ouro)}
+    footer{background:var(--preto);border-top:var(--borda-f);padding:2.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem}
+    .footer-logo{font-family:var(--fd);font-size:.78rem;color:var(--ouro);letter-spacing:.15em;text-transform:uppercase}
+    .footer-links{display:flex;gap:2rem;list-style:none;flex-wrap:wrap}
+    .footer-links a{font-family:var(--fu);font-size:.82rem;color:var(--perola-muted);transition:color .3s;letter-spacing:.08em}
+    .footer-links a:hover{color:var(--ouro)}
+    .footer-copy{font-family:var(--fu);font-size:.72rem;color:var(--perola-muted);font-style:italic}
+
+    /* ============================================================ RESPONSIVO */
+    @media(max-width:1024px){
+      .sinopse-wrap{grid-template-columns:1fr;gap:3rem}
+      .ficha{position:relative;top:0}
+      .aldo-wrap{grid-template-columns:1fr}
+      .aldo-img-wrap{min-height:360px}
+      .aq-grade{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      .hero{grid-template-columns:1fr;text-align:center;gap:2.5rem;padding-top:85px}
+      .hero-capa-area{order:-1}
+      .livro-3d{transform:rotateY(0) rotateX(0)}
+      .hero-frase{margin:0 auto 2rem}
+      .hero-acoes{justify-content:center}
+      .hero-badges{justify-content:center}
+      .hero-fmt{justify-content:center}
+      .hero-linha{margin:1.5rem auto}
+      .hero-cavaleiro{justify-content:center}
+      .pers-grade{grid-template-columns:1fr 1fr}
+      .fg2{grid-template-columns:1fr}
+      .footer-inner{flex-direction:column;text-align:center}
+      .footer-links{justify-content:center}
+    }
+    @media(max-width:480px){
+      .pers-grade{grid-template-columns:1fr}
+      .mais-grade{grid-template-columns:repeat(3,1fr)}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-anel" id="cursorAnel"></div>
+  <a href="#" class="topo-btn" id="topoBtn">↑</a>
+  <div class="nevoa" aria-hidden="true"></div>
+
+  <!-- PARTÍCULAS -->
+  <div class="particulas" id="particulas" aria-hidden="true"></div>
+
+  <!-- Modal da caixa -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <button class="modal-fechar" id="modalFechar" aria-label="Fechar">✕</button>
+      <img src="../img/icon-cavaleiro.png" alt="Cavaleiro" class="modal-cavaleiro" />
+      <div class="modal-linha"></div>
+      <h2 class="modal-titulo">O Presente do Cavaleiro</h2>
+      <p class="modal-sub">Uma oferta que não se recusa</p>
+      <p class="modal-texto">
+        "Você chegou até aqui. Isso já diz muito sobre você."<br /><br />
+        O Cavaleiro aprecia quem não recua.<br />
+        Aceite o primeiro capítulo — <em style="color:var(--ouro)">gratuito, sem compromisso.</em><br />
+        Mas saiba: quem abre a primeira porta raramente consegue fechar as outras.
+      </p>
+      <form class="modal-form" onsubmit="abrirCaixa(event)">
+        <input type="email" class="modal-input" placeholder="Seu e-mail (opcional — para novidades)" id="emailCaixa" />
+        <button type="submit" class="btn btn-o" style="width:100%;justify-content:center">
+          ♞ &nbsp;Aceitar o Presente — Cap. 1 Grátis
+        </button>
+      </form>
+      <p class="modal-aviso">📎 PDF · 312 páginas · Download imediato · Sem cadastro obrigatório</p>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="../index.html" class="nav-logo">Robério Diógenes<span>Escritor Independente</span></a>
+    <a href="../livros.html" class="nav-voltar">← Biblioteca</a>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="inicio">
+    <!-- Máscara veneziana de fundo -->
+    <div class="hero-mask-bg" aria-hidden="true">
+      <svg viewBox="0 0 400 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Máscara veneziana simplificada -->
+        <ellipse cx="200" cy="150" rx="185" ry="120" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+        <ellipse cx="150" cy="140" rx="55" ry="38" fill="none" stroke="#c9a84c" stroke-width="1"/>
+        <ellipse cx="250" cy="140" rx="55" ry="38" fill="none" stroke="#c9a84c" stroke-width="1"/>
+        <ellipse cx="150" cy="140" rx="30" ry="20" fill="none" stroke="#c9a84c" stroke-width=".8"/>
+        <ellipse cx="250" cy="140" rx="30" ry="20" fill="none" stroke="#c9a84c" stroke-width=".8"/>
+        <path d="M185 150 Q200 165 215 150" fill="none" stroke="#c9a84c" stroke-width="1"/>
+        <path d="M160 115 Q175 105 190 108" fill="none" stroke="#c9a84c" stroke-width=".8"/>
+        <path d="M210 108 Q225 105 240 115" fill="none" stroke="#c9a84c" stroke-width=".8"/>
+        <path d="M15 150 Q80 200 130 140" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".5"/>
+        <path d="M270 140 Q320 200 385 150" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".5"/>
+        <path d="M60 100 Q100 60 150 80" fill="none" stroke="#c9a84c" stroke-width=".7" opacity=".4"/>
+        <path d="M250 80 Q300 60 340 100" fill="none" stroke="#c9a84c" stroke-width=".7" opacity=".4"/>
+      </svg>
+    </div>
+    <div class="hero-candlelight"></div>
+
+    <!-- Capa 3D -->
+    <div class="hero-capa-area">
+      <div class="livro-brilho" aria-hidden="true"></div>
+      <div class="livro-3d" id="livro3d">
+        <div class="livro-lombada"><span>O Jogo das Máscaras · Robério Diógenes</span></div>
+        <div class="livro-frente">
+          <img src="../img/jogo-das-mascaras.jpg" alt="O Jogo das Máscaras — Robério Diógenes" />
+        </div>
+        <div class="livro-reflexo" aria-hidden="true">
+          <img src="../img/jogo-das-mascaras.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Texto -->
+    <div class="hero-texto">
+      <div class="hero-cavaleiro">
+        <img src="../img/icon-cavaleiro.png" alt="♞" />
+        <span class="hero-cavaleiro-txt">Romance Psicológico · Erotismo Sutil · 2025</span>
+      </div>
+      <h1 class="hero-titulo">
+        O Jogo das<br /><em>Máscaras</em>
+      </h1>
+      <span class="hero-sub">Toda verdade usa disfarce</span>
+      <div class="hero-linha"></div>
+      <p class="hero-frase">
+        "Nem toda coleira é visível.<br />
+        Nem toda entrega é fraqueza.<br />
+        Algumas prisões têm o gosto doce da liberdade."
+      </p>
+      <div class="hero-badges">
+        <span class="badge badge-f">Romance Psicológico</span>
+        <span class="badge badge-v">+18 · Conteúdo Adulto</span>
+        <span class="badge">312 páginas</span>
+        <span class="badge badge-f">1ª Edição · 2025</span>
+      </div>
+      <div class="hero-acoes">
+        <a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener" class="btn btn-o">📱 Comprar no Kindle</a>
+        <a href="#" class="btn btn-b" id="btnCaixa">♞ Aceitar o Presente</a>
+      </div>
+      <p class="hero-fmt">Disponível em: <span>Digital — Kindle</span> · <span>Físico sob encomenda</span></p>
+    </div>
+
+    <div class="hero-cavaleiro-deco" aria-hidden="true">
+      <img src="../img/icon-cavaleiro.png" alt="" />
+    </div>
+  </section>
+
+  <div class="div-l"></div>
+
+  <!-- ============================================================
+       EPÍGRAFE
+  ============================================================ -->
+  <section class="epigrafe">
+    <span class="epigrafe-aspas r" aria-hidden="true">"</span>
+    <p class="epigrafe-frase r d1">
+      O que te prende… te revela.<br />
+      Nem toda coleira é visível.<br />
+      Nem toda entrega é fraqueza.<br />
+      Algumas prisões têm o gosto doce da <em>liberdade.</em>
+    </p>
+    <p class="epigrafe-attr r d2">— Epígrafe · O Jogo das Máscaras</p>
+  </section>
+
+  <!-- ============================================================
+       SINOPSE + FICHA
+  ============================================================ -->
+  <section class="sinopse-sec">
+    <div class="sinopse-wrap">
+      <div>
+        <span class="slabel r">A História</span>
+        <h2 class="stit r d1">Ela escolheu a vingança.<br /><em>Não sabia que seria o Cavaleiro quem a jogaria.</em></h2>
+        <div class="stexto r d2">
+          <p>Juliette descobriu a traição de Sergio num celular esquecido à vista. Não num dia dramático — num dia qualquer, cheirando a molho e a indiferença. E naquele instante, algo dentro dela parou de ser esposa e começou a ser estrategista.</p>
+          <p>O plano era simples: <strong>usar Aldo</strong> — o melhor amigo de Sergio, o homem que a olhava como mulher há quatro anos — como instrumento de uma vingança fria e calculada. <em>Ela escolheria a faca. E Sergio sangraria devagar.</em></p>
+          <p>Mas Aldo não é instrumento de ninguém. O Cavaleiro tem seus próprios jogos, suas próprias cartas — e uma inteligência sedutora que transforma cada encontro em um ritual onde as regras mudam conforme o desejo.</p>
+          <p>O que começou como controle de Juliette virou <strong>entrega.</strong> O que era vingança virou <strong>prisão com gosto de liberdade.</strong> E quando a verdade final emergir, ela vai perceber que nunca foi a jogadora — sempre foi a peça mais valiosa no tabuleiro de Aldo.</p>
+        </div>
+      </div>
+      <div class="ficha r d3">
+        <p class="ficha-tit">Ficha do Livro</p>
+        <div class="fi"><span class="fi-k">Título</span><span class="fi-v">O Jogo das Máscaras</span></div>
+        <div class="fi"><span class="fi-k">Subtítulo</span><span class="fi-v">Toda verdade usa disfarce</span></div>
+        <div class="fi"><span class="fi-k">Autor</span><span class="fi-v">Robério Diógenes</span></div>
+        <div class="fi"><span class="fi-k">Gênero</span><span class="fi-v o">Romance Psicológico</span></div>
+        <div class="fi"><span class="fi-k">Subgênero</span><span class="fi-v">Drama · Erotismo Sutil</span></div>
+        <div class="fi"><span class="fi-k">ISBN</span><span class="fi-v o">978-65-01-57274-1</span></div>
+        <div class="fi"><span class="fi-k">Edição</span><span class="fi-v">1ª Ed. · 2025 · 312 p.</span></div>
+        <div class="fi"><span class="fi-k">Classif.</span><span class="fi-v">+18</span></div>
+        <div class="fi"><span class="fi-k">Digital</span><span class="fi-v o">Amazon Kindle</span></div>
+        <div class="fi"><span class="fi-k">Físico</span><span class="fi-v">Sob Encomenda</span></div>
+        <div class="ficha-acoes">
+          <a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener" class="btn btn-o" style="width:100%;justify-content:center">Comprar no Kindle</a>
+          <a href="mailto:diogenes.escritor@gmail.com?subject=Pedido%20f%C3%ADsico%20-%20O%20Jogo%20das%20M%C3%A1scaras" class="btn btn-b" style="width:100%;justify-content:center">Solicitar Físico</a>
+          <button class="btn btn-b btn-sm" style="width:100%;justify-content:center" onclick="document.getElementById('modalOverlay').classList.add('aberto')">♞ Capítulo 1 — Grátis</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ALDO — O CAVALEIRO
+  ============================================================ -->
+  <section class="aldo-sec">
+    <div class="aldo-wrap">
+      <div class="aldo-img-wrap re">
+        <img src="../img/jdm-aldo.jpg" alt="Aldo — O Cavaleiro" class="aldo-img" loading="lazy" />
+        <div class="aldo-img-overlay"></div>
+      </div>
+      <div class="aldo-texto rd">
+        <div class="aldo-cavalo" aria-hidden="true"><img src="../img/icon-cavaleiro.png" alt="" /></div>
+        <p class="aldo-epiteto">O Antagonista · O Cavaleiro · ♞</p>
+        <h2 class="aldo-nome">Aldo<br /><em>O Cavaleiro</em></h2>
+        <p class="aldo-desc">Ele não seduz — dispara gatilhos. Não comanda — faz você obedecer antes mesmo de perceber que recebeu uma ordem. Cada palavra é calculada. Cada silêncio, intencional. Cada presente, uma armadilha dourada.</p>
+        <blockquote class="aldo-frase">"Você veio vestida de esperança.<br />Mas eu prefiro você <em>despida de verdades.</em>"</blockquote>
+        <p class="aldo-desc">Aldo não é o vilão da história. É o espelho. Aquele que revela o que Juliette sempre soube sobre si mesma — e nunca teve coragem de admitir.</p>
+        <a href="#" onclick="document.getElementById('modalOverlay').classList.add('aberto');return false;" class="btn btn-b">♞ Conheça o Cavaleiro — Cap. 1 Grátis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       A CAIXA DO CAVALEIRO
+  ============================================================ -->
+  <section class="caixa-sec" id="presente">
+    <div class="caixa-header">
+      <p class="caixa-pretitulo r">Uma oferta do Cavaleiro</p>
+      <h2 class="caixa-titulo r d1">
+        Ele deixou algo<br />para <em>você</em>
+      </h2>
+      <p class="caixa-desc r d2">
+        Aldo nunca faz nada sem intenção. Esta caixa estava esperando por você.<br />
+        Abra. Mas saiba: o Cavaleiro está observando.
+      </p>
+    </div>
+    <div class="caixa-container r d2">
+      <div class="caixa-wrap" id="caixaWrap" onclick="document.getElementById('modalOverlay').classList.add('aberto')">
+        <div class="caixa-img-wrap">
+          <img src="../img/caixa-cavaleiro.png" alt="A Caixa do Cavaleiro — um presente" class="caixa-img" />
+          <div class="caixa-brilho"></div>
+        </div>
+        <div class="caixa-sombra" aria-hidden="true"></div>
+        <!-- Partículas ao redor da caixa -->
+        <div class="caixa-particulas" aria-hidden="true" id="caixaParticulas"></div>
+      </div>
+      <div class="caixa-convite">
+        <p>Dentro desta caixa há um presente — e um desafio. <em>Como Aldo faria.</em><br />O primeiro capítulo é seu. De graça. Sem explicação.</p>
+        <button class="btn btn-o" onclick="document.getElementById('modalOverlay').classList.add('aberto')">
+          ♞ &nbsp;Abrir a Caixa
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="div-l" style="margin:0 clamp(1.2rem,5vw,5rem)"></div>
+
+  <!-- ============================================================
+       CAPÍTULOS — AS 8 PORTAS
+  ============================================================ -->
+  <section class="caps-sec">
+    <div class="caps-wrap">
+      <div class="caps-header">
+        <span class="slabel r">A Anatomia do Jogo</span>
+        <h2 class="stit r d1" style="text-align:center">Oito portas.<br /><em>Nenhuma leva de volta.</em></h2>
+        <p class="pers-intro r d2" style="font-family:var(--fc);font-style:italic;font-size:.9rem;color:var(--perola-muted);max-width:560px;margin:.75rem auto 0;line-height:1.9">Cada capítulo é um nível do jogo. Quanto mais fundo você desce, mais difícil é distinguir a jogadora da peça.</p>
+      </div>
+      <div class="caps-grade">
+        <div class="cap-card r d1">
+          <span class="cap-cavaleiro">♞</span>
+          <span class="cap-num">Capítulo I</span>
+          <h3 class="cap-nome">O Segredo do Vinho</h3>
+          <p class="cap-hint">A vida de Juliette escorria entre os dedos como o vinho que evaporava no fogo: espesso, escuro, doce demais para durar. Então, ela viu o celular.</p>
+          <p class="cap-pginas">A faísca · Págs. 10–38</p>
+        </div>
+        <div class="cap-card r d2">
+          <span class="cap-cavaleiro">♞</span>
+          <span class="cap-num">Capítulo II</span>
+          <h3 class="cap-nome">Labirintos de Seda e Aço</h3>
+          <p class="cap-hint">O plano toma forma. Juliette aprende que entre a vingança e o desejo, existe uma linha — e Aldo é quem decide quando cruzá-la.</p>
+          <p class="cap-pginas">O tabuleiro · Págs. 39–68</p>
+        </div>
+        <div class="cap-card r d3">
+          <span class="cap-cavaleiro">♞</span>
+          <span class="cap-num">Capítulo III</span>
+          <h3 class="cap-nome">O Preço da Pérola</h3>
+          <p class="cap-hint">Juliette recebe seu primeiro nome. E com ele, percebe que o jogo que pensava estar jogando... não era o jogo que estava sendo jogado.</p>
+          <p class="cap-pginas">A entrega · Págs. 69–97</p>
+        </div>
+        <div class="cap-card r d1">
+          <span class="cap-cavaleiro">♞</span>
+          <span class="cap-num">Capítulo IV</span>
+          <h3 class="cap-nome">A Máscara de Jade</h3>
+          <p class="cap-hint">Uma nova identidade. Um novo nível. Jade não é Juliette — e Juliette começa a perder a fronteira entre uma e outra.</p>
+          <p class="cap-pginas">A transformação · Págs. 98–127</p>
+        </div>
+        <div class="cap-card r d2">
+          <span class="cap-cavaleiro">♞</span>
+          <span class="cap-num">Capítulo V</span>
+          <h3 class="cap-nome">O Abismo das Almas</h3>
+          <p class="cap-hint">O ponto de não retorno. O que Juliette faz aqui ela nunca será capaz de desfazer — nem vai querer.</p>
+          <p class="cap-pginas">O precipício · Págs. 128–159</p>
+        </div>
+        <div class="cap-card r d3">
+          <span class="cap-cavaleiro">♞</span>
+          <span class="cap-num">Capítulo VI</span>
+          <h3 class="cap-nome">O Doce Veneno do Pecado</h3>
+          <p class="cap-hint">"São lindos. Mas por que tênis, Cavaleiro?" — Silêncio. Depois, a sentença. O mundo de Juliette para neste capítulo. O seu também vai parar.</p>
+          <p class="cap-pginas">O veneno · Págs. 160–205</p>
+        </div>
+        <div class="cap-card r d1" style="border-color:rgba(201,168,76,.18);background:rgba(26,16,26,.8)">
+          <span class="cap-cavaleiro" style="opacity:.4">♞</span>
+          <span class="cap-num">Capítulo VII</span>
+          <h3 class="cap-nome" style="color:var(--ouro)">O Silêncio Debaixo D'Água</h3>
+          <p class="cap-hint">Uma ligação muda tudo. Uma revelação que reescreve o que você leu. Quem, afinal, estava jogando quem desde o começo?</p>
+          <p class="cap-pginas">A revelação · Págs. 206–268</p>
+        </div>
+        <div class="cap-card r d2" style="border-color:rgba(201,168,76,.18);background:rgba(26,16,26,.8)">
+          <span class="cap-cavaleiro" style="opacity:.4">♞</span>
+          <span class="cap-num">Capítulo VIII · Epílogo</span>
+          <h3 class="cap-nome" style="color:var(--ouro)">O Que Fica Depois do Fim</h3>
+          <p class="cap-hint">O fichário. Os nomes. Os nomes de pedras preciosas. Sergio abre e começa a entender. Você também vai. E não vai conseguir esquecer.</p>
+          <p class="cap-pginas">A última máscara · Págs. 269–312</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PERSONAGENS — AS MÁSCARAS
+  ============================================================ -->
+  <section class="pers-sec">
+    <div class="pers-wrap">
+      <div class="pers-header">
+        <span class="slabel r">As Peças do Tabuleiro</span>
+        <h2 class="stit r d1" style="text-align:center">Os <em>Personagens</em></h2>
+        <p class="pers-intro r d2">Nenhum personagem aqui é o que parece. Cada máscara cobre outra máscara. Você vai amar e odiar as mesmas pessoas no mesmo fôlego.</p>
+      </div>
+      <div class="pers-grade">
+
+        <!-- JULIETTE -->
+        <div class="pers-card r d1">
+          <div class="pers-mascara">
+            <img src="../img/jogo-das-mascaras.jpg" alt="" class="pers-mascara-img" loading="lazy" />
+            <div class="pers-mascara-overlay">
+              <svg class="pers-mascara-svg" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="150" cy="100" rx="140" ry="90" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+                <ellipse cx="105" cy="90" rx="40" ry="28" fill="none" stroke="#c9a84c" stroke-width="1"/>
+                <ellipse cx="195" cy="90" rx="40" ry="28" fill="none" stroke="#c9a84c" stroke-width="1"/>
+                <path d="M130 110 Q150 125 170 110" fill="none" stroke="#c9a84c" stroke-width="1"/>
+                <path d="M10 100 Q60 140 100 90" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".6"/>
+                <path d="M200 90 Q240 140 290 100" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".6"/>
+              </svg>
+            </div>
+            <div class="pers-mascara-grad"></div>
+            <span class="pers-codigo">Pérola</span>
+          </div>
+          <div class="pers-info">
+            <h3 class="pers-nome">Juliette</h3>
+            <span class="pers-papel">A Protagonista · A Jogadora que vira peça</span>
+            <p class="pers-desc">Começou como esposa traída buscando vingança. Terminou como algo que ela própria não consegue nomear. Entre o controle e a entrega, Juliette descobre quem ela sempre foi — e isso a assusta mais do que qualquer coisa que Aldo poderia fazer.</p>
+          </div>
+        </div>
+
+        <!-- ALDO -->
+        <div class="pers-card r d2">
+          <div class="pers-mascara">
+            <img src="../img/jdm-aldo.jpg" alt="" class="pers-mascara-img" loading="lazy" />
+            <div class="pers-mascara-overlay">
+              <svg class="pers-mascara-svg" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="150" cy="100" rx="140" ry="90" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+                <ellipse cx="105" cy="90" rx="40" ry="28" fill="none" stroke="#c9a84c" stroke-width="1"/>
+                <ellipse cx="195" cy="90" rx="40" ry="28" fill="none" stroke="#c9a84c" stroke-width="1"/>
+                <path d="M130 115 Q150 128 170 115" fill="none" stroke="#c9a84c" stroke-width="1"/>
+                <path d="M75 60 Q105 45 135 58" fill="none" stroke="#c9a84c" stroke-width=".8"/>
+                <path d="M165 58 Q195 45 225 60" fill="none" stroke="#c9a84c" stroke-width=".8"/>
+              </svg>
+            </div>
+            <div class="pers-mascara-grad"></div>
+            <span class="pers-codigo">O Cavaleiro ♞</span>
+          </div>
+          <div class="pers-info">
+            <h3 class="pers-nome">Aldo</h3>
+            <span class="pers-papel">O Cavaleiro · O Arquiteto do Jogo</span>
+            <p class="pers-desc">Não é vilão. É espelho. Construiu um mundo próprio com regras silenciosas, nomes de pedras preciosas e caixas negras. Cada mulher que cruzou seu caminho foi lapidada — e ele as lapidou porque era a única forma que conhecia de amar. Até que o tabuleiro virou contra ele.</p>
+          </div>
+        </div>
+
+        <!-- SERGIO -->
+        <div class="pers-card r d3">
+          <div class="pers-mascara">
+            <img src="../img/autor3.jpg" alt="" class="pers-mascara-img" loading="lazy" style="filter:brightness(.25) saturate(.2) contrast(1.2)" />
+            <div class="pers-mascara-overlay">
+              <svg class="pers-mascara-svg" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="150" cy="100" rx="140" ry="90" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+                <ellipse cx="105" cy="90" rx="40" ry="28" fill="none" stroke="#c9a84c" stroke-width="1"/>
+                <ellipse cx="195" cy="90" rx="40" ry="28" fill="none" stroke="#c9a84c" stroke-width="1"/>
+                <path d="M120 120 Q150 108 180 120" fill="none" stroke="#c9a84c" stroke-width="1"/>
+              </svg>
+            </div>
+            <div class="pers-mascara-grad"></div>
+            <span class="pers-codigo">O Marido</span>
+          </div>
+          <div class="pers-info">
+            <h3 class="pers-nome">Sergio</h3>
+            <span class="pers-papel">O Marido Traidor · A Faísca</span>
+            <p class="pers-desc">Traiu sem nem se esconder. Pensava que reinava. No final do livro, Sergio abre uma caixa preta que não deveria abrir. E o que ele encontra dentro vai destruí-lo de uma forma que nem Juliette planejou.</p>
+          </div>
+        </div>
+
+        <!-- AS JOIAS -->
+        <div class="pers-card r d4">
+          <div class="pers-mascara" style="background:var(--preto-2);display:flex;align-items:center;justify-content:center">
+            <svg class="pers-mascara-svg" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:80%;opacity:.18">
+              <ellipse cx="150" cy="100" rx="140" ry="90" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+              <ellipse cx="105" cy="90" rx="40" ry="28" fill="none" stroke="#c9a84c" stroke-width="1"/>
+              <ellipse cx="195" cy="90" rx="40" ry="28" fill="none" stroke="#c9a84c" stroke-width="1"/>
+              <path d="M130 115 Q150 128 170 115" fill="none" stroke="#c9a84c" stroke-width="1"/>
+              <text x="100" y="175" font-size="14" fill="#c9a84c" font-family="serif">Safira · Esmeralda · Rubi</text>
+            </svg>
+            <div class="pers-mascara-grad"></div>
+            <span class="pers-codigo">As Pedras</span>
+          </div>
+          <div class="pers-info">
+            <h3 class="pers-nome">Safira · Esmeralda · Rubi…</h3>
+            <span class="pers-papel">As Outras · As Pedras Preciosas do Cavaleiro</span>
+            <p class="pers-desc">Cada mulher no mundo de Aldo recebe um nome de pedra preciosa. Um fichário. Uma aba. Um segredo. Juliette pensou que era diferente — pensou que era Pérola. Ela era. Mas o que isso significa no jogo do Cavaleiro é algo que o livro revela no momento mais perturbador.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FRASES DO CAVALEIRO
+  ============================================================ -->
+  <section class="frases-sec">
+    <p class="frases-tit r">As Palavras do Cavaleiro</p>
+    <div class="frases-carrossel r d1">
+      <div class="frase-item ativa">
+        <span class="frase-aspas">"</span>
+        <p class="frase-texto">"Você veio vestida de esperança.<br />Mas eu prefiro você <em>despida de verdades.</em>"</p>
+        <p class="frase-origem">Aldo · Capítulo III</p>
+      </div>
+      <div class="frase-item">
+        <span class="frase-aspas">"</span>
+        <p class="frase-texto">"Olhe para mim quando <em>cair.</em>"</p>
+        <p class="frase-origem">Aldo · Capítulo V</p>
+      </div>
+      <div class="frase-item">
+        <span class="frase-aspas">"</span>
+        <p class="frase-texto">"Não era uma ordem.<br />Era um feitiço linguístico.<br />Aldo não comandava — <em>disparava gatilhos.</em>"</p>
+        <p class="frase-origem">Narrador · Capítulo III</p>
+      </div>
+      <div class="frase-item">
+        <span class="frase-aspas">"</span>
+        <p class="frase-texto">"São lindos. Mas por que tênis, Cavaleiro?"<br />Silêncio. Depois, a sentença:<br /><em>"Porque serão a única coisa que você vestirá esta noite."</em></p>
+        <p class="frase-origem">Aldo e Juliette · Capítulo VI</p>
+      </div>
+      <div class="frase-item">
+        <span class="frase-aspas">"</span>
+        <p class="frase-texto">"Toda máscara esconde uma ferida.<br />Toda ferida… deseja ser tocada.<br />E eu, Cavaleiro, fui apenas isso: <em>um homem ferido demais para amar.</em>"</p>
+        <p class="frase-origem">Aldo · Posfácio — A Última Máscara</p>
+      </div>
+      <div class="frase-item">
+        <span class="frase-aspas">"</span>
+        <p class="frase-texto">"As joias brilham porque foram quebradas.<br />Mas eu?<br /><em>Fui lapidado pela sombra.</em>"</p>
+        <p class="frase-origem">Fragmento do caderno do Cavaleiro</p>
+      </div>
+    </div>
+    <div class="frases-dots" id="frasesDots"></div>
+  </section>
+
+  <!-- ============================================================
+       TEMAS
+  ============================================================ -->
+  <section class="temas-sec">
+    <div class="temas-wrap">
+      <div class="caps-header">
+        <span class="slabel r">O que este livro carrega</span>
+        <h2 class="stit r d1" style="text-align:center">Camadas que<br /><em>não se desprendem.</em></h2>
+      </div>
+      <div class="temas-grade">
+        <div class="tema-card r d1">
+          <span class="tema-icone">🎭</span>
+          <h3 class="tema-tit">Abuso psicológico & manipulação emocional</h3>
+          <p class="tema-desc">O jogo de Aldo é sofisticado demais para ser chamado de crueldade. E sedutor demais para ser recusado. O livro não julga — ele mostra.</p>
+        </div>
+        <div class="tema-card r d2">
+          <span class="tema-icone">🌹</span>
+          <h3 class="tema-tit">Traição & vingança</h3>
+          <p class="tema-desc">Juliette não chora. Planeja. Mas o plano de uma mulher ferida raramente termina onde ela esperava — especialmente quando o instrumento da vingança é mais inteligente do que ela.</p>
+        </div>
+        <div class="tema-card r d3">
+          <span class="tema-icone">🔗</span>
+          <h3 class="tema-tit">Poder, desejo & submissão</h3>
+          <p class="tema-desc">O livro explora com delicadeza e profundidade o território do desejo que confunde liberdade com prisão. Sem julgamento. Com honestidade desconfortável.</p>
+        </div>
+        <div class="tema-card r d1">
+          <span class="tema-icone">💎</span>
+          <h3 class="tema-tit">Identidade fragmentada</h3>
+          <p class="tema-desc">Quem é Juliette quando Jade existe? Quem é Pérola quando Safira já veio antes? O livro usa nomes de pedras preciosas para mapear a fragmentação de quem perdeu o próprio rosto.</p>
+        </div>
+        <div class="tema-card r d2">
+          <span class="tema-icone">🪞</span>
+          <h3 class="tema-tit">O espelho que revela</h3>
+          <p class="tema-desc">Aldo é monstruoso. Mas o que ele revela em Juliette é mais perturbador do que ele próprio. O livro sugere: às vezes o que nos prende faz isso porque mostra algo real.</p>
+        </div>
+        <div class="tema-card r d3">
+          <span class="tema-icone">🕯</span>
+          <h3 class="tema-tit">Recomeço após a destruição</h3>
+          <p class="tema-desc">O posfácio. "A última máscara." Aldo finalmente sem máscara. Juliette finalmente sem Juliette. O livro termina com uma porta que se abre — e você decide se é saída ou entrada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NOTA DE SENSIBILIDADE
+  ============================================================ -->
+  <div class="nota-sec">
+    <div class="nota-wrap r">
+      <span class="nota-icone">⚠</span>
+      <p class="nota-texto"><strong>Nota de Sensibilidade:</strong> Esta obra aborda temas como luto, abuso psicológico, relações tóxicas, automutilação e tentativa de suicídio. Escrita com cuidado e empatia — mas a leitura pode ser emocionalmente desafiadora. Se você se identificar com algumas dessas dores: você merece cuidado, escuta e luz. Não caminhe só.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       AQUISIÇÃO
+  ============================================================ -->
+  <section class="aq-sec" id="adquirir">
+    <div class="aq-wrap">
+      <div class="aq-header r">
+        <span class="slabel">Entre no jogo</span>
+        <h2 class="stit">Escolha como <em>jogar</em></h2>
+      </div>
+      <div class="aq-grade">
+        <div class="aq-card r d2">
+          <span class="aq-badge aq-badge-d">Imediato</span>
+          <span class="aq-icone">📱</span>
+          <h3 class="aq-tit">Digital — Amazon Kindle</h3>
+          <p class="aq-sub">A primeira jogada é sua</p>
+          <p class="aq-desc">Disponível agora no Amazon Kindle. Comece a leitura em minutos — no celular, tablet, computador ou e-reader. O tabuleiro está esperando.</p>
+          <a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener" class="btn btn-o" style="width:100%;justify-content:center">Comprar no Kindle →</a>
+        </div>
+        <div class="aq-card r d3">
+          <span class="aq-badge aq-badge-e">Sob Encomenda</span>
+          <span class="aq-icone">📦</span>
+          <h3 class="aq-tit">Físico — Exemplar Impresso</h3>
+          <p class="aq-sub">Para quem prefere o jogo nas mãos</p>
+          <p class="aq-desc">Exemplar físico impresso sob encomenda. Entre em contato para verificar disponibilidade, valor e prazo de entrega. O Cavaleiro responde.</p>
+          <a href="mailto:diogenes.escritor@gmail.com?subject=Pedido%20f%C3%ADsico%20-%20O%20Jogo%20das%20M%C3%A1scaras" class="btn btn-b" style="width:100%;justify-content:center">Solicitar por E-mail →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMENTÁRIOS
+  ============================================================ -->
+  <section class="com-sec" id="comentarios">
+    <div class="com-wrap">
+      <div class="com-header r">
+        <span class="slabel">Vozes do tabuleiro</span>
+        <h2 class="stit">O que os <em>leitores dizem</em></h2>
+        <p style="font-family:var(--fc);font-style:italic;font-size:.88rem;color:var(--perola-muted);margin-top:.5rem">Deixe sua impressão — sem spoilers no título. O próximo leitor agradece.</p>
+      </div>
+      <div class="com-lista">
+        <div class="com-card r d1">
+          <span class="com-aspas">"</span>
+          <p class="com-texto">Cheguei no capítulo 7 às 2 da manhã e não consegui parar. A ligação da Mariana me destruiu. Reli o começo e percebi que o autor havia deixado tudo lá desde a primeira página. Que livro perturbador e genial.</p>
+          <p class="com-autor">— Leitora Beta · São Paulo, SP</p>
+        </div>
+        <div class="com-card r d2">
+          <span class="com-aspas">"</span>
+          <p class="com-texto">Aldo é o personagem mais fascinante e desconcertante que já li. Você o odeia. Você o quer de volta. Você entende que está doente por isso. E o livro não te dá absolvição — apenas um espelho.</p>
+          <p class="com-autor">— [Seja o próximo a deixar um comentário]</p>
+        </div>
+      </div>
+      <div class="r d3">
+        <h3 class="cf-tit">Deixe o seu <em>comentário</em></h3>
+        <form onsubmit="enviarComentario(event)">
+          <div class="fg2">
+            <div class="fg"><label class="flabel" for="cn">Seu nome</label><input type="text" id="cn" class="finput" placeholder="Como quer ser chamado?" required /></div>
+            <div class="fg"><label class="flabel" for="cc">Cidade</label><input type="text" id="cc" class="finput" placeholder="Opcional" /></div>
+          </div>
+          <div class="fg">
+            <label class="flabel" for="cl">Você já leu?</label>
+            <select id="cl" class="fselect" style="background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23c9a84c'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;appearance:none">
+              <option value="" style="background:#110c11">Selecione...</option>
+              <option value="sim" style="background:#110c11">Sim, li completo</option>
+              <option value="cap" style="background:#110c11">Li o capítulo gratuito</option>
+              <option value="nao" style="background:#110c11">Ainda não li</option>
+            </select>
+          </div>
+          <div class="fg"><label class="flabel" for="ct">Seu comentário</label><textarea id="ct" class="ftextarea" placeholder="O que o jogo fez com você? Sem spoilers no começo, por favor." required></textarea></div>
+          <button type="submit" class="btn btn-o">Publicar Comentário</button>
+          <p class="faviso">⚠ Comentários aguardam moderação. Evite spoilers nas primeiras linhas.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIS LIVROS -->
+  <section class="mais-sec">
+    <div class="mais-wrap">
+      <span class="slabel r">Outros universos de Robério Diógenes</span>
+      <div class="mais-grade r d1">
+        <a href="../livros/lumen.html" class="mais-card"><img src="../img/lumen.jpg" alt="Lúmen" class="mais-capa" loading="lazy" /><p class="mais-tit">Lúmen</p></a>
+        <a href="../livros/a-setima-lei.html" class="mais-card"><img src="../img/a-setima-lei.jpg" alt="A Sétima Lei" class="mais-capa" loading="lazy" /><p class="mais-tit">A Sétima Lei</p></a>
+        <a href="../livros/cartas-do-passado.html" class="mais-card"><img src="../img/cartas-do-passado.jpg" alt="Cartas do Passado" class="mais-capa" loading="lazy" /><p class="mais-tit">Cartas do Passado</p></a>
+        <a href="../livros/genesis.html" class="mais-card"><img src="../img/genesis.jpg" alt="Gênesis" class="mais-capa" loading="lazy" /><p class="mais-tit">Gênesis</p></a>
+        <a href="../livros.html" class="mais-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;border:var(--borda-o);background:var(--preto-3)">
+          <span style="font-size:1.8rem;color:var(--ouro);margin-bottom:.4rem">→</span>
+          <p class="mais-tit" style="color:var(--ouro);text-align:center">Ver toda a biblioteca</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="../index.html" class="footer-logo">Robério Diógenes</a>
+      <ul class="footer-links">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="../livros.html">Biblioteca</a></li>
+        <li><a href="../autor.html">O Autor</a></li>
+        <li><a href="../blog.html">Diário</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+      </ul>
+      <p class="footer-copy">© 2025 Robério Diógenes · O Jogo das Máscaras · ISBN 978-65-01-57274-1</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================ JAVASCRIPT ============================================================ -->
+  <script>
+    // Cursor
+    const cur=document.getElementById('cursor'),cAn=document.getElementById('cursorAnel');
+    let mx=0,my=0,ax=0,ay=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+    (function t(){ax+=(mx-ax)*.11;ay+=(my-ay)*.11;cAn.style.left=ax+'px';cAn.style.top=ay+'px';requestAnimationFrame(t)})();
+    if('ontouchstart'in window){cur.style.display='none';cAn.style.display='none'}
+
+    // Nav / topo
+    const nav=document.getElementById('nav'),topoBtn=document.getElementById('topoBtn');
+    window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40);topoBtn.classList.toggle('v',scrollY>500)},{passive:true});
+
+    // Capa 3D
+    const l3d=document.getElementById('livro3d');
+    document.addEventListener('mousemove',e=>{
+      if(window.innerWidth<768)return;
+      const rx=-(e.clientY-innerHeight/2)/innerHeight*8;
+      const ry=(e.clientX-innerWidth/2)/innerWidth*12;
+      l3d.style.transform=`rotateX(${rx}deg) rotateY(${ry-18}deg)`;
+    });
+    document.addEventListener('mouseleave',()=>{l3d.style.transform='rotateY(-18deg) rotateX(3deg)'});
+
+    // Scroll reveal
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target)}});
+    },{threshold:.08});
+    document.querySelectorAll('.r,.re,.rd').forEach(el=>obs.observe(el));
+
+    // Partículas hero
+    const particulas=document.getElementById('particulas');
+    for(let i=0;i<25;i++){
+      const p=document.createElement('div');
+      p.className='particula';
+      p.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;--dur:${6+Math.random()*10}s;--delay:${Math.random()*8}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px`;
+      particulas.appendChild(p);
+    }
+
+    // Partículas da caixa
+    const cp=document.getElementById('caixaParticulas');
+    if(cp){
+      const posicoes=[[20,10],[80,15],[10,50],[90,45],[25,85],[75,80],[50,5],[50,95],[5,30],[95,65]];
+      posicoes.forEach(([x,y],i)=>{
+        const p=document.createElement('div');
+        p.className='caixa-particula';
+        p.style.cssText=`left:${x}%;top:${y}%;--dur:${3+i*.5}s;--delay:${i*.3}s`;
+        cp.appendChild(p);
+      });
+    }
+
+    // Modal da caixa
+    const modalOverlay=document.getElementById('modalOverlay');
+    document.getElementById('modalFechar').addEventListener('click',()=>modalOverlay.classList.remove('aberto'));
+    modalOverlay.addEventListener('click',e=>{if(e.target===modalOverlay)modalOverlay.classList.remove('aberto')});
+    document.getElementById('btnCaixa').addEventListener('click',e=>{e.preventDefault();modalOverlay.classList.add('aberto')});
+
+    function abrirCaixa(e){
+      e.preventDefault();
+      const btn=e.target.querySelector('button');
+      btn.textContent='⏳ O Cavaleiro está preparando...';btn.disabled=true;
+      setTimeout(()=>{
+        const a=document.createElement('a');
+        a.href='../livros/jogo-mascaras-amostra.pdf';
+        a.download='O-Jogo-das-Mascaras-Roberio-Diogenes.pdf';
+        a.click();
+        btn.textContent='✓ A caixa está aberta. Boa leitura.';btn.style.background='#8a6e2f';
+        setTimeout(()=>{modalOverlay.classList.remove('aberto');btn.textContent='♞ Aceitar o Presente — Cap. 1 Grátis';btn.style.background='';btn.disabled=false;},3500);
+      },800);
+    }
+
+    // Carrossel de frases
+    const fraseItems=document.querySelectorAll('.frase-item');
+    const dotsWrap=document.getElementById('frasesDots');
+    let fraseAtiva=0;
+    fraseItems.forEach((_,i)=>{
+      const d=document.createElement('button');
+      d.className='frase-dot'+(i===0?' ativa':'');
+      d.setAttribute('aria-label',`Frase ${i+1}`);
+      d.addEventListener('click',()=>irParaFrase(i));
+      dotsWrap.appendChild(d);
+    });
+    function irParaFrase(i){
+      fraseItems[fraseAtiva].classList.remove('ativa');
+      dotsWrap.children[fraseAtiva].classList.remove('ativa');
+      fraseAtiva=(i+fraseItems.length)%fraseItems.length;
+      fraseItems[fraseAtiva].classList.add('ativa');
+      dotsWrap.children[fraseAtiva].classList.add('ativa');
+    }
+    let autoFrase=setInterval(()=>irParaFrase(fraseAtiva+1),5000);
+    document.querySelector('.frases-carrossel').addEventListener('mouseenter',()=>clearInterval(autoFrase));
+    document.querySelector('.frases-carrossel').addEventListener('mouseleave',()=>{autoFrase=setInterval(()=>irParaFrase(fraseAtiva+1),5000)});
+
+    // Comentário
+    function enviarComentario(e){
+      e.preventDefault();
+      const btn=e.target.querySelector('button[type="submit"]');
+      btn.textContent='✓ Enviado! Aguardando moderação.';btn.style.background='#5a4a10';btn.disabled=true;
+      e.target.reset();
+      setTimeout(()=>{btn.textContent='Publicar Comentário';btn.style.background='';btn.disabled=false;},5000);
+    }
+  </script>
+</body>
+</html>

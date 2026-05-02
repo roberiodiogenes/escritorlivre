@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rosas & Espinhos — O Diário Secreto de uma Alma Apaixonada. Romance de Robério Diógenes. Entre o amor que liberta e o desejo que aprisiona, duas irmãs descobrem que o coração não escolhe com lógica." />
+  <meta property="og:title" content="Rosas & Espinhos | Robério Diógenes" />
+  <meta property="og:description" content="Aos que já amaram e perderam. Aos que ainda acreditam que, apesar dos espinhos, as rosas sempre florescem outra vez." />
+  <title>Rosas & Espinhos | Robério Diógenes</title>
+  <link rel="icon" type="image/png" href="../img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" />
+  <link rel="stylesheet" href="../css/rosas-e-espinhos.css" />
+
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-anel" id="cursorAnel"></div>
+  <a href="#" class="topo-btn" id="topoBtn" aria-label="Voltar ao topo">↑</a>
+
+  <!-- Pétalas flutuantes -->
+  <div id="petalas" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="../index.html" class="nav-logo">Robério Diógenes<span>Escritor Independente</span></a>
+    <a href="../livros.html" class="nav-voltar">← Biblioteca</a>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="inicio">
+    <div class="hero-fundo">
+      <span class="hero-petala-deco" style="top:15%;right:8%;font-size:6rem">🌹</span>
+      <span class="hero-petala-deco" style="bottom:20%;left:5%;font-size:4rem">🌿</span>
+      <span class="hero-petala-deco" style="top:60%;right:20%;font-size:3rem">🌸</span>
+    </div>
+
+    <!-- Capa 3D -->
+    <div class="hero-capa-area">
+      <div class="livro-brilho" aria-hidden="true"></div>
+      <div class="livro-3d" id="livro3d">
+        <div class="livro-lombada"><span>Rosas & Espinhos · Robério Diógenes</span></div>
+        <div class="livro-frente">
+          <img src="../img/rosas-e-espinhos.jpg" alt="Capa — Rosas & Espinhos · Robério Diógenes" />
+        </div>
+        <div class="livro-reflexo" aria-hidden="true">
+          <img src="../img/rosas-e-espinhos.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Texto -->
+    <div class="hero-texto">
+      <p class="hero-pre">Romance · Drama · 2ª Edição · 2025</p>
+      <h1 class="hero-titulo">
+        Rosas <span class="hero-amp">&</span><br /><em>Espinhos</em>
+      </h1>
+      <span class="hero-sub">O diário secreto de uma alma apaixonada</span>
+      <div class="hero-linha">
+        <div class="hero-linha-traço"></div>
+        <span class="hero-linha-flor">🌹</span>
+        <div class="hero-linha-traço"></div>
+      </div>
+      <p class="hero-frase">
+        Aos que já amaram e perderam.<br />
+        Aos que ainda acreditam que, apesar dos espinhos,<br />
+        <em style="color:var(--bordô)">as rosas sempre florescem outra vez.</em>
+      </p>
+      <div class="hero-badges">
+        <span class="badge badge-f">Romance & Drama</span>
+        <span class="badge badge-f">Amor Proibido</span>
+        <span class="badge badge-v">2ª Edição · 180 páginas</span>
+      </div>
+      <div class="hero-acoes">
+        <a href="https://www.amazon.com.br/Rosas-espinhos-onde-voc%C3%AA-sente-ebook/dp/B0DMHSDJPX/" target="_blank" rel="noopener" class="btn btn-r">📱 Comprar no Kindle</a>
+        <a href="#download" class="btn btn-b">🌸 Ler Capítulo Grátis</a>
+      </div>
+      <p class="hero-fmt">Disponível em: <span>Digital — Kindle</span> · <span>Físico sob encomenda</span></p>
+    </div>
+
+    <span class="hero-flor-deco" aria-hidden="true">🌺</span>
+  </section>
+
+  <div class="div-full"></div>
+
+  <!-- ============================================================
+       DEDICATÓRIA
+  ============================================================ -->
+  <section class="dedic">
+    <span class="dedic-aspas r" aria-hidden="true">"</span>
+    <p class="dedic-texto r d1">
+      Nada resiste ao tempo,<br />
+      exceto aquilo que <em>floresce dentro da alma.</em>
+    </p>
+    <p class="dedic-attr r d2">— Robério Diógenes</p>
+  </section>
+
+  <!-- ============================================================
+       SOBRE O LIVRO + FICHA
+  ============================================================ -->
+  <section class="sobre-sec">
+    <div class="sobre-wrap">
+      <div>
+        <span class="slabel r">Sobre o Livro</span>
+        <h2 class="stit r d1">Quando o coração escolhe<br /><em>sem pedir permissão</em></h2>
+        <div class="stexto r d2">
+          <p>Em Campos do Jordão, entre montanhas envoltas em névoa e o som suave de chaleiras de manhã cedo, Camille vive uma vida que parece perfeita por fora. Casamento estável, rotina ordenada, a paz de quem aprendeu a não querer demais.</p>
+          <p>Mas o coração não obedece à rotina. E quando Fernando — <em>o marido de sua própria irmã Laura</em> — começa a olhá-la de uma forma que nenhum cunhado deveria, Camille descobre que às vezes o maior perigo mora dentro de nós.</p>
+          <p>Do outro lado, Laura carrega um peso silencioso. Uma noite que ela jamais conseguiu esquecer completamente. Uma culpa que moldou cada escolha desde então. E Júlio — um homem que parece oferecer o que ela sempre quis — mas que traz consigo sombras que Nágela não deixará esconder.</p>
+          <p><strong>Rosas & Espinhos</strong> é um romance sobre o amor que floresce nos lugares errados, sobre as escolhas que deixam cicatrizes, e sobre a coragem de seguir adiante mesmo depois de tudo desmoronar. Uma história de duas irmãs que, sem saber, <em>carregam os espinhos uma da outra.</em></p>
+        </div>
+      </div>
+
+      <!-- Ficha técnica -->
+      <div class="ficha r d3">
+        <p class="ficha-tit">Ficha do Livro</p>
+        <div class="fi"><span class="fi-k">Título</span><span class="fi-v">Rosas & Espinhos</span></div>
+        <div class="fi"><span class="fi-k">Subtítulo</span><span class="fi-v">O Diário Secreto de uma Alma Apaixonada</span></div>
+        <div class="fi"><span class="fi-k">Autor</span><span class="fi-v">Robério Diógenes</span></div>
+        <div class="fi"><span class="fi-k">Gênero</span><span class="fi-v r">Romance · Drama</span></div>
+        <div class="fi"><span class="fi-k">Tema</span><span class="fi-v">Amor Proibido · Família</span></div>
+        <div class="fi"><span class="fi-k">Edição</span><span class="fi-v">2ª Ed. · 2025 · 180 p.</span></div>
+        <div class="fi"><span class="fi-k">Cidade</span><span class="fi-v">Cascavel, CE</span></div>
+        <div class="fi"><span class="fi-k">Digital</span><span class="fi-v r">Amazon Kindle</span></div>
+        <div class="fi"><span class="fi-k">Físico</span><span class="fi-v">Sob Encomenda</span></div>
+        <div class="ficha-acoes">
+          <a href="https://www.amazon.com.br/Rosas-espinhos-onde-voc%C3%AA-sente-ebook/dp/B0DMHSDJPX/" target="_blank" rel="noopener" class="btn btn-r" style="width:100%;justify-content:center">Comprar no Kindle</a>
+          <a href="mailto:diogenes.escritor@gmail.com?subject=Pedido%20f%C3%ADsico%20-%20Rosas%20%26%20Espinhos" class="btn btn-b" style="width:100%;justify-content:center">Solicitar Físico</a>
+          <a href="#download" class="btn btn-b btn-sm" style="width:100%;justify-content:center">🌸 Cap. 1 — Grátis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IMAGEM ATMOSFÉRICA
+  ============================================================ -->
+  <div class="atmos r">
+    <img src="../img/rosas-e-espinhos-img-01.jpg" alt="Rosas & Espinhos — capa" class="atmos-img" loading="lazy" style="object-position:center 10%" />
+    <div class="atmos-overlay"></div>
+    <div class="atmos-texto">
+      <p>"A brisa da noite sussurrava entre as ondas.<br />Ela estava ali, naquele momento,<br />sentindo que amar assim era como <em>dançar sobre o abismo.</em>"</p>
+      <span>Capítulo II — Acácias</span>
+    </div>
+  </div>
+
+  <div class="div-full"></div>
+
+  <!-- ============================================================
+       O JARDIM — CAPÍTULOS
+  ============================================================ -->
+  <section class="jardim-sec">
+    <div class="jardim-wrap">
+      <div class="jardim-header">
+        <span class="slabel r">A Estrutura do Romance</span>
+        <h2 class="stit r d1" style="text-align:center">Um jardim de <em>cinco flores.</em><br />Cada capítulo, uma estação da alma.</h2>
+        <p class="jardim-desc r d2">O autor escolheu flores como títulos — não por acaso. Cada uma carrega um simbolismo que reflete o que Camille, Laura e todos ao redor delas atravessam naquele trecho da história.</p>
+      </div>
+
+      <div class="jardim-grade">
+        <div class="flor-card r d1">
+          <span class="flor-emoji">🌹</span>
+          <span class="flor-num">Capítulo I</span>
+          <h3 class="flor-nome">Rosas Vermelhas</h3>
+          <p class="flor-hint">A vida de Camille em Campos do Jordão parecia tranquila. A chaleira, as montanhas, o marido de terno. Mas havia algo crescendo silenciosamente — um vazio que a rotina não conseguia preencher.</p>
+          <p class="flor-pgs">A abertura · Págs. 8–44</p>
+        </div>
+        <div class="flor-card r d2">
+          <span class="flor-emoji">🌿</span>
+          <span class="flor-num">Capítulo II</span>
+          <h3 class="flor-nome">Acácias</h3>
+          <p class="flor-hint">Os sonhos começam a transbordar para a realidade de Camille. O que ela sente por Fernando já não cabe só no pensamento. E Laura, no seu próprio apartamento, tenta esquecer uma noite que jamais vai embora.</p>
+          <p class="flor-pgs">O florescimento · Págs. 45–84</p>
+        </div>
+        <div class="flor-card r d3">
+          <span class="flor-emoji">🌺</span>
+          <span class="flor-num">Capítulo III</span>
+          <h3 class="flor-nome">Bougainville</h3>
+          <p class="flor-hint">O apartamento arrumado, mas sem calor. Laura tenta convencer a si mesma de que Júlio preenche o vazio — mas algo está errado. E Nágela ainda não apareceu de verdade. Ainda.</p>
+          <p class="flor-pgs">As sombras chegam · Págs. 85–116</p>
+        </div>
+        <div class="flor-card r d1" style="border-color:rgba(196,100,122,.2)">
+          <span class="flor-emoji">🥀</span>
+          <span class="flor-num">Capítulo IV</span>
+          <h3 class="flor-nome" style="color:var(--bordô)">Coroa de Cristo</h3>
+          <p class="flor-hint">O capítulo mais pesado. Os segredos começam a vazar. Nágela entra com força na história de Laura. E Henrique, que parecia apenas coadjuvante, revela que guardava suas próprias flores podres.</p>
+          <p class="flor-pgs">A virada · Págs. 117–154</p>
+        </div>
+        <div class="flor-card r d2" style="border-color:rgba(196,100,122,.2)">
+          <span class="flor-emoji">⚜️</span>
+          <span class="flor-num">Capítulo V</span>
+          <h3 class="flor-nome" style="color:var(--bordô)">Flor-de-Lis</h3>
+          <p class="flor-hint">A church silenciosa. Um caixão fechado. A dor mais pesada não vem de fora — vem de tudo que não foi dito a tempo. O desfecho que vai ficar com você muito depois da última página.</p>
+          <p class="flor-pgs">O fim e o recomeço · Págs. 155–173</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PERSONAGENS
+  ============================================================ -->
+  <section class="pers-sec">
+    <div class="pers-wrap">
+      <div class="pers-header">
+        <span class="slabel r">As Pessoas desta História</span>
+        <h2 class="stit r d1" style="text-align:center">Os <em>personagens</em></h2>
+        <p class="pers-intro r d2">Ninguém aqui é vilão. Ninguém é completamente inocente. São pessoas tentando sobreviver ao próprio vazio — e ao amor que escolheu o lugar mais complicado para florescer.</p>
+      </div>
+      <div class="pers-grade">
+
+        <div class="pers-card r d1">
+          <div class="pers-top">
+            <div class="pers-inicial">C</div>
+            <h3 class="pers-nome">Camille</h3>
+            <span class="pers-papel">A Protagonista · A Alma Apaixonada</span>
+          </div>
+          <div class="pers-info">
+            <p class="pers-desc">Casada com Henrique, vive uma rotina que parecia suficiente — até que deixou de ser. Camille é a mulher que aprende a diferença entre amar com a cabeça e amar com o corpo inteiro, mesmo quando isso a leva a um lugar sem saída fácil.</p>
+          </div>
+        </div>
+
+        <div class="pers-card r d2">
+          <div class="pers-top">
+            <div class="pers-inicial" style="background:linear-gradient(135deg,#5a7a5c,#3a5a3c)">L</div>
+            <h3 class="pers-nome">Laura</h3>
+            <span class="pers-papel">A Irmã · O Segredo Guardado</span>
+          </div>
+          <div class="pers-info">
+            <p class="pers-desc">Irmã de Camille, casada com Fernando. Laura carrega uma memória que ela nunca conseguiu nomear completamente. Uma noite. Um borrão. E tudo que veio depois disso. Sua história é sobre o peso do silêncio e a coragem de finalmente falar.</p>
+          </div>
+        </div>
+
+        <div class="pers-card r d3">
+          <div class="pers-top">
+            <div class="pers-inicial" style="background:linear-gradient(135deg,#7a5a3c,#5a3a20)">F</div>
+            <h3 class="pers-nome">Fernando</h3>
+            <span class="pers-papel">O Cunhado · A Atração Proibida</span>
+          </div>
+          <div class="pers-info">
+            <p class="pers-desc">Marido de Laura, ele olha para Camille de uma forma que nenhum cunhado deveria. Não é simplesmente desejo — é uma conexão silenciosa, quase inevitável. Fernando não é monstro. É humano demais. E isso o torna ainda mais perigoso.</p>
+          </div>
+        </div>
+
+        <div class="pers-card r d4">
+          <div class="pers-top">
+            <div class="pers-inicial" style="background:linear-gradient(135deg,#3a3a5a,#1a1a3a)">H</div>
+            <h3 class="pers-nome">Henrique</h3>
+            <span class="pers-papel">O Marido · O Homem Distante</span>
+          </div>
+          <div class="pers-info">
+            <p class="pers-desc">Um bom homem — na superfície. Terno impecável, sorriso confiante, um beijo rápido na testa antes de sair. Mas há algo que Henrique esconde que vai mudar completamente o que você pensa sobre ele quando chegar ao capítulo quatro.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RESPIRO — FRASE IMPACTANTE
+  ============================================================ -->
+  <section class="respiro">
+    <div class="respiro-linha r"></div>
+    <p class="respiro-texto r d1">
+      "Ela sabia que amar assim era errado.<br />
+      Mas o coração não consulta a moral<br />
+      antes de <em>se incendiar.</em>"
+    </p>
+    <div class="respiro-linha r d2"></div>
+    <p class="respiro-orig r d3">Rosas & Espinhos · Robério Diógenes</p>
+  </section>
+
+  <!-- ============================================================
+       TRECHO LITERÁRIO
+  ============================================================ -->
+  <section class="trecho-sec">
+    <div class="trecho-wrap">
+      <div class="trecho-header r">
+        <span class="slabel" style="text-align:center">Uma Amostra do Livro</span>
+        <h2 class="stit" style="text-align:center">As <em>primeiras palavras</em></h2>
+      </div>
+      <div class="trecho-box r d1">
+        <p class="trecho-texto">
+          "A luz suave da manhã iluminava a casa onde Camille e Henrique viviam. Aquele dia parecia como tantos outros. A cidade de Campos do Jordão estava fria, e o vento leve que soprava nas árvores ao redor criava um som tranquilo, quase hipnótico.<br /><br />
+          O silêncio no interior da casa era quebrado apenas pelo barulho leve da chaleira na cozinha. Camille preparava o café da manhã enquanto observava as montanhas pela janela, como fazia todas as manhãs.<br /><br />
+          <em>Assim também era o casamento: receitas memorizadas, movimentos automáticos. A precisão de quem faz e refaz sem pensar.</em>"
+        </p>
+        <span class="trecho-origem">Capítulo I · Rosas Vermelhas · Abertura</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FRASES DESTACADAS
+  ============================================================ -->
+  <section class="frases-sec" style="background:var(--fundo-2);border-top:var(--borda-f)">
+    <span class="slabel r" style="text-align:center">Palavras que ficam</span>
+    <h2 class="stit r d1" style="text-align:center">Passagens que <em>tocam a alma</em></h2>
+    <div class="frases-grade">
+      <div class="frase-card r d1">
+        <span class="frase-card-aspas">"</span>
+        <p class="frase-card-texto">"Eu não sei se estou acordada ou dormindo, mas há sonhos que me prendem como correntes suaves, e desejos que florescem como mandrágoras, enraizados no fundo do meu ser."</p>
+        <span class="frase-card-orig">Cap. II · Acácias</span>
+      </div>
+      <div class="frase-card r d2">
+        <span class="frase-card-aspas">"</span>
+        <p class="frase-card-texto">"Os lábios de Fernando eram como uma âncora, trazendo-a de volta ao presente. Mas ela sabia que amar naquele momento era como <em>dançar sobre o abismo.</em>"</p>
+        <span class="frase-card-orig">Cap. III · Bougainville</span>
+      </div>
+      <div class="frase-card r d3">
+        <span class="frase-card-aspas">"</span>
+        <p class="frase-card-texto">"A medida do amor é amar sem medida."</p>
+        <span class="frase-card-orig">— Santo Agostinho · Epígrafe final</span>
+      </div>
+      <div class="frase-card r d1">
+        <span class="frase-card-aspas">"</span>
+        <p class="frase-card-texto">"O caminho para a paz começa com a verdade. Reze, e ouça seu coração. A resposta está lá, mesmo que você ainda não a tenha reconhecido."</p>
+        <span class="frase-card-orig">Padre Gabriel · Cap. I</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DOWNLOAD GRÁTIS
+  ============================================================ -->
+  <section class="download-sec" id="download">
+    <div class="download-wrap">
+      <div>
+        <span class="slabel r">Gratuito · Sem cadastro obrigatório</span>
+        <h2 class="stit r d1">Leia o primeiro<br /><em>capítulo grátis.</em></h2>
+        <p class="stexto r d2" style="font-style:italic;margin-bottom:1.5rem">Antes de decidir, sinta. Rosas Vermelhas — o primeiro capítulo — já é suficiente para você entender se esta história foi escrita para você.</p>
+        <ul class="dl-lista r d3">
+          <li>Capítulo completo — sem cortes</li>
+          <li>Formato PDF — leia em qualquer dispositivo</li>
+          <li>Download direto e imediato</li>
+          <li>Sem cadastro obrigatório</li>
+        </ul>
+        <a href="#adquirir" class="btn btn-r r d4" style="margin-top:.5rem">Ver Opções de Compra →</a>
+      </div>
+      <div class="dl-card rd">
+        <span class="dl-icone">🌹</span>
+        <h3 class="dl-tit">Rosas Vermelhas</h3>
+        <p class="dl-sub">Cap. I — Rosas & Espinhos · PDF</p>
+        <form class="dl-form" onsubmit="baixarAmostra(event)">
+          <input type="email" class="dl-input" placeholder="Seu e-mail (opcional — para novidades)" id="emailDl" />
+          <button type="submit" class="btn btn-r" style="width:100%;justify-content:center">🌸 &nbsp;Baixar Capítulo Grátis</button>
+        </form>
+        <p class="dl-aviso">📎 PDF · 180 páginas · Download imediato</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       AQUISIÇÃO
+  ============================================================ -->
+  <section class="aq-sec" id="adquirir">
+    <div class="aq-wrap">
+      <div class="aq-header r">
+        <span class="slabel">Levar para casa</span>
+        <h2 class="stit">Escolha como <em>ler Rosas & Espinhos</em></h2>
+      </div>
+      <div class="aq-grade">
+        <div class="aq-card r d2">
+          <span class="aq-badge aq-badge-d">Imediato</span>
+          <span class="aq-icone">📱</span>
+          <h3 class="aq-tit">Digital — Amazon Kindle</h3>
+          <p class="aq-sub">Leia em minutos, em qualquer dispositivo</p>
+          <p class="aq-desc">Disponível agora no Amazon Kindle. Compre e comece a ler imediatamente — no celular, tablet, computador ou e-reader. Sem espera, sem frete.</p>
+          <a href="https://www.amazon.com.br/Rosas-espinhos-onde-voc%C3%AA-sente-ebook/dp/B0DMHSDJPX/" target="_blank" rel="noopener" class="btn btn-r" style="width:100%;justify-content:center">Comprar no Kindle →</a>
+        </div>
+        <div class="aq-card r d3">
+          <span class="aq-badge aq-badge-e">Sob Encomenda</span>
+          <span class="aq-icone">📦</span>
+          <h3 class="aq-tit">Físico — Exemplar Impresso</h3>
+          <p class="aq-sub">Para quem prefere o livro nas mãos</p>
+          <p class="aq-desc">Exemplar físico impresso sob encomenda. Entre em contato por e-mail para verificar disponibilidade, valor do exemplar e prazo de entrega para a sua cidade.</p>
+          <a href="mailto:diogenes.escritor@gmail.com?subject=Pedido%20f%C3%ADsico%20-%20Rosas%20%26%20Espinhos" class="btn btn-b" style="width:100%;justify-content:center">Solicitar por E-mail →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMENTÁRIOS
+  ============================================================ -->
+  <section class="com-sec" id="comentarios">
+    <div class="com-wrap">
+      <div class="com-header r">
+        <span class="slabel">O que dizem os leitores</span>
+        <h2 class="stit">Vozes que <em>já sentiram</em></h2>
+        <p style="font-family:var(--fc);font-style:italic;font-size:.95rem;color:var(--texto-3);margin-top:.5rem">Se este livro tocou você de alguma forma — deixe uma palavra. Sua impressão pode ser o que falta para outra pessoa decidir começar a leitura.</p>
+      </div>
+
+      <div class="com-lista">
+        <div class="com-card r d1">
+          <span class="com-aspas">"</span>
+          <p class="com-texto">Li em dois dias porque simplesmente não consegui parar. A Camille é tão real — cada hesitação dela, cada culpa, cada momento em que ela sabe que está escolhendo o errado e escolhe mesmo assim. Me vi ali em tantos momentos.</p>
+          <p class="com-autor">— Leitora · Fortaleza, CE</p>
+        </div>
+        <div class="com-card r d2">
+          <span class="com-aspas">"</span>
+          <p class="com-texto">O capítulo Flor-de-Lis me partiu ao meio. Não esperava por aquilo. Terminei com o coração pesado do jeito certo — o jeito de quem viveu algo junto com os personagens, não só leu sobre eles.</p>
+          <p class="com-autor">— [Seja o próximo — deixe seu comentário]</p>
+        </div>
+      </div>
+
+      <div class="r d3">
+        <h3 class="cf-tit">Deixe o seu <em>comentário</em></h3>
+        <form onsubmit="enviarComentario(event)">
+          <div class="fg2">
+            <div class="fg"><label class="flabel" for="cn">Seu nome</label><input type="text" id="cn" class="finput" placeholder="Como quer ser chamada(o)?" required /></div>
+            <div class="fg"><label class="flabel" for="cc">Cidade</label><input type="text" id="cc" class="finput" placeholder="Opcional" /></div>
+          </div>
+          <div class="fg">
+            <label class="flabel" for="cl">Você já leu?</label>
+            <select id="cl" class="fselect">
+              <option value="">Selecione...</option>
+              <option value="sim">Sim, li completo</option>
+              <option value="cap">Li o capítulo gratuito</option>
+              <option value="nao">Ainda não li</option>
+            </select>
+          </div>
+          <div class="fg"><label class="flabel" for="ct">Seu comentário</label><textarea id="ct" class="ftextarea" placeholder="O que o livro moveu em você? Pode falar do sentimento, sem spoilers no início…" required></textarea></div>
+          <button type="submit" class="btn btn-r">Publicar Comentário</button>
+          <p class="faviso">⚠ Comentários aguardam moderação. Evite revelar os finais nas primeiras linhas — outros leitores agradecem.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIS LIVROS -->
+  <section class="mais-sec">
+    <div class="mais-wrap">
+      <span class="mais-label">Outros universos de Robério Diógenes</span>
+      <div class="mais-grade r d1">
+        <a href="../livros/lumen.html" class="mais-card"><img src="../img/lumen.jpg" alt="Lúmen" class="mais-capa" loading="lazy" /><p class="mais-tit">Lúmen</p></a>
+        <a href="../livros/a-setima-lei.html" class="mais-card"><img src="../img/a-setima-lei.jpg" alt="A Sétima Lei" class="mais-capa" loading="lazy" /><p class="mais-tit">A Sétima Lei</p></a>
+        <a href="../livros/jogo-das-mascaras.html" class="mais-card"><img src="../img/jogo-das-mascaras.jpg" alt="O Jogo das Máscaras" class="mais-capa" loading="lazy" /><p class="mais-tit">O Jogo das Máscaras</p></a>
+        <a href="../livros/cartas-do-passado.html" class="mais-card"><img src="../img/cartas-do-passado.jpg" alt="Cartas do Passado" class="mais-capa" loading="lazy" /><p class="mais-tit">Cartas do Passado</p></a>
+        <a href="../livros.html" class="mais-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;border:var(--borda-r);background:var(--fundo-e2)">
+          <span style="font-size:1.8rem;color:var(--rosa-2);margin-bottom:.4rem">→</span>
+          <p class="mais-tit" style="color:var(--rosa-2);text-align:center">Ver toda a biblioteca</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="../index.html" class="footer-logo">Robério Diógenes</a>
+      <ul class="footer-links">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="../livros.html">Biblioteca</a></li>
+        <li><a href="../autor.html">O Autor</a></li>
+        <li><a href="../blog.html">Diário</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+      </ul>
+      <p class="footer-copy">© 2025 Robério Diógenes · Rosas & Espinhos · 2ª Edição</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================ JAVASCRIPT ============================================================ -->
+  <script src="../js/script-rosas-e-espinhos.js"></script>
+</body>
+</html>

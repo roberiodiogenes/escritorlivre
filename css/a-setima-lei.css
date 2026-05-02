@@ -1,0 +1,435 @@
+    /* ============================================================
+       VARIÁVEIS — TEMA SÉTIMA LEI
+       Tons profundos: âmbar-escuro + vermelho-carvão + crème-sofrido
+       Diferente da paleta Lúmen — aqui é calor, peso, urgência
+    ============================================================ */
+    :root {
+      --preto:        #080604;
+      --preto-2:      #0e0b08;
+      --preto-3:      #161108;
+      --preto-4:      #1e160a;
+      --amber:        #c4792a;       /* âmbar — calor + urgência */
+      --amber-2:      #e8953a;       /* hover do âmbar */
+      --amber-pale:   rgba(196,121,42,.12);
+      --amber-glow:   rgba(196,121,42,.35);
+      --vermelho:     #8b2020;       /* vermelho-carvão — dor, traição */
+      --vermelho-2:   rgba(139,32,32,.15);
+      --creme:        #e8dcc8;       /* texto principal */
+      --creme-suave:  #c7b296;       /* texto secundário */
+      --creme-muted:  #b49874;       /* texto terciário */
+      --borda-a:      1px solid rgba(196,121,42,.2);
+      --borda-f:      1px solid rgba(196,121,42,.07);
+      --sombra-a:     0 0 50px rgba(196,121,42,.12);
+      --ft:           'Playfair Display', Georgia, serif;
+      --fc:           'Lora', Georgia, serif;
+      --fd:           'Cinzel Decorative', serif;
+      --fu:           'Cormorant Garamond', Georgia, serif;
+      --ease:         cubic-bezier(.25,.46,.45,.94);
+    }
+
+    /* ============================================================
+       RESET
+    ============================================================ */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{background:var(--preto);color:var(--creme);font-family:var(--fc);line-height:1.7;overflow-x:hidden;cursor:none}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:300;opacity:.65}
+    img{max-width:100%;display:block}
+    a{text-decoration:none}
+
+    /* ============================================================
+       CURSOR — âmbar
+    ============================================================ */
+    .cursor{width:10px;height:10px;background:var(--amber);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:999;transform:translate(-50%,-50%);mix-blend-mode:screen;box-shadow:0 0 14px var(--amber);transition:width .3s,height .3s}
+    .cursor-anel{width:34px;height:34px;border:1px solid rgba(196,121,42,.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:999;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+
+    /* ============================================================
+       NÉVOA ÂMBAR
+    ============================================================ */
+    .nevoa{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 15% 80%,rgba(196,121,42,.04),transparent 70%),radial-gradient(ellipse 40% 60% at 85% 20%,rgba(139,32,32,.04),transparent 70%);animation:mNevoa 25s ease-in-out infinite alternate}
+    @keyframes mNevoa{from{transform:translate(0,0)}to{transform:translate(20px,-15px)}}
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 clamp(1.2rem,4vw,4rem);display:flex;align-items:center;justify-content:space-between;height:66px;transition:background .4s,backdrop-filter .4s}
+    nav.scrolled{background:rgba(8,6,4,.92);backdrop-filter:blur(16px);border-bottom:var(--borda-f)}
+    .nav-logo{font-family:var(--fd);font-size:.78rem;color:var(--creme-suave);letter-spacing:.15em;text-transform:uppercase;transition:color .3s}
+    .nav-logo:hover{color:var(--amber)}
+    .nav-logo span{color:var(--amber);font-size:.62em;display:block;letter-spacing:.3em}
+    .nav-voltar{font-family:var(--fu);font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;color:var(--creme-muted);display:flex;align-items:center;gap:8px;transition:color .3s}
+    .nav-voltar:hover{color:var(--amber)}
+
+    /* ============================================================
+       BOTÕES
+    ============================================================ */
+    .btn{font-family:var(--fu);font-size:.8rem;letter-spacing:.25em;text-transform:uppercase;padding:15px 32px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:all .35s;position:relative;overflow:hidden}
+    .btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.04);transform:translateX(-100%);transition:transform .35s}
+    .btn:hover::before{transform:translateX(0)}
+    .btn-a{background:var(--amber);color:var(--preto);font-weight:700}
+    .btn-a:hover{background:var(--amber-2);box-shadow:0 0 40px rgba(196,121,42,.5);transform:translateY(-2px)}
+    .btn-b{background:transparent;color:var(--amber);border:var(--borda-a)}
+    .btn-b:hover{background:var(--amber-pale);border-color:var(--amber);transform:translateY(-2px);box-shadow:var(--sombra-a)}
+    .btn-v{background:var(--vermelho);color:var(--creme);border:none}
+    .btn-v:hover{background:#a02828;box-shadow:0 0 30px rgba(139,32,32,.5);transform:translateY(-2px)}
+    .btn-sm{padding:10px 22px;font-size:.72rem}
+
+    /* ============================================================
+       TOPO
+    ============================================================ */
+    .topo-btn{position:fixed;bottom:2rem;right:2rem;width:44px;height:44px;background:var(--preto-3);border:var(--borda-a);color:var(--amber);display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;font-size:.9rem}
+    .topo-btn.v{opacity:1;pointer-events:all}
+    .topo-btn:hover{transform:translateY(-4px);background:var(--amber);color:var(--preto)}
+
+    /* ============================================================
+       REVEAL
+    ============================================================ */
+    .r{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .re{opacity:0;transform:translateX(-26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .rd{opacity:0;transform:translateX(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .r.v,.re.v,.rd.v{opacity:1;transform:translate(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+    .d4{transition-delay:.4s}.d5{transition-delay:.5s}.d6{transition-delay:.6s}
+
+    /* ============================================================
+       DIVISOR
+    ============================================================ */
+    .div-l{height:1px;background:linear-gradient(90deg,transparent,rgba(196,121,42,.25),transparent);max-width:1200px;margin:0 auto}
+    .div-full{height:1px;background:linear-gradient(90deg,transparent,rgba(196,121,42,.15),transparent)}
+
+    /* ============================================================
+       ░░░ 1. HERO — IMPACTO IMEDIATO ░░░
+       Fundo com imagem do casal de costas + capa 3D + texto urgente
+    ============================================================ */
+    .hero{min-height:100vh;position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:2rem;padding:100px clamp(1.2rem,5vw,5rem) 4rem;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;z-index:0;background-image:url('../img/setima-lei-01.jpg');background-size:cover;background-position:center;filter:brightness(.12) saturate(.5) sepia(.3);transition:filter 6s}
+    .hero-bg.loaded{filter:brightness(.15) saturate(.6) sepia(.2)}
+    .hero-grad{position:absolute;inset:0;z-index:0;background:linear-gradient(to right,rgba(8,6,4,.97) 50%,rgba(8,6,4,.6) 100%),linear-gradient(to top,rgba(8,6,4,.95) 0%,transparent 40%)}
+
+    /* Capa 3D */
+    .hero-capa-area{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;perspective:1100px;opacity:0;animation:sE 1.2s .3s forwards}
+    @keyframes sE{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes sD{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes sU{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    .livro-3d{position:relative;transform-style:preserve-3d;transform:rotateY(-18deg) rotateX(3deg);transition:transform .8s var(--ease);width:min(280px,75vw)}
+    .livro-3d:hover{transform:rotateY(-5deg) rotateX(1deg) scale(1.03)}
+    .livro-lombada{position:absolute;top:0;right:100%;bottom:0;width:32px;background:linear-gradient(180deg,#1a0e06 0%,#120a04 50%,#0e0704 100%);transform-origin:right;transform:rotateY(90deg);display:flex;align-items:center;justify-content:center;box-shadow:inset -4px 0 12px rgba(0,0,0,.6)}
+    .livro-lombada span{font-family:var(--ft);font-size:.52rem;font-weight:600;color:rgba(196,121,42,.5);letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg)}
+    .livro-frente{position:relative;box-shadow:-22px 22px 60px rgba(0,0,0,.9),-4px 4px 0 rgba(196,121,42,.06),0 0 80px rgba(196,121,42,.08)}
+    .livro-frente img{width:100%}
+    .livro-reflexo{position:absolute;left:0;right:0;top:100%;height:80px;overflow:hidden;pointer-events:none}
+    .livro-reflexo img{width:100%;transform:scaleY(-1);filter:brightness(.1) blur(4px);mask-image:linear-gradient(to bottom,rgba(0,0,0,.5),transparent);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.5),transparent)}
+    .livro-brilho{position:absolute;inset:-30px;background:radial-gradient(ellipse at center,rgba(196,121,42,.07),transparent 70%);pointer-events:none;animation:pBrilho 5s ease-in-out infinite}
+    @keyframes pBrilho{0%,100%{opacity:.5}50%{opacity:1}}
+
+    /* Texto hero */
+    .hero-texto{position:relative;z-index:2;opacity:0;animation:sD 1.2s .5s forwards}
+    .hero-aviso{display:inline-block;font-family:var(--fd);font-size:.48rem;letter-spacing:.5em;text-transform:uppercase;background:var(--vermelho);color:var(--creme);padding:5px 14px;margin-bottom:1.5rem}
+    .hero-titulo{font-family:var(--ft);font-size:clamp(2.6rem,5.5vw,5rem);font-weight:700;line-height:.95;color:var(--creme);margin-bottom:.4rem}
+    .hero-sub{font-family:var(--ft);font-style:italic;font-size:clamp(.9rem,1.8vw,1.25rem);color:var(--amber);letter-spacing:.04em;margin-bottom:.5rem;display:block}
+    .hero-sub2{font-family:var(--fu);font-size:.9rem;color:var(--creme-muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:2rem;display:block}
+    .hero-linha{width:56px;height:1px;background:linear-gradient(90deg,var(--amber),transparent);margin:1.8rem 0}
+    .hero-frase{font-family:var(--ft);font-style:italic;font-size:1.05rem;color:var(--creme-suave);line-height:1.9;max-width:500px;margin-bottom:2rem;border-left:2px solid var(--amber);padding-left:1.2rem}
+    .hero-badges{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+    .badge{font-family:var(--fd);font-size:.54rem;letter-spacing:.35em;text-transform:uppercase;padding:5px 11px;border:var(--borda-a);color:var(--amber)}
+    .badge-f{background:rgba(196,121,42,.12)}
+    .badge-v{background:rgba(139,32,32,.2);color:#e08080;border-color:rgba(139,32,32,.3)}
+    .hero-acoes{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+    .hero-fmt{font-family:var(--fu);font-size:1rem;color:var(--creme-muted);font-style:italic;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+    .hero-fmt span{color:var(--amber);font-style:normal}
+
+    /* ============================================================
+       ░░░ 2. IMPACTO — "Você está aqui" ░░░
+       Pergunta direta que para o leitor
+    ============================================================ */
+    .impacto{padding:5rem clamp(1.2rem,5vw,5rem);background:var(--preto-2);border-top:var(--borda-f);border-bottom:var(--borda-f);text-align:center;position:relative;z-index:2;overflow:hidden}
+    .impacto::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(196,121,42,.05),transparent 70%);pointer-events:none}
+    .impacto-deco{font-family:var(--ft);font-size:clamp(4rem,8vw,7rem);color:var(--amber);opacity:.06;line-height:.8;display:block;font-style:italic;user-select:none;margin-bottom:-1.5rem}
+    .impacto-frase{font-family:var(--ft);font-style:italic;font-size:clamp(1.2rem,2.5vw,2rem);color:var(--creme);line-height:1.65;max-width:820px;margin:0 auto 1.5rem;position:relative;z-index:1}
+    .impacto-frase em{color:var(--amber)}
+    .impacto-frase strong{color:var(--creme)}
+    .impacto-attr{font-family:var(--fd);font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;color:var(--creme-muted);position:relative;z-index:1}
+
+    /* ============================================================
+       ░░░ 3. PARA QUEM É ESTE LIVRO ░░░
+       Identificação emocional — o visitante se reconhece
+    ============================================================ */
+    .paraquem{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .paraquem-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    .paraquem-img-wrap{position:relative}
+    .paraquem-img{width:100%;filter:brightness(.75) sepia(.2) contrast(1.1)}
+    .paraquem-img-borda{position:absolute;inset:-12px;border:var(--borda-a);pointer-events:none}
+    .paraquem-img-borda2{position:absolute;inset:-24px;border:var(--borda-f);pointer-events:none;opacity:.5}
+
+    .slabel{font-family:var(--fd);font-size:.7rem;letter-spacing:.5em;text-transform:uppercase;color:var(--amber);margin-bottom:1rem;display:block}
+    .stit{font-family:var(--ft);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:400;color:var(--creme);line-height:1.2;margin-bottom:2rem}
+    .stit em{font-style:italic;color:var(--amber)}
+
+    /* Lista de identificação */
+    .identif-lista{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+    .identif-item{font-family:var(--fc);font-size:1rem;color:var(--creme-suave);line-height:1.7;padding:.8rem 1.2rem;background:var(--preto-3);border-left:2px solid var(--amber);display:flex;align-items:flex-start;gap:.75rem;transition:background .3s,border-color .3s}
+    .identif-item:hover{background:var(--preto-4);border-left-color:var(--amber-2)}
+    .identif-item::before{content:'✦';color:var(--amber);font-size:.7rem;flex-shrink:0;margin-top:.18rem}
+
+    /* ============================================================
+       ░░░ 4. SINOPSE + FICHA ░░░
+    ============================================================ */
+    .sinopse-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--preto-2);position:relative;z-index:2;border-top:var(--borda-f)}
+    .sinopse-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:4.5rem;align-items:start}
+    .stexto{font-family:var(--fc);font-size:.92rem;color:var(--creme-suave);line-height:2}
+    .stexto p+p{margin-top:1.2rem}
+    .stexto strong{color:var(--creme)}
+    .stexto em{color:var(--amber);font-style:italic}
+
+    /* Ficha */
+    .ficha{background:var(--preto-3);border:var(--borda-a);padding:2rem;position:sticky;top:84px;box-shadow:var(--sombra-a)}
+    .ficha-tit{font-family:var(--fd);font-size:.5rem;letter-spacing:.5em;text-transform:uppercase;color:var(--amber);margin-bottom:1.5rem}
+    .fi{display:flex;justify-content:space-between;padding:.7rem 0;border-bottom:var(--borda-f);font-family:var(--fu)}
+    .fi:last-of-type{border-bottom:none}
+    .fi-k{font-size:.78rem;color:var(--creme-muted);text-transform:uppercase;letter-spacing:.08em}
+    .fi-v{font-size:.88rem;color:var(--creme);text-align:right}
+    .fi-v.a{color:var(--amber)}
+    .ficha-acoes{margin-top:1.5rem;display:flex;flex-direction:column;gap:.7rem}
+
+    /* ============================================================
+       ░░░ 5. IMAGEM ATMOSFÉRICA ░░░
+    ============================================================ */
+    .atmos{position:relative;z-index:2;overflow:hidden;height:clamp(280px,45vw,550px);border-top:var(--borda-f);border-bottom:var(--borda-f)}
+    .atmos-img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.5) sepia(.3) contrast(1.1);transition:filter .6s,transform 8s}
+    .atmos:hover .atmos-img{filter:brightness(.6) sepia(.2);transform:scale(1.02)}
+    .atmos-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(8,6,4,.92) 40%,transparent 80%),linear-gradient(to top,rgba(8,6,4,.9) 0%,transparent 40%)}
+    .atmos-texto{position:absolute;bottom:3rem;left:clamp(1.5rem,5vw,5rem);z-index:1;max-width:520px}
+    .atmos-texto p{font-family:var(--ft);font-style:italic;font-size:clamp(1rem,2vw,1.4rem);color:var(--creme);line-height:1.65}
+    .atmos-texto p em{color:var(--amber)}
+    .atmos-texto span{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--creme-muted);display:block;margin-top:.75rem}
+
+    /* ============================================================
+       ░░░ 6. CAPÍTULOS — "A Anatomia da Guerra" ░░░
+    ============================================================ */
+    .caps-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .caps-wrap{max-width:1200px;margin:0 auto}
+    .caps-header{text-align:center;margin-bottom:3.5rem}
+    .caps-desc{font-family:var(--fc);font-style:italic;font-size:.9rem;color:var(--creme-muted);max-width:580px;margin:.75rem auto 0;line-height:1.9}
+
+    .caps-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem}
+
+    .cap-card{background:var(--preto-3);border:var(--borda-f);padding:1.8rem 1.5rem;position:relative;overflow:hidden;transition:border-color .4s,transform .3s,box-shadow .4s;cursor:default}
+    .cap-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+    .cap-card:hover{border-color:rgba(196,121,42,.3);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.5)}
+    .cap-card:hover::after{transform:scaleX(1)}
+    .cap-num{font-family:var(--ft);font-size:4rem;font-weight:700;color:var(--amber);opacity:.06;position:absolute;top:.3rem;right:.6rem;line-height:1;pointer-events:none;user-select:none}
+    .cap-label{font-family:var(--fd);font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;color:var(--amber);margin-bottom:.5rem;display:block}
+    .cap-nome{font-family:var(--ft);font-size:1rem;font-weight:600;color:var(--creme);line-height:1.3;margin-bottom:.6rem}
+    .cap-intro{font-family:var(--fc);font-style:italic;font-size:.8rem;color:var(--creme-muted);line-height:1.7;margin-bottom:.75rem}
+    .cap-temas{font-family:var(--fu);font-size:.9rem;color:var(--amber);opacity:.7}
+
+    /* Cap especial — destaque */
+    .cap-card.destaque{border-color:rgba(196,121,42,.22);background:rgba(30,22,10,.8)}
+    .cap-card.destaque .cap-nome{color:var(--amber)}
+
+    /* ============================================================
+       ░░░ 7. RESPIRO 1 — Frase de impacto ░░░
+    ============================================================ */
+    .respiro{padding:5rem clamp(1.2rem,5vw,5rem);text-align:center;position:relative;z-index:2;background:var(--preto-2);border-top:var(--borda-f);border-bottom:var(--borda-f);overflow:hidden}
+    .respiro::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(196,121,42,.05),transparent 70%);pointer-events:none}
+    .respiro-deco{font-family:var(--ft);font-size:clamp(5rem,10vw,8rem);color:var(--amber);opacity:.06;line-height:.8;display:block;font-style:italic;user-select:none;margin-bottom:-2rem}
+    .respiro-linha{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--amber),transparent);margin:1.5rem auto}
+    .respiro-texto{font-family:var(--ft);font-style:italic;font-size:clamp(1.1rem,2.2vw,1.6rem);color:var(--creme);line-height:1.8;max-width:780px;margin:0 auto 1rem;position:relative;z-index:1}
+    .respiro-texto em{color:var(--amber)}
+    .respiro-orig{font-family:var(--fd);font-size:.48rem;letter-spacing:.5em;text-transform:uppercase;color:var(--creme-muted)}
+
+    /* ============================================================
+       ░░░ 8. GUIA DE LEITURA — Interativo ░░░
+       Quiz que identifica o momento emocional do visitante
+    ============================================================ */
+    .guia-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .guia-wrap{max-width:900px;margin:0 auto}
+    .guia-header{text-align:center;margin-bottom:3rem}
+    .guia-intro{font-family:var(--fc);font-style:italic;font-size:.9rem;color:var(--creme-muted);max-width:600px;margin:.75rem auto 0;line-height:1.9}
+
+    /* Seletor de momento */
+    .guia-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+    .guia-opcao{background:var(--preto-3);border:var(--borda-f);padding:1.2rem;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;text-align:left}
+    .guia-opcao::before{content:'';position:absolute;inset:0;background:var(--amber-pale);opacity:0;transition:opacity .3s}
+    .guia-opcao:hover::before,.guia-opcao.ativa::before{opacity:1}
+    .guia-opcao.ativa{border-color:rgba(196,121,42,.5);box-shadow:var(--sombra-a)}
+    .guia-opcao-num{font-family:var(--ft);font-size:1.8rem;font-weight:700;color:var(--amber);opacity:.2;line-height:1;display:block;margin-bottom:.3rem;position:relative;z-index:1}
+    .guia-opcao-texto{font-family:var(--fc);font-size:.82rem;color:var(--creme-suave);line-height:1.6;position:relative;z-index:1}
+    .guia-opcao.ativa .guia-opcao-texto{color:var(--creme)}
+
+    /* Resultado do guia */
+    .guia-resultado{display:none;background:var(--preto-3);border:var(--borda-a);padding:2rem;box-shadow:var(--sombra-a);position:relative;overflow:hidden}
+    .guia-resultado::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(196,121,42,.07),transparent 60%)}
+    .guia-resultado.aberto{display:block}
+    .guia-res-label{font-family:var(--fd);font-size:.5rem;letter-spacing:.5em;text-transform:uppercase;color:var(--amber);margin-bottom:.75rem}
+    .guia-res-tit{font-family:var(--ft);font-size:1.2rem;font-weight:700;color:var(--creme);margin-bottom:.5rem}
+    .guia-res-tit em{font-style:italic;color:var(--amber)}
+    .guia-res-texto{font-family:var(--fc);font-size:.88rem;color:var(--creme-suave);line-height:1.9;margin-bottom:1.2rem}
+    .guia-res-caminho{font-family:var(--ft);font-size:.92rem;font-weight:600;color:var(--amber);font-style:italic;margin-bottom:1rem}
+    .guia-res-nota{font-family:var(--fu);font-style:italic;font-size:.82rem;color:var(--creme-muted);border-top:var(--borda-f);padding-top:1rem;margin-top:1rem}
+
+    /* ============================================================
+       ░░░ 9. IMAGEM 2 — O que o adultério não começa onde você pensa ░░░
+    ============================================================ */
+    .atmos2{position:relative;z-index:2;overflow:hidden;min-height:clamp(280px,40vw,520px);display:flex;align-items:center;border-top:var(--borda-f)}
+    .atmos2-img{position:absolute;inset:0;z-index:0;background-image:url('../img/setima-lei-03.jpg');background-size:cover;background-position:center;filter:brightness(.22) sepia(.4) contrast(1.2)}
+    .atmos2-overlay{position:absolute;inset:0;background:linear-gradient(to left,rgba(8,6,4,.97) 45%,rgba(8,6,4,.5) 100%)}
+    .atmos2-conteudo{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:4rem clamp(1.2rem,5vw,5rem);display:flex;justify-content:flex-end;width:100%}
+    .atmos2-texto{max-width:520px;text-align:right}
+    .atmos2-texto .slabel{text-align:right}
+    .atmos2-frase{font-family:var(--ft);font-style:italic;font-size:clamp(1rem,2vw,1.5rem);color:var(--creme);line-height:1.7;margin-bottom:1rem}
+    .atmos2-frase em{color:var(--amber)}
+    .atmos2-sub{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--creme-muted)}
+
+    /* ============================================================
+       ░░░ 10. RESPIRO 2 ░░░
+    ============================================================ */
+
+    /* ============================================================
+       ░░░ 11. O QUE VOCÊ VAI ENCONTRAR ░░░
+       Blocos visuais com os temas chave do livro
+    ============================================================ */
+    .temas-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--preto-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .temas-wrap{max-width:1200px;margin:0 auto}
+    .temas-header{text-align:center;margin-bottom:3.5rem}
+    .temas-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.5rem}
+    .tema-card{background:var(--preto-4);border:var(--borda-f);padding:2rem;position:relative;overflow:hidden;transition:border-color .4s,transform .3s}
+    .tema-card:hover{border-color:rgba(196,121,42,.28);transform:translateY(-4px)}
+    .tema-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(196,121,42,.05),transparent 55%);opacity:0;transition:opacity .4s}
+    .tema-card:hover::before{opacity:1}
+    .tema-icone{font-size:2rem;margin-bottom:1rem;display:block;filter:sepia(1) saturate(.5) hue-rotate(15deg)}
+    .tema-tit{font-family:var(--ft);font-size:1.05rem;font-weight:600;color:var(--creme);margin-bottom:.5rem;line-height:1.3}
+    .tema-desc{font-family:var(--fc);font-style:italic;font-size:.82rem;color:var(--creme-muted);line-height:1.75}
+
+    /* ============================================================
+       ░░░ 12. AMOSTRA GRÁTIS ░░░
+    ============================================================ */
+    .amostra-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2;overflow:hidden}
+    .amostra-sec::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:350px;background:radial-gradient(ellipse at top,rgba(196,121,42,.06),transparent 70%);pointer-events:none}
+    .amostra-wrap{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+    .am-lista{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:2rem}
+    .am-lista li{font-family:var(--fu);font-size:.99rem;color:var(--creme-suave);display:flex;align-items:center;gap:.7rem}
+    .am-lista li::before{content:'✦';color:var(--amber);font-size:.55rem}
+    .amostra-card{background:var(--preto-4);border:var(--borda-a);padding:2.5rem;text-align:center;box-shadow:var(--sombra-a);position:relative;overflow:hidden}
+    .amostra-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(196,121,42,.07),transparent 50%)}
+    .am-icone{font-size:2.8rem;margin-bottom:.8rem;display:block;color:var(--amber)}
+    .am-tit{font-family:var(--ft);font-size:1.25rem;font-weight:700;color:var(--creme);margin-bottom:.4rem}
+    .am-sub{font-family:var(--fc);font-style:italic;font-size:.83rem;color:var(--creme-muted);margin-bottom:2rem}
+    .am-form{display:flex;flex-direction:column;gap:.7rem;margin-bottom:.6rem}
+    .am-input{background:var(--preto-2);border:var(--borda-a);color:var(--creme);font-family:var(--fc);font-size:.88rem;padding:12px 1rem;outline:none;transition:border-color .3s;width:100%}
+    .am-input::placeholder{color:var(--creme-muted);font-style:italic}
+    .am-input:focus{border-color:var(--amber)}
+    .am-aviso{font-family:var(--fu);font-size:.72rem;color:var(--creme-muted);font-style:italic;margin-top:.8rem}
+
+    /* ============================================================
+       ░░░ 13. IMAGEM RESPIRO — A serpente ░░░
+    ============================================================ */
+    .serpente-sec{position:relative;z-index:2;overflow:hidden;min-height:clamp(240px,35vw,480px);display:flex;align-items:center;border-top:var(--borda-f);border-bottom:var(--borda-f)}
+    .serpente-bg{position:absolute;inset:0;background-image:url('../img/setima-lei-06.jpg');background-size:cover;background-position:center;filter:brightness(.18) contrast(1.3)}
+    .serpente-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,6,4,.97) 40%,rgba(8,6,4,.4) 100%)}
+    .serpente-conteudo{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:4rem clamp(1.2rem,5vw,5rem);width:100%}
+    .serpente-frase{font-family:var(--ft);font-style:italic;font-size:clamp(1.1rem,2.5vw,1.8rem);color:var(--creme);line-height:1.65;max-width:600px;margin-bottom:1rem}
+    .serpente-frase em{color:var(--amber)}
+    .serpente-attr{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--creme-muted)}
+
+    /* ============================================================
+       ░░░ 14. AQUISIÇÃO ░░░
+    ============================================================ */
+    .aq-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--preto-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .aq-wrap{max-width:1200px;margin:0 auto}
+    .aq-header{text-align:center;margin-bottom:3rem}
+    .aq-grade{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .aq-card{background:var(--preto-3);border:var(--borda-f);padding:3rem;position:relative;overflow:hidden;transition:border-color .4s,transform .3s}
+    .aq-card:hover{border-color:rgba(196,121,42,.3);transform:translateY(-4px)}
+    .aq-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(196,121,42,.05),transparent 50%);opacity:0;transition:opacity .4s}
+    .aq-card:hover::before{opacity:1}
+    .aq-badge{position:absolute;top:1.5rem;right:1.5rem;font-family:var(--fd);font-size:.6rem;letter-spacing:.4em;text-transform:uppercase;padding:4px 10px}
+    .aq-badge-d{background:var(--amber);color:var(--preto)}
+    .aq-badge-e{border:var(--borda-a);color:var(--amber)}
+    .aq-icone{font-size:2.4rem;margin-bottom:1.5rem;display:block}
+    .aq-tit{font-family:var(--ft);font-size:1.35rem;font-weight:700;color:var(--creme);margin-bottom:.4rem}
+    .aq-sub{font-family:var(--ft);font-style:italic;font-size:.88rem;color:var(--amber);margin-bottom:1.5rem}
+    .aq-desc{font-family:var(--fc);font-size:.85rem;color:var(--creme-muted);line-height:1.9;margin-bottom:2rem;font-style:italic}
+
+    /* ============================================================
+       ░░░ 15. COMENTÁRIOS ░░░
+    ============================================================ */
+    .com-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2;border-top:var(--borda-f)}
+    .com-wrap{max-width:880px;margin:0 auto}
+    .com-header{text-align:center;margin-bottom:3rem}
+    .com-lista{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem}
+    .com-card{background:var(--preto-3);border:var(--borda-f);padding:1.5rem 2rem;transition:border-color .3s}
+    .com-card:hover{border-color:rgba(196,121,42,.2)}
+    .com-aspas{font-family:var(--ft);font-size:2.8rem;color:var(--amber);opacity:.15;line-height:.8;display:block;margin-bottom:.25rem;font-style:italic;user-select:none}
+    .com-texto{font-family:var(--fc);font-style:italic;font-size:.88rem;color:var(--creme-suave);line-height:1.85;margin-bottom:1rem}
+    .com-autor{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--amber)}
+    .cf-tit{font-family:var(--ft);font-size:1.25rem;font-weight:600;color:var(--creme);margin-bottom:1.5rem}
+    .cf-tit em{font-style:italic;color:var(--amber)}
+    .fg{margin-bottom:.9rem}
+    .flabel{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:5px}
+    .finput,.ftextarea,.fselect{width:100%;background:var(--preto-4);border:var(--borda-f);color:var(--creme);font-family:var(--fc);font-size:.88rem;padding:12px 1rem;outline:none;transition:border-color .3s}
+    .finput::placeholder,.ftextarea::placeholder{color:var(--creme-muted);font-style:italic}
+    .finput:focus,.ftextarea:focus,.fselect:focus{border-color:rgba(196,121,42,.4)}
+    .ftextarea{resize:vertical;min-height:110px;font-family:var(--fc)}
+    .fselect{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23c4792a'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;appearance:none}
+    .fselect option{background:#161108}
+    .fg2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .faviso{font-family:var(--fu);font-size:.72rem;color:var(--creme-muted);font-style:italic;margin-top:.8rem}
+
+    /* ============================================================
+       ░░░ 16. MAIS LIVROS ░░░
+    ============================================================ */
+    .mais-sec{padding:4.5rem clamp(1.2rem,5vw,5rem);background:var(--preto-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .mais-wrap{max-width:1200px;margin:0 auto}
+    .mais-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1.5rem;margin-top:2rem}
+    .mais-card{display:block;transition:transform .3s}
+    .mais-card:hover{transform:translateY(-6px)}
+    .mais-capa{width:100%;filter:brightness(.65) saturate(.55);transition:filter .3s;box-shadow:-4px 6px 20px rgba(0,0,0,.7)}
+    .mais-card:hover .mais-capa{filter:brightness(.9) saturate(1)}
+    .mais-tit{font-family:var(--ft);font-size:.8rem;color:var(--creme-suave);margin-top:.55rem;line-height:1.3;transition:color .3s}
+    .mais-card:hover .mais-tit{color:var(--amber)}
+
+    /* ============================================================
+       RODAPÉ
+    ============================================================ */
+    footer{background:var(--preto);border-top:var(--borda-f);padding:2.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem}
+    .footer-logo{font-family:var(--fd);font-size:.78rem;color:var(--amber);letter-spacing:.15em;text-transform:uppercase}
+    .footer-links{display:flex;gap:2rem;list-style:none;flex-wrap:wrap}
+    .footer-links a{font-family:var(--fu);font-size:.82rem;color:var(--creme-muted);transition:color .3s;letter-spacing:.08em}
+    .footer-links a:hover{color:var(--amber)}
+    .footer-copy{font-family:var(--fu);font-size:.72rem;color:var(--creme-muted);font-style:italic}
+
+    /* ============================================================
+       RESPONSIVO
+    ============================================================ */
+    @media(max-width:1024px){
+      .sinopse-wrap{grid-template-columns:1fr;gap:3rem}
+      .ficha{position:relative;top:0}
+      .paraquem-wrap{grid-template-columns:1fr;gap:3rem}
+      .amostra-wrap{grid-template-columns:1fr;gap:3rem}
+      .aq-grade{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      .hero{grid-template-columns:1fr;text-align:center;gap:2.5rem;padding-top:85px}
+      .hero-capa-area{order:-1}
+      .livro-3d{transform:rotateY(0) rotateX(0)}
+      .hero-frase{margin:0 auto 2rem}
+      .hero-acoes{justify-content:center}
+      .hero-badges{justify-content:center}
+      .hero-fmt{justify-content:center}
+      .hero-linha{margin:1.5rem auto}
+      .hero-aviso,.hero-sub2{text-align:center}
+      .atmos2-conteudo{justify-content:flex-start}
+      .atmos2-texto{text-align:left}
+      .atmos2-texto .slabel{text-align:left}
+      .fg2{grid-template-columns:1fr}
+      .footer-inner{flex-direction:column;text-align:center}
+      .footer-links{justify-content:center}
+      .guia-selector{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:480px){
+      .guia-selector{grid-template-columns:1fr}
+      .mais-grade{grid-template-columns:repeat(3,1fr)}
+    }

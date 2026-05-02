@@ -1,0 +1,71 @@
+/* ============================================================
+   ESCRITOR LIVRE — Paleta "Tinta & Bruma"
+   Robério Diógenes | Site Oficial
+   Para alterar o tema, edite apenas este arquivo.
+   ============================================================ */
+
+:root {
+  /* === CORES BASE === */
+  --cor-fundo:         #110e0a;       /* Pergaminho escuro / tinta seca */
+  --cor-fundo-2:       #1c1610;       /* Camada secundária */
+  --cor-fundo-3:       #241d14;       /* Cards e painéis */
+  --cor-superfície:    #2e2518;       /* Hover / destaque sutil */
+
+  /* === TIPOGRAFIA === */
+  --cor-texto:         #e8dfc8;       /* Creme envelhecido */
+  --cor-texto-suave:   #a89880;       /* Texto secundário */
+  --cor-texto-muted:   #6b5e4a;       /* Texto terciário / placeholder */
+
+  /* === ACENTOS === */
+  --cor-dourado:       #c9a84c;       /* Ouro envelhecido — acento principal */
+  --cor-dourado-claro: #e8c96e;       /* Hover do dourado */
+  --cor-dourado-escuro:#8a6e2f;       /* Sombra do dourado */
+  --cor-bordô:         #7a2030;       /* Acento dramático — thriller */
+  --cor-bordô-suave:   #9c3040;       /* Hover do bordô */
+  --cor-bruma:         rgba(201,168,76,0.06); /* Névoa dourada */
+
+  /* === BORDAS === */
+  --borda-sutil:       1px solid rgba(201,168,76,0.15);
+  --borda-media:       1px solid rgba(201,168,76,0.30);
+  --borda-forte:       1px solid rgba(201,168,76,0.60);
+
+  /* === SOMBRAS === */
+  --sombra-suave:      0 4px 24px rgba(0,0,0,0.4);
+  --sombra-media:      0 8px 40px rgba(0,0,0,0.6);
+  --sombra-dramatica:  0 16px 64px rgba(0,0,0,0.8);
+  --sombra-dourada:    0 0 30px rgba(201,168,76,0.15);
+  --sombra-livro:      -8px 8px 30px rgba(0,0,0,0.7), 4px -4px 20px rgba(201,168,76,0.1);
+
+  /* === TIPOGRAFIA === */
+  --fonte-titulo:      'Playfair Display', 'IM Fell English', Georgia, serif;
+  --fonte-corpo:       'Lora', 'Palatino Linotype', Georgia, serif;
+  --fonte-decorativa:  'Cinzel Decorative', 'Trajan Pro', serif;
+  --fonte-ui:          'Cormorant Garamond', Georgia, serif;
+
+  /* === ESPAÇAMENTO === */
+  --espaco-xs:  0.25rem;
+  --espaco-sm:  0.5rem;
+  --espaco-md:  1rem;
+  --espaco-lg:  2rem;
+  --espaco-xl:  4rem;
+  --espaco-2xl: 8rem;
+
+  /* === LAYOUT === */
+  --largura-max:       1200px;
+  --largura-conteudo:  900px;
+  --raio-borda:        4px;
+  --raio-borda-lg:     8px;
+
+  /* === TRANSIÇÕES === */
+  --transicao-rapida:  0.2s ease;
+  --transicao-media:   0.4s ease;
+  --transicao-lenta:   0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* === Z-INDEX === */
+  --z-fundo:    -1;
+  --z-base:      0;
+  --z-elevado:   10;
+  --z-overlay:   50;
+  --z-modal:     100;
+  --z-topo:      200;
+}

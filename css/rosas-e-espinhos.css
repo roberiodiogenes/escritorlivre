@@ -1,0 +1,394 @@
+    /* ============================================================
+       VARIÁVEIS — TEMA ROSAS & ESPINHOS
+       Rosa-antigo + Verde-jardim + Creme-aquecido + Bordô-suave
+       Paleta pensada para o público feminino e o tema floral-emocional
+    ============================================================ */
+    :root {
+      /* Fundos */
+      --fundo:         #fdf6f0;   /* creme aquecido */
+      --fundo-2:       #f8ede4;   /* creme rosado */
+      --fundo-3:       #f2e0d4;   /* creme mais profundo */
+      --fundo-escuro:  #2a1418;   /* bordô-escuro para contraste */
+      --fundo-e2:      #3a1e22;   /* variação do bordô */
+
+      /* Acentos */
+      --rosa:          #c4647a;   /* rosa principal */
+      --rosa-2:        #e88a9e;   /* rosa mais suave */
+      --rosa-pale:     rgba(196,100,122,.12);
+      --rosa-glow:     rgba(196,100,122,.3);
+      --bordô:         #8b2035;   /* bordô profundo */
+      --bordô-2:       rgba(139,32,53,.15);
+      --verde:         #5a7a5c;   /* verde jardim */
+      --verde-2:       #7a9e7c;   /* verde mais suave */
+
+      /* Texto */
+      --texto:         #2a1818;   /* quase preto com toque de bordô */
+      --texto-2:       #6b3a42;   /* bordeaux para texto secundário */
+      --texto-3:       #9a7070;   /* terciário */
+      --texto-claro:   #fdf6f0;   /* texto sobre fundos escuros */
+      --texto-claro-2: #e8c8c0;   /* texto suave sobre escuros */
+
+      /* Bordas */
+      --borda-r:       1px solid rgba(196,100,122,.22);
+      --borda-f:       1px solid rgba(196,100,122,.1);
+      --borda-v:       1px solid rgba(90,122,92,.2);
+      --sombra-r:      0 0 40px rgba(196,100,122,.12);
+
+      /* Tipografia */
+      --ft:  'Cormorant Garamond', Georgia, serif;  /* títulos */
+      --fc:  'Lora', Georgia, serif;                /* corpo */
+      --fd:  'Cinzel', serif;                       /* decorativa */
+      --fu:  'EB Garamond', Georgia, serif;         /* UI / labels */
+      --ease: cubic-bezier(.25,.46,.45,.94);
+    }
+
+    /* ============================================================ RESET */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:17px} /* ligeiramente maior para legibilidade */
+    body{background:var(--fundo);color:var(--texto);font-family:var(--fc);line-height:1.75;overflow-x:hidden;cursor:none}
+    img{max-width:100%;display:block}
+    a{text-decoration:none}
+
+    /* ============================================================ CURSOR — rosa */
+    .cursor{width:10px;height:10px;background:var(--rosa);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:999;transform:translate(-50%,-50%);box-shadow:0 0 14px rgba(196,100,122,.6);transition:width .3s,height .3s}
+    .cursor-anel{width:32px;height:32px;border:1px solid rgba(196,100,122,.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:999;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+    @media(hover:none){.cursor,.cursor-anel{display:none}}
+
+    /* ============================================================ PÉTALAS FLUTUANTES */
+    .petala{position:fixed;pointer-events:none;z-index:0;opacity:0;font-size:1.2rem;animation:petalaCair var(--dur,8s) var(--delay,0s) infinite linear;color:var(--rosa)}
+    @keyframes petalaCair{
+      0%{opacity:0;transform:translateY(-20px) rotate(0deg) scale(.8)}
+      10%{opacity:.5}
+      90%{opacity:.2}
+      100%{opacity:0;transform:translateY(110vh) rotate(360deg) scale(1.1)}
+    }
+
+    /* ============================================================ NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 clamp(1.2rem,4vw,4rem);display:flex;align-items:center;justify-content:space-between;height:68px;transition:background .4s,backdrop-filter .4s}
+    nav.scrolled{background:rgba(253,246,240,.94);backdrop-filter:blur(16px);border-bottom:var(--borda-f);box-shadow:0 2px 20px rgba(196,100,122,.06)}
+    .nav-logo{font-family:var(--fd);font-size:.78rem;color:var(--bordô);letter-spacing:.15em;text-transform:uppercase;transition:color .3s}
+    .nav-logo:hover{color:var(--rosa)}
+    .nav-logo span{color:var(--rosa);font-size:.62em;display:block;letter-spacing:.3em}
+    .nav-voltar{font-family:var(--fu);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;color:var(--texto-3);display:flex;align-items:center;gap:8px;transition:color .3s}
+    .nav-voltar:hover{color:var(--rosa)}
+
+    /* ============================================================ BOTÕES */
+    .btn{font-family:var(--fu);font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;padding:16px 34px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:all .35s;position:relative;overflow:hidden}
+    .btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.15);transform:translateX(-100%);transition:transform .35s}
+    .btn:hover::before{transform:translateX(0)}
+    .btn-r{background:var(--rosa);color:#fff;font-weight:500}
+    .btn-r:hover{background:var(--bordô);box-shadow:0 8px 30px rgba(196,100,122,.4);transform:translateY(-2px)}
+    .btn-b{background:transparent;color:var(--rosa);border:var(--borda-r)}
+    .btn-b:hover{background:var(--rosa-pale);border-color:var(--rosa);transform:translateY(-2px);box-shadow:var(--sombra-r)}
+    .btn-escuro{background:var(--bordô);color:#fff}
+    .btn-escuro:hover{background:#6a1828;transform:translateY(-2px);box-shadow:0 8px 30px rgba(139,32,53,.4)}
+    .btn-sm{padding:12px 24px;font-size:.78rem}
+
+    /* ============================================================ TOPO */
+    .topo-btn{position:fixed;bottom:2rem;right:2rem;width:46px;height:46px;background:var(--bordô);color:#fff;display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;font-size:.9rem;border-radius:50%}
+    .topo-btn.v{opacity:1;pointer-events:all}
+    .topo-btn:hover{transform:translateY(-4px) scale(1.05);background:var(--rosa)}
+
+    /* ============================================================ REVEAL */
+    .r{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .re{opacity:0;transform:translateX(-26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .rd{opacity:0;transform:translateX(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .r.v,.re.v,.rd.v{opacity:1;transform:translate(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+    .d4{transition-delay:.4s}.d5{transition-delay:.5s}
+
+    /* ============================================================ DIVISORES */
+    .div-rosa{height:1px;background:linear-gradient(90deg,transparent,rgba(196,100,122,.3),transparent);max-width:1200px;margin:0 auto}
+    .div-full{height:1px;background:linear-gradient(90deg,transparent,rgba(196,100,122,.2),transparent)}
+    .ornamento{text-align:center;color:var(--rosa);opacity:.4;font-size:1.2rem;letter-spacing:.5rem;user-select:none}
+
+    /* ============================================================
+       ░░░ 1. HERO ░░░
+       Fundo floral suave + capa 3D + texto poético
+    ============================================================ */
+    .hero{min-height:100vh;position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:2rem;padding:100px clamp(1.2rem,5vw,5rem) 4rem;overflow:hidden}
+
+    /* Fundo: textura de pétalas e gradiente floral */
+    .hero-fundo{position:absolute;inset:0;z-index:0}
+    .hero-fundo::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 100% 50%,rgba(196,100,122,.08),transparent 65%),radial-gradient(ellipse 50% 60% at 0% 100%,rgba(90,122,92,.06),transparent 60%),linear-gradient(160deg,var(--fundo) 60%,var(--fundo-2) 100%)}
+    /* Pétalas decorativas no fundo */
+    .hero-petala-deco{position:absolute;font-size:4rem;color:var(--rosa);opacity:.04;pointer-events:none;user-select:none}
+
+    /* Capa 3D */
+    .hero-capa-area{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;perspective:1100px;opacity:0;animation:sE 1.2s .3s forwards}
+    @keyframes sE{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes sD{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+
+    .livro-3d{position:relative;transform-style:preserve-3d;transform:rotateY(-18deg) rotateX(3deg);transition:transform .8s var(--ease);width:min(280px,75vw)}
+    .livro-3d:hover{transform:rotateY(-5deg) rotateX(1deg) scale(1.03)}
+    .livro-lombada{position:absolute;top:0;right:100%;bottom:0;width:30px;background:linear-gradient(180deg,#4a1520 0%,#3a1018 50%,#2e0c14 100%);transform-origin:right;transform:rotateY(90deg);display:flex;align-items:center;justify-content:center;box-shadow:inset -4px 0 12px rgba(0,0,0,.3)}
+    .livro-lombada span{font-family:var(--ft);font-size:.52rem;font-weight:500;color:rgba(253,246,240,.5);letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg)}
+    .livro-frente{position:relative;box-shadow:-18px 18px 50px rgba(139,32,53,.25),-4px 4px 0 rgba(196,100,122,.1),4px -4px 0 rgba(90,122,92,.08)}
+    .livro-frente img{width:100%}
+    .livro-reflexo{position:absolute;left:0;right:0;top:100%;height:80px;overflow:hidden;pointer-events:none}
+    .livro-reflexo img{width:100%;transform:scaleY(-1);filter:brightness(.3) blur(4px) sepia(.2);mask-image:linear-gradient(to bottom,rgba(0,0,0,.4),transparent);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.4),transparent)}
+    .livro-brilho{position:absolute;inset:-20px;background:radial-gradient(ellipse at center,rgba(196,100,122,.06),transparent 70%);pointer-events:none;animation:pBrilho 5s ease-in-out infinite}
+    @keyframes pBrilho{0%,100%{opacity:.5}50%{opacity:1}}
+
+    /* Texto hero */
+    .hero-texto{position:relative;z-index:2;opacity:0;animation:sD 1.2s .5s forwards}
+    .hero-pre{font-family:var(--fd);font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;color:var(--rosa);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
+    .hero-pre::before{content:'';flex:0 0 36px;height:1px;background:linear-gradient(90deg,var(--rosa),transparent)}
+    .hero-titulo{font-family:var(--ft);font-size:clamp(3rem,6.5vw,6rem);font-weight:300;line-height:.92;color:var(--texto);margin-bottom:.4rem;letter-spacing:-.01em}
+    .hero-titulo em{font-style:italic;color:var(--bordô);display:block}
+    .hero-amp{color:var(--rosa);font-style:italic}
+    .hero-sub{font-family:var(--fu);font-style:italic;font-size:clamp(.9rem,1.6vw,1.2rem);color:var(--texto-2);margin-bottom:2rem;display:block;letter-spacing:.02em}
+    .hero-linha{display:flex;align-items:center;gap:1rem;margin:1.8rem 0}
+    .hero-linha-traço{flex:0 0 40px;height:1px;background:var(--rosa)}
+    .hero-linha-flor{color:var(--rosa);font-size:.9rem}
+    .hero-frase{font-family:var(--ft);font-style:italic;font-size:1.1rem;color:var(--texto-2);line-height:1.85;max-width:480px;margin-bottom:2rem}
+    .hero-badges{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+    .badge{font-family:var(--fd);font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;padding:5px 12px;border:var(--borda-r);color:var(--rosa)}
+    .badge-f{background:var(--rosa-pale)}
+    .badge-v{background:rgba(90,122,92,.1);color:var(--verde);border-color:rgba(90,122,92,.25)}
+    .hero-acoes{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+    .hero-fmt{font-family:var(--fu);font-size:.85rem;color:var(--texto-3);font-style:italic;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+    .hero-fmt span{color:var(--bordô);font-style:normal;font-weight:500}
+
+    /* Decoração floral no canto */
+    .hero-flor-deco{position:absolute;bottom:3rem;right:clamp(1.2rem,5vw,5rem);z-index:2;opacity:.15;font-size:4rem;pointer-events:none;user-select:none;color:var(--verde)}
+
+    /* ============================================================
+       ░░░ 2. DEDICATÓRIA ░░░
+    ============================================================ */
+    .dedic{padding:4.5rem clamp(1.2rem,5vw,5rem);text-align:center;position:relative;z-index:2;background:var(--fundo-2);border-top:var(--borda-f);border-bottom:var(--borda-f)}
+    .dedic-aspas{font-family:var(--ft);font-size:clamp(4rem,8vw,7rem);color:var(--rosa);opacity:.1;line-height:.8;display:block;font-style:italic;user-select:none;margin-bottom:-1.8rem}
+    .dedic-texto{font-family:var(--ft);font-style:italic;font-size:clamp(1.15rem,2.2vw,1.7rem);color:var(--texto);line-height:1.7;max-width:700px;margin:0 auto 1.5rem;position:relative;z-index:1}
+    .dedic-texto em{color:var(--bordô)}
+    .dedic-attr{font-family:var(--fd);font-size:.55rem;letter-spacing:.45em;text-transform:uppercase;color:var(--texto-3)}
+
+    /* ============================================================
+       ░░░ 3. SOBRE O LIVRO ░░░
+    ============================================================ */
+    .sobre-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .sobre-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:4.5rem;align-items:start}
+    .slabel{font-family:var(--fd);font-size:.55rem;letter-spacing:.45em;text-transform:uppercase;color:var(--rosa);margin-bottom:1rem;display:block}
+    .stit{font-family:var(--ft);font-size:clamp(1.9rem,3.5vw,3rem);font-weight:400;color:var(--texto);line-height:1.2;margin-bottom:2rem}
+    .stit em{font-style:italic;color:var(--bordô)}
+    .stexto{font-family:var(--fc);font-size:1rem;color:var(--texto-2);line-height:1.95}
+    .stexto p+p{margin-top:1.2rem}
+    .stexto strong{color:var(--texto)}
+    .stexto em{color:var(--bordô);font-style:italic}
+
+    /* Ficha */
+    .ficha{background:var(--fundo-escuro);border:var(--borda-r);padding:2.2rem;position:sticky;top:84px}
+    .ficha-tit{font-family:var(--fd);font-size:.52rem;letter-spacing:.45em;text-transform:uppercase;color:var(--rosa);margin-bottom:1.5rem}
+    .fi{display:flex;justify-content:space-between;padding:.75rem 0;border-bottom:1px solid rgba(253,246,240,.08);font-family:var(--fu)}
+    .fi:last-of-type{border-bottom:none}
+    .fi-k{font-size:.82rem;color:rgba(253,246,240,.45);text-transform:uppercase;letter-spacing:.06em}
+    .fi-v{font-size:.92rem;color:var(--texto-claro);text-align:right}
+    .fi-v.r{color:var(--rosa-2)}
+    .ficha-acoes{margin-top:1.5rem;display:flex;flex-direction:column;gap:.7rem}
+
+    /* ============================================================
+       ░░░ 4. IMAGEM ATMOSFÉRICA — Campos do Jordão ░░░
+    ============================================================ */
+    .atmos{position:relative;z-index:2;overflow:hidden;height:clamp(260px,40vw,500px);border-top:var(--borda-f);border-bottom:var(--borda-f)}
+    .atmos-img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(.75) sepia(.15) contrast(1.05);transition:filter .6s,transform 8s}
+    .atmos:hover .atmos-img{filter:brightness(.82) sepia(.08);transform:scale(1.02)}
+    .atmos-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(42,20,24,.88) 40%,transparent 80%),linear-gradient(to top,rgba(42,20,24,.7) 0%,transparent 40%)}
+    .atmos-texto{position:absolute;bottom:3rem;left:clamp(1.5rem,5vw,5rem);z-index:1;max-width:520px}
+    .atmos-texto p{font-family:var(--ft);font-style:italic;font-size:clamp(1rem,2vw,1.45rem);color:var(--texto-claro);line-height:1.65}
+    .atmos-texto p em{color:var(--rosa-2)}
+    .atmos-texto span{font-family:var(--fd);font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(253,246,240,.45);display:block;margin-top:.75rem}
+
+    /* ============================================================
+       ░░░ 5. CAPÍTULOS — O JARDIM ░░░
+       Cada capítulo é uma flor — visual único e evocativo
+    ============================================================ */
+    .jardim-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2;background:var(--fundo-2)}
+    .jardim-wrap{max-width:1200px;margin:0 auto}
+    .jardim-header{text-align:center;margin-bottom:3.5rem}
+    .jardim-desc{font-family:var(--fc);font-style:italic;font-size:.95rem;color:var(--texto-3);max-width:560px;margin:.75rem auto 0;line-height:1.9}
+
+    .jardim-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.5rem}
+
+    .flor-card{background:var(--fundo);border:var(--borda-f);padding:2rem 1.8rem;position:relative;overflow:hidden;cursor:default;transition:border-color .4s,transform .3s,box-shadow .4s}
+    .flor-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(196,100,122,.05),transparent 60%);opacity:0;transition:opacity .4s}
+    .flor-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--rosa),transparent);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+    .flor-card:hover{border-color:rgba(196,100,122,.28);transform:translateY(-4px);box-shadow:0 8px 30px rgba(196,100,122,.08)}
+    .flor-card:hover::before{opacity:1}
+    .flor-card:hover::after{transform:scaleX(1)}
+
+    .flor-emoji{font-size:2.2rem;margin-bottom:1rem;display:block;filter:saturate(.8);transition:filter .4s}
+    .flor-card:hover .flor-emoji{filter:saturate(1.2)}
+    .flor-num{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--rosa);margin-bottom:.5rem;display:block}
+    .flor-nome{font-family:var(--ft);font-size:1.15rem;font-weight:500;color:var(--texto);line-height:1.3;margin-bottom:.6rem}
+    .flor-hint{font-family:var(--fc);font-style:italic;font-size:.88rem;color:var(--texto-3);line-height:1.75}
+    .flor-pgs{font-family:var(--fu);font-size:.78rem;color:var(--rosa);opacity:.6;margin-top:.75rem}
+
+    /* ============================================================
+       ░░░ 6. PERSONAGENS ░░░
+    ============================================================ */
+    .pers-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .pers-wrap{max-width:1200px;margin:0 auto}
+    .pers-header{text-align:center;margin-bottom:3.5rem}
+    .pers-intro{font-family:var(--fc);font-style:italic;font-size:.95rem;color:var(--texto-3);max-width:560px;margin:.75rem auto 0;line-height:1.9}
+    .pers-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem}
+
+    .pers-card{background:var(--fundo-2);border:var(--borda-f);overflow:hidden;position:relative;transition:all .4s}
+    .pers-card:hover{border-color:rgba(196,100,122,.3);transform:translateY(-6px);box-shadow:0 16px 40px rgba(139,32,53,.1)}
+    .pers-top{padding:2rem 2rem 1rem;text-align:center;position:relative}
+    .pers-inicial{width:80px;height:80px;background:linear-gradient(135deg,var(--rosa),var(--bordô));border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-family:var(--ft);font-size:2rem;font-weight:300;color:#fff;letter-spacing:-.02em;transition:transform .4s}
+    .pers-card:hover .pers-inicial{transform:scale(1.08)}
+    .pers-nome{font-family:var(--ft);font-size:1.3rem;font-weight:500;color:var(--texto);margin-bottom:.3rem}
+    .pers-papel{font-family:var(--fd);font-size:.48rem;letter-spacing:.35em;text-transform:uppercase;color:var(--rosa);display:block;margin-bottom:1rem}
+    .pers-info{padding:0 2rem 2rem}
+    .pers-desc{font-family:var(--fc);font-style:italic;font-size:.9rem;color:var(--texto-2);line-height:1.8}
+
+    /* ============================================================
+       ░░░ 7. FRASE RESPIRO — Sobre amor ░░░
+    ============================================================ */
+    .respiro{padding:5rem clamp(1.2rem,5vw,5rem);text-align:center;position:relative;z-index:2;background:var(--fundo-escuro);overflow:hidden}
+    .respiro::before{content:'🌹';position:absolute;font-size:clamp(8rem,18vw,16rem);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.04;pointer-events:none;user-select:none}
+    .respiro-linha{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--rosa-2),transparent);margin:1.5rem auto}
+    .respiro-texto{font-family:var(--ft);font-style:italic;font-size:clamp(1.15rem,2.3vw,1.8rem);color:var(--texto-claro);line-height:1.75;max-width:760px;margin:0 auto 1rem;position:relative;z-index:1}
+    .respiro-texto em{color:var(--rosa-2)}
+    .respiro-orig{font-family:var(--fd);font-size:.52rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(253,246,240,.4)}
+
+    /* ============================================================
+       ░░░ 8. TRECHO LITERÁRIO ░░░
+    ============================================================ */
+    .trecho-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2;background:var(--fundo-2)}
+    .trecho-wrap{max-width:900px;margin:0 auto}
+    .trecho-header{text-align:center;margin-bottom:3rem}
+    .trecho-box{background:var(--fundo);border:var(--borda-r);padding:3rem;position:relative;box-shadow:inset 0 0 40px rgba(196,100,122,.04)}
+    .trecho-box::before{content:'❝';font-family:var(--ft);font-size:5rem;color:var(--rosa);opacity:.15;position:absolute;top:1rem;left:2rem;line-height:1;user-select:none}
+    .trecho-texto{font-family:var(--ft);font-style:italic;font-size:1.1rem;color:var(--texto);line-height:1.95;position:relative;z-index:1}
+    .trecho-texto em{color:var(--bordô)}
+    .trecho-origem{font-family:var(--fd);font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;color:var(--rosa);margin-top:1.5rem;display:block;text-align:right}
+
+    /* ============================================================
+       ░░░ 9. DOWNLOAD GRÁTIS ░░░
+    ============================================================ */
+    .download-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2;overflow:hidden}
+    .download-sec::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse at top,rgba(196,100,122,.08),transparent 70%);pointer-events:none}
+    .download-wrap{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+    .dl-lista{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+    .dl-lista li{font-family:var(--fu);font-size:.95rem;color:var(--texto-2);display:flex;align-items:center;gap:.75rem}
+    .dl-lista li::before{content:'🌸';font-size:.7rem}
+
+    .dl-card{background:var(--fundo-escuro);border:var(--borda-r);padding:2.5rem;text-align:center;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(139,32,53,.15)}
+    .dl-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(196,100,122,.1),transparent 50%)}
+    .dl-icone{font-size:2.8rem;margin-bottom:.8rem;display:block}
+    .dl-tit{font-family:var(--ft);font-size:1.3rem;font-weight:500;color:var(--texto-claro);margin-bottom:.4rem}
+    .dl-sub{font-family:var(--fc);font-style:italic;font-size:.88rem;color:var(--texto-claro-2);margin-bottom:2rem}
+    .dl-form{display:flex;flex-direction:column;gap:.7rem;margin-bottom:.6rem}
+    .dl-input{background:rgba(253,246,240,.08);border:var(--borda-r);color:var(--texto-claro);font-family:var(--fc);font-size:.95rem;padding:14px 1rem;outline:none;transition:border-color .3s;width:100%;text-align:center}
+    .dl-input::placeholder{color:rgba(253,246,240,.35);font-style:italic}
+    .dl-input:focus{border-color:var(--rosa-2)}
+    .dl-aviso{font-family:var(--fu);font-size:.78rem;color:rgba(253,246,240,.35);font-style:italic;margin-top:.8rem}
+
+    /* ============================================================
+       ░░░ 10. AQUISIÇÃO ░░░
+    ============================================================ */
+    .aq-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--fundo-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .aq-wrap{max-width:1200px;margin:0 auto}
+    .aq-header{text-align:center;margin-bottom:3rem}
+    .aq-grade{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .aq-card{background:var(--fundo);border:var(--borda-f);padding:3rem;position:relative;overflow:hidden;transition:all .4s}
+    .aq-card:hover{border-color:rgba(196,100,122,.3);transform:translateY(-4px);box-shadow:0 12px 40px rgba(196,100,122,.1)}
+    .aq-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(196,100,122,.04),transparent 50%);opacity:0;transition:opacity .4s}
+    .aq-card:hover::before{opacity:1}
+    .aq-badge{position:absolute;top:1.5rem;right:1.5rem;font-family:var(--fd);font-size:.46rem;letter-spacing:.38em;text-transform:uppercase;padding:4px 10px}
+    .aq-badge-d{background:var(--rosa);color:#fff}
+    .aq-badge-e{border:var(--borda-r);color:var(--rosa)}
+    .aq-icone{font-size:2.4rem;margin-bottom:1.5rem;display:block}
+    .aq-tit{font-family:var(--ft);font-size:1.4rem;font-weight:500;color:var(--texto);margin-bottom:.4rem}
+    .aq-sub{font-family:var(--ft);font-style:italic;font-size:.92rem;color:var(--bordô);margin-bottom:1.5rem}
+    .aq-desc{font-family:var(--fc);font-size:.92rem;color:var(--texto-2);line-height:1.9;margin-bottom:2rem;font-style:italic}
+
+    /* ============================================================
+       ░░░ 11. FRASES EM DESTAQUE ░░░
+    ============================================================ */
+    .frases-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2;text-align:center}
+    .frases-grade{max-width:1100px;margin:2.5rem auto 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+    .frase-card{background:var(--fundo-2);border:var(--borda-f);padding:2rem;text-align:left;position:relative;transition:all .4s}
+    .frase-card:hover{border-color:rgba(196,100,122,.28);transform:translateY(-4px)}
+    .frase-card-aspas{font-family:var(--ft);font-size:2.5rem;color:var(--rosa);opacity:.2;line-height:.8;display:block;margin-bottom:.3rem;font-style:italic;user-select:none}
+    .frase-card-texto{font-family:var(--ft);font-style:italic;font-size:1rem;color:var(--texto);line-height:1.8;margin-bottom:.75rem}
+    .frase-card-texto em{color:var(--bordô)}
+    .frase-card-orig{font-family:var(--fd);font-size:.47rem;letter-spacing:.38em;text-transform:uppercase;color:var(--rosa)}
+
+    /* ============================================================
+       ░░░ 12. COMENTÁRIOS ░░░
+    ============================================================ */
+    .com-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--fundo-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .com-wrap{max-width:880px;margin:0 auto}
+    .com-header{text-align:center;margin-bottom:3rem}
+    .com-lista{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem}
+    .com-card{background:var(--fundo);border:var(--borda-f);padding:1.8rem 2rem;transition:border-color .3s}
+    .com-card:hover{border-color:rgba(196,100,122,.22)}
+    .com-aspas{font-family:var(--ft);font-size:2.8rem;color:var(--rosa);opacity:.18;line-height:.8;display:block;margin-bottom:.25rem;font-style:italic;user-select:none}
+    .com-texto{font-family:var(--fc);font-style:italic;font-size:.95rem;color:var(--texto-2);line-height:1.85;margin-bottom:1rem}
+    .com-autor{font-family:var(--fd);font-size:.5rem;letter-spacing:.38em;text-transform:uppercase;color:var(--rosa)}
+
+    /* Formulário */
+    .cf-tit{font-family:var(--ft);font-size:1.3rem;font-weight:500;color:var(--texto);margin-bottom:1.5rem}
+    .cf-tit em{font-style:italic;color:var(--bordô)}
+    .fg{margin-bottom:.9rem}
+    .flabel{font-family:var(--fd);font-size:.5rem;letter-spacing:.38em;text-transform:uppercase;color:var(--rosa);display:block;margin-bottom:6px}
+    .finput,.ftextarea,.fselect{width:100%;background:var(--fundo);border:var(--borda-r);color:var(--texto);font-family:var(--fc);font-size:.95rem;padding:13px 1rem;outline:none;transition:border-color .3s}
+    .finput::placeholder,.ftextarea::placeholder{color:var(--texto-3);font-style:italic}
+    .finput:focus,.ftextarea:focus,.fselect:focus{border-color:rgba(196,100,122,.4)}
+    .ftextarea{resize:vertical;min-height:110px;font-family:var(--fc)}
+    .fselect{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%23c4647a'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;appearance:none;background-color:var(--fundo)}
+    .fselect option{background:var(--fundo)}
+    .fg2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .faviso{font-family:var(--fu);font-size:.78rem;color:var(--texto-3);font-style:italic;margin-top:.8rem}
+
+    /* ============================================================
+       MAIS LIVROS + RODAPÉ
+    ============================================================ */
+    .mais-sec{padding:4.5rem clamp(1.2rem,5vw,5rem);background:var(--fundo-escuro);border-top:var(--borda-f);position:relative;z-index:2}
+    .mais-wrap{max-width:1200px;margin:0 auto}
+    .mais-label{font-family:var(--fd);font-size:.55rem;letter-spacing:.45em;text-transform:uppercase;color:var(--rosa);margin-bottom:2rem;display:block}
+    .mais-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1.5rem;margin-top:1rem}
+    .mais-card{display:block;transition:transform .3s}
+    .mais-card:hover{transform:translateY(-6px)}
+    .mais-capa{width:100%;filter:brightness(.6) saturate(.5);transition:filter .3s;box-shadow:-4px 6px 20px rgba(0,0,0,.4)}
+    .mais-card:hover .mais-capa{filter:brightness(.9) saturate(.9)}
+    .mais-tit{font-family:var(--ft);font-size:.85rem;color:rgba(253,246,240,.5);margin-top:.55rem;line-height:1.3;transition:color .3s}
+    .mais-card:hover .mais-tit{color:var(--rosa-2)}
+
+    footer{background:var(--fundo-escuro);border-top:1px solid rgba(253,246,240,.08);padding:2.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem}
+    .footer-logo{font-family:var(--fd);font-size:.78rem;color:var(--rosa-2);letter-spacing:.15em;text-transform:uppercase}
+    .footer-links{display:flex;gap:2rem;list-style:none;flex-wrap:wrap}
+    .footer-links a{font-family:var(--fu);font-size:.85rem;color:rgba(253,246,240,.4);transition:color .3s;letter-spacing:.06em}
+    .footer-links a:hover{color:var(--rosa-2)}
+    .footer-copy{font-family:var(--fu);font-size:.75rem;color:rgba(253,246,240,.3);font-style:italic}
+
+    /* ============================================================ RESPONSIVO */
+    @media(max-width:1024px){
+      .sobre-wrap{grid-template-columns:1fr;gap:3rem}
+      .ficha{position:relative;top:0}
+      .download-wrap{grid-template-columns:1fr;gap:3rem}
+      .aq-grade{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      html{font-size:16px} /* garante legibilidade em mobile */
+      .hero{grid-template-columns:1fr;text-align:center;gap:2.5rem;padding-top:85px}
+      .hero-capa-area{order:-1}
+      .livro-3d{transform:rotateY(0) rotateX(0)}
+      .hero-frase{margin:0 auto 2rem}
+      .hero-acoes{justify-content:center}
+      .hero-badges{justify-content:center}
+      .hero-fmt{justify-content:center}
+      .hero-linha{justify-content:center}
+      .hero-pre{justify-content:center}
+      .pers-grade{grid-template-columns:1fr 1fr}
+      .fg2{grid-template-columns:1fr}
+      .footer-inner{flex-direction:column;text-align:center}
+      .footer-links{justify-content:center}
+    }
+    @media(max-width:480px){
+      .pers-grade{grid-template-columns:1fr}
+      .mais-grade{grid-template-columns:repeat(3,1fr)}
+      .jardim-grade{grid-template-columns:1fr}
+    }
