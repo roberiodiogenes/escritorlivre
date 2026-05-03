@@ -1,0 +1,406 @@
+    /* ============================================================
+       VARIÁVEIS — TEMA "DAS COISAS QUE O AMOR FAZ"
+       Paleta das estações do amor:
+       Primavera: verde-tenro + rosa-pálido
+       Verão: âmbar-quente + coral
+       Outono: terracota + laranja-envelhecido
+       Inverno: azul-cinza + branco-lunar
+       Base unificadora: creme envelhecido + grafite suave
+    ============================================================ */
+    :root {
+      /* Base */
+      --fundo:        #faf7f2;   /* creme papel muito suave */
+      --fundo-2:      #f3ede4;
+      --fundo-3:      #ede4d8;
+      --escuro:       #1a1610;   /* grafite escuro */
+      --escuro-2:     #2a2218;
+
+      /* Estações */
+      --primavera:    #5a8a5c;   /* verde-jardim */
+      --primavera-2:  #7aaa7c;
+      --verão:        #b86a2a;   /* âmbar quente */
+      --verão-2:      #d88840;
+      --outono:       #8a4a2a;   /* terracota */
+      --outono-2:     #aa6a4a;
+      --inverno:      #4a6a8a;   /* azul-cinza */
+      --inverno-2:    #6a8aaa;
+
+      /* Acentos principais da obra */
+      --acento:       #7a5a3a;   /* marrom-poesia — tom principal */
+      --acento-2:     #9a7a5a;
+      --acento-pale:  rgba(122,90,58,.1);
+
+      /* Texto */
+      --tinta:        #1a1208;
+      --tinta-2:      #5a4030;
+      --tinta-3:      #9a8070;
+      --tinta-clara:  #f5ede0;
+      --tinta-clara-2:#c8a880;
+
+      /* Bordas */
+      --borda:        1px solid rgba(122,90,58,.2);
+      --borda-f:      1px solid rgba(122,90,58,.08);
+      --sombra:       0 0 40px rgba(122,90,58,.1);
+
+      /* Tipografia */
+      --ft:  'Cormorant Garamond', Georgia, serif; /* títulos + poemas */
+      --fc:  'Lora', Georgia, serif;               /* corpo */
+      --fd:  'Cinzel', serif;                      /* decorativa */
+      --fu:  'EB Garamond', Georgia, serif;        /* labels + UI */
+      --ease: cubic-bezier(.25,.46,.45,.94);
+    }
+
+    /* RESET */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:18px} /* maior para melhor legibilidade */
+    body{background:var(--fundo);color:var(--tinta);font-family:var(--fc);line-height:1.85;overflow-x:hidden;cursor:none}
+    /* Textura de papel muito sutil */
+    body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");pointer-events:none;z-index:500;opacity:.5}
+    img{max-width:100%;display:block}
+    a{text-decoration:none}
+
+    /* CURSOR — como pena de escrever */
+    .cursor{width:10px;height:10px;background:var(--acento);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:999;transform:translate(-50%,-50%);box-shadow:0 0 10px rgba(122,90,58,.3);transition:width .3s,height .3s}
+    .cursor-anel{width:30px;height:30px;border:1px solid rgba(122,90,58,.35);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:999;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+    @media(hover:none){.cursor,.cursor-anel{display:none}}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 clamp(1.2rem,4vw,4rem);display:flex;align-items:center;justify-content:space-between;height:68px;transition:background .4s,backdrop-filter .4s}
+    nav.scrolled{background:rgba(250,247,242,.95);backdrop-filter:blur(16px);border-bottom:var(--borda-f);box-shadow:0 2px 20px rgba(122,90,58,.06)}
+    .nav-logo{font-family:var(--fd);font-size:.75rem;color:var(--escuro);letter-spacing:.15em;text-transform:uppercase;transition:color .3s}
+    .nav-logo:hover{color:var(--acento)}
+    .nav-logo span{color:var(--acento);font-size:.6em;display:block;letter-spacing:.3em}
+    .nav-voltar{font-family:var(--fu);font-size:.85rem;letter-spacing:.08em;color:var(--tinta-3);display:flex;align-items:center;gap:8px;transition:color .3s;font-style:italic}
+    .nav-voltar:hover{color:var(--acento)}
+
+    /* BOTÕES */
+    .btn{font-family:var(--fd);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;padding:16px 34px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:all .35s;position:relative;overflow:hidden}
+    .btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.1);transform:translateX(-100%);transition:transform .35s}
+    .btn:hover::before{transform:translateX(0)}
+    .btn-p{background:var(--acento);color:#fff}
+    .btn-p:hover{background:var(--escuro);box-shadow:0 8px 30px rgba(122,90,58,.35);transform:translateY(-2px)}
+    .btn-b{background:transparent;color:var(--acento);border:var(--borda)}
+    .btn-b:hover{background:var(--acento-pale);border-color:var(--acento);transform:translateY(-2px)}
+    .btn-sm{padding:12px 24px;font-size:.72rem}
+
+    /* TOPO */
+    .topo-btn{position:fixed;bottom:2rem;right:2rem;width:46px;height:46px;background:var(--escuro);color:var(--tinta-clara);display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;border-radius:50%;font-size:.9rem}
+    .topo-btn.v{opacity:1;pointer-events:all}
+    .topo-btn:hover{transform:translateY(-4px) scale(1.05);background:var(--acento)}
+
+    /* REVEAL */
+    .r{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .re{opacity:0;transform:translateX(-24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .rd{opacity:0;transform:translateX(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .r.v,.re.v,.rd.v{opacity:1;transform:translate(0)}
+    .d1{transition-delay:.12s}.d2{transition-delay:.22s}.d3{transition-delay:.32s}
+    .d4{transition-delay:.42s}.d5{transition-delay:.52s}
+
+    /* DIVISORES */
+    .div-ornamento{text-align:center;padding:1.5rem 0;font-family:var(--fu);color:var(--acento);font-size:1rem;opacity:.35;user-select:none;letter-spacing:.5rem}
+    .div-linha{height:1px;background:linear-gradient(90deg,transparent,rgba(122,90,58,.2),transparent);max-width:1000px;margin:0 auto}
+
+    /* ============================================================
+       ░░░ 1. HERO ░░░
+       Limpo, poético, sensorial — fundo de papel com capa 3D
+    ============================================================ */
+    .hero{min-height:100vh;position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:2rem;padding:100px clamp(1.2rem,5vw,5rem) 4rem;overflow:hidden;background:var(--fundo)}
+
+    /* Gradiente sutil de luz */
+    .hero-luz{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 60% at 80% 40%,rgba(122,90,58,.05),transparent 65%),radial-gradient(ellipse 50% 70% at 10% 80%,rgba(90,138,92,.04),transparent 60%)}
+
+    /* Ornamentos tipográficos de fundo */
+    .hero-orn{position:absolute;z-index:0;pointer-events:none;user-select:none;font-family:var(--ft);color:var(--acento)}
+
+    /* Capa 3D */
+    .hero-capa-area{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;perspective:1100px;opacity:0;animation:sE 1.2s .3s forwards}
+    @keyframes sE{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes sD{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+
+    .livro-3d{position:relative;transform-style:preserve-3d;transform:rotateY(-15deg) rotateX(2deg);transition:transform .8s var(--ease);width:min(260px,70vw)}
+    .livro-3d:hover{transform:rotateY(-4deg) rotateX(1deg) scale(1.03)}
+    .livro-lombada{position:absolute;top:0;right:100%;bottom:0;width:28px;background:linear-gradient(180deg,#1a1008 0%,#120c06 50%,#0e0a04 100%);transform-origin:right;transform:rotateY(90deg);display:flex;align-items:center;justify-content:center;box-shadow:inset -4px 0 10px rgba(0,0,0,.4)}
+    .livro-lombada span{font-family:var(--ft);font-size:.5rem;font-weight:400;color:rgba(200,168,128,.4);letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg)}
+    .livro-frente{position:relative;box-shadow:-14px 18px 40px rgba(122,90,58,.25),-4px 4px 0 rgba(122,90,58,.08)}
+    .livro-frente img{width:100%}
+    .livro-reflexo{position:absolute;left:0;right:0;top:100%;height:60px;overflow:hidden;pointer-events:none}
+    .livro-reflexo img{width:100%;transform:scaleY(-1);filter:brightness(.2) blur(3px) sepia(.2);mask-image:linear-gradient(to bottom,rgba(0,0,0,.3),transparent);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.3),transparent)}
+    .livro-brilho{position:absolute;inset:-20px;background:radial-gradient(ellipse at center,rgba(122,90,58,.05),transparent 70%);pointer-events:none;animation:pBrilho 6s ease-in-out infinite}
+    @keyframes pBrilho{0%,100%{opacity:.4}50%{opacity:.9}}
+
+    /* Texto hero */
+    .hero-texto{position:relative;z-index:2;opacity:0;animation:sD 1.2s .5s forwards}
+    .hero-pre{font-family:var(--fd);font-size:.58rem;letter-spacing:.5em;text-transform:uppercase;color:var(--acento);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
+    .hero-pre::before{content:'';flex:0 0 30px;height:1px;background:linear-gradient(90deg,var(--acento),transparent)}
+    .hero-titulo{font-family:var(--ft);font-size:clamp(2.5rem,5.5vw,5rem);font-weight:300;line-height:.92;color:var(--tinta);margin-bottom:.5rem;letter-spacing:-.01em}
+    .hero-titulo em{font-style:italic;color:var(--acento);display:block}
+    .hero-sub{font-family:var(--fu);font-style:italic;font-size:clamp(.9rem,1.6vw,1.15rem);color:var(--tinta-2);margin-bottom:2rem;display:block;letter-spacing:.05em}
+    .hero-linha{display:flex;align-items:center;gap:1rem;margin:1.8rem 0}
+    .hero-linha-traço{flex:0 0 30px;height:1px;background:var(--acento);opacity:.4}
+    .hero-linha-sym{color:var(--acento);font-family:var(--fu);font-size:.9rem;opacity:.5}
+
+    /* Epígrafe no hero */
+    .hero-epigrafe{font-family:var(--ft);font-style:italic;font-size:1.1rem;color:var(--tinta-2);line-height:1.9;max-width:480px;margin-bottom:2rem}
+    .hero-epigrafe em{color:var(--acento)}
+    .hero-epigrafe-attr{font-family:var(--fd);font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--tinta-3);display:block;margin-top:.5rem}
+
+    .hero-badges{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+    .badge{font-family:var(--fd);font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;padding:5px 11px;border:var(--borda);color:var(--acento)}
+    .badge-f{background:var(--acento-pale)}
+    .hero-acoes{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+    .hero-fmt{font-family:var(--fu);font-size:.85rem;color:var(--tinta-3);font-style:italic;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+    .hero-fmt span{color:var(--acento);font-style:normal}
+
+    /* ============================================================
+       ░░░ 2. NOTA DO AUTOR — As Estações ░░░
+    ============================================================ */
+    .nota-sec{padding:5rem clamp(1.2rem,5vw,5rem);background:var(--fundo-2);border-top:var(--borda-f);border-bottom:var(--borda-f);position:relative;z-index:2}
+    .nota-wrap{max-width:820px;margin:0 auto;text-align:center}
+    .nota-label{font-family:var(--fd);font-size:.55rem;letter-spacing:.45em;text-transform:uppercase;color:var(--acento);margin-bottom:1.5rem;display:block}
+    .nota-titulo{font-family:var(--ft);font-size:clamp(1.6rem,3vw,2.5rem);font-weight:400;color:var(--tinta);margin-bottom:2rem}
+    .nota-titulo em{font-style:italic;color:var(--acento)}
+    .nota-texto{font-family:var(--fu);font-style:italic;font-size:1.05rem;color:var(--tinta-2);line-height:2;margin-bottom:2rem}
+    .nota-texto strong{color:var(--tinta);font-style:normal}
+
+    /* Estações em linha */
+    .estacoes{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;max-width:900px;margin:0 auto;margin-top:2.5rem}
+    .estacao{padding:1.5rem 1rem;text-align:center;border:var(--borda-f);background:var(--fundo);transition:all .4s}
+    .estacao:hover{transform:translateY(-4px);border-color:rgba(122,90,58,.25);box-shadow:0 8px 25px rgba(122,90,58,.08)}
+    .estacao-emoji{font-size:1.8rem;margin-bottom:.6rem;display:block}
+    .estacao-nome{font-family:var(--fd);font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;margin-bottom:.5rem;display:block}
+    .estacao-nome.primavera{color:var(--primavera)}
+    .estacao-nome.verao{color:var(--verão)}
+    .estacao-nome.outono{color:var(--outono)}
+    .estacao-nome.inverno{color:var(--inverno)}
+    .estacao-desc{font-family:var(--fc);font-style:italic;font-size:.82rem;color:var(--tinta-3);line-height:1.6}
+
+    /* ============================================================
+       ░░░ 3. POEMA EM DESTAQUE — Metades Eternas ░░░
+       O mais impactante e universal — apresentado como experiência visual
+    ============================================================ */
+    .poema-sec{padding:6rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2;text-align:center;overflow:hidden}
+
+    /* Imagem de fundo levíssima */
+    .poema-sec::before{content:'';position:absolute;inset:0;background-image:url('../img/dcqaf-amor.jpg');background-size:cover;background-position:center;filter:brightness(.04) sepia(.3);pointer-events:none}
+    .poema-sec::after{content:'';position:absolute;inset:0;background:rgba(250,247,242,.95);pointer-events:none}
+
+    .poema-wrap{max-width:640px;margin:0 auto;position:relative;z-index:1}
+    .poema-label{font-family:var(--fd);font-size:.55rem;letter-spacing:.5em;text-transform:uppercase;color:var(--acento);margin-bottom:2rem;display:block}
+    .poema-titulo{font-family:var(--ft);font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--tinta);margin-bottom:.5rem;font-style:italic}
+    .poema-sub{font-family:var(--fd);font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--primavera);margin-bottom:3rem;display:block}
+    .poema-corpo{font-family:var(--ft);font-style:italic;font-size:clamp(1.1rem,2vw,1.4rem);color:var(--tinta);line-height:2.2;text-align:left;max-width:580px;margin:0 auto}
+    .poema-corpo .verso{display:block;margin-bottom:.1rem}
+    .poema-corpo .estrofe{margin-bottom:2rem}
+    .poema-corpo em{color:var(--acento);font-style:normal}
+
+    /* ============================================================
+       ░░░ 4. IMAGEM ATMOSFÉRICA ░░░
+    ============================================================ */
+    .atmos{position:relative;z-index:2;overflow:hidden;height:clamp(260px,40vw,500px);border-top:var(--borda-f);border-bottom:var(--borda-f)}
+    .atmos-img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.65) sepia(.15) contrast(1.1);transition:filter .6s,transform 8s}
+    .atmos:hover .atmos-img{filter:brightness(.72) sepia(.08);transform:scale(1.02)}
+    .atmos-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(26,22,16,.9) 40%,transparent 80%),linear-gradient(to top,rgba(26,22,16,.7) 0%,transparent 40%)}
+    .atmos-texto{position:absolute;bottom:3rem;left:clamp(1.5rem,5vw,5rem);z-index:1;max-width:520px}
+    .atmos-texto p{font-family:var(--ft);font-style:italic;font-size:clamp(1rem,2vw,1.5rem);color:var(--tinta-clara);line-height:1.7}
+    .atmos-texto p em{color:var(--tinta-clara-2)}
+    .atmos-texto span{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(200,168,128,.4);display:block;margin-top:.75rem}
+
+    /* ============================================================
+       ░░░ 5. AS QUATRO ESTAÇÕES — Amostras dos poemas ░░░
+    ============================================================ */
+    .estacoes-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--fundo-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .estacoes-wrap{max-width:1200px;margin:0 auto}
+    .estacoes-header{text-align:center;margin-bottom:4rem}
+    .estacoes-header h2{font-family:var(--ft);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:400;color:var(--tinta);line-height:1.2}
+    .estacoes-header h2 em{font-style:italic;color:var(--acento)}
+    .estacoes-header p{font-family:var(--fc);font-style:italic;font-size:.95rem;color:var(--tinta-3);max-width:540px;margin:.75rem auto 0;line-height:1.9}
+
+    /* Grade das 4 estações */
+    .estacoes-grade{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem}
+
+    .estacao-card{background:var(--fundo);border:var(--borda-f);padding:2.5rem;position:relative;overflow:hidden;transition:border-color .4s,transform .3s,box-shadow .4s}
+    .estacao-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(122,90,58,.08)}
+    .estacao-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+    .estacao-card.primavera-card::before{background:linear-gradient(90deg,var(--primavera),var(--primavera-2))}
+    .estacao-card.verao-card::before{background:linear-gradient(90deg,var(--verão),var(--verão-2))}
+    .estacao-card.outono-card::before{background:linear-gradient(90deg,var(--outono),var(--outono-2))}
+    .estacao-card.inverno-card::before{background:linear-gradient(90deg,var(--inverno),var(--inverno-2))}
+    .estacao-card:hover.primavera-card{border-color:rgba(90,138,92,.3)}
+    .estacao-card:hover.verao-card{border-color:rgba(184,106,42,.3)}
+    .estacao-card:hover.outono-card{border-color:rgba(138,74,42,.3)}
+    .estacao-card:hover.inverno-card{border-color:rgba(74,106,138,.3)}
+
+    .ec-estacao{font-family:var(--fd);font-size:.52rem;letter-spacing:.45em;text-transform:uppercase;margin-bottom:.4rem;display:block}
+    .ec-estacao.primavera-card{color:var(--primavera)}
+    .ec-estacao.verao-card{color:var(--verão)}
+    .ec-estacao.outono-card{color:var(--outono)}
+    .ec-estacao.inverno-card{color:var(--inverno)}
+    .ec-titulo{font-family:var(--ft);font-size:1.4rem;font-weight:500;color:var(--tinta);margin-bottom:.3rem;font-style:italic}
+    .ec-sub{font-family:var(--fu);font-size:.82rem;color:var(--tinta-3);font-style:italic;margin-bottom:1.5rem;display:block}
+
+    /* Trecho do poema */
+    .ec-trecho{font-family:var(--ft);font-style:italic;font-size:1rem;color:var(--tinta-2);line-height:2;border-left:2px solid;padding-left:1.2rem;margin-bottom:1.5rem}
+    .ec-trecho.primavera-card{border-color:rgba(90,138,92,.3)}
+    .ec-trecho.verao-card{border-color:rgba(184,106,42,.3)}
+    .ec-trecho.outono-card{border-color:rgba(138,74,42,.3)}
+    .ec-trecho.inverno-card{border-color:rgba(74,106,138,.3)}
+
+    .ec-tema{font-family:var(--fu);font-size:.85rem;color:var(--tinta-3);font-style:italic}
+
+    /* ============================================================
+       ░░░ 6. IMAGEM — BARCO NA NOITE ░░░
+    ============================================================ -->
+    ============================================================ */
+    .barco-sec{position:relative;z-index:2;overflow:hidden;min-height:clamp(280px,45vw,560px);display:flex;align-items:center;border-top:var(--borda-f);border-bottom:var(--borda-f)}
+    .barco-bg{position:absolute;inset:0;background-image:url('../img/dcqaf-barco-noite.jpg');background-size:cover;background-position:center;filter:brightness(.35) sepia(.15) contrast(1.1)}
+    .barco-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(26,22,16,.94) 45%,rgba(26,22,16,.5) 100%),linear-gradient(to top,rgba(26,22,16,.8) 0%,transparent 40%)}
+    .barco-conteudo{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:4rem clamp(1.2rem,5vw,5rem);width:100%}
+    .barco-texto{max-width:580px}
+    .barco-label{font-family:var(--fd);font-size:.52rem;letter-spacing:.45em;text-transform:uppercase;color:var(--tinta-clara-2);margin-bottom:1rem;display:block;opacity:.6}
+    .barco-poema{font-family:var(--ft);font-style:italic;font-size:clamp(1rem,2vw,1.45rem);color:var(--tinta-clara);line-height:1.9;margin-bottom:1rem}
+    .barco-poema em{color:var(--tinta-clara-2)}
+    .barco-origem{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(200,168,128,.4)}
+
+    /* ============================================================
+       ░░░ 7. CITAÇÃO CENTRAL ░░░
+    ============================================================ */
+    .citacao-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);text-align:center;position:relative;z-index:2;background:var(--escuro);overflow:hidden}
+    .citacao-sec::before{content:'"';font-family:var(--ft);font-size:clamp(12rem,25vw,22rem);color:rgba(200,168,128,.04);position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);pointer-events:none;user-select:none;line-height:1}
+    .citacao-linha{width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--tinta-clara-2),transparent);margin:1.5rem auto}
+    .citacao-texto{font-family:var(--ft);font-style:italic;font-size:clamp(1.2rem,2.5vw,2rem);color:var(--tinta-clara);line-height:1.75;max-width:780px;margin:0 auto 1rem;position:relative;z-index:1}
+    .citacao-texto em{color:var(--tinta-clara-2)}
+    .citacao-autor{font-family:var(--fd);font-size:.52rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(200,168,128,.45)}
+
+    /* ============================================================
+       ░░░ 8. PRESENTE — DOWNLOAD POESIA ░░░
+       Enquadrado como um presente, não como download
+    ============================================================ */
+    .presente-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--fundo-2);border-top:var(--borda-f);position:relative;z-index:2;overflow:hidden}
+    .presente-sec::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse at top,rgba(122,90,58,.07),transparent 70%);pointer-events:none}
+    .presente-wrap{max-width:880px;margin:0 auto;position:relative;z-index:1}
+    .presente-header{text-align:center;margin-bottom:3rem}
+    .presente-header h2{font-family:var(--ft);font-size:clamp(1.7rem,3vw,2.5rem);font-weight:400;color:var(--tinta);line-height:1.2}
+    .presente-header h2 em{font-style:italic;color:var(--acento)}
+    .presente-header p{font-family:var(--fc);font-style:italic;font-size:.95rem;color:var(--tinta-3);max-width:540px;margin:.75rem auto 0;line-height:1.9}
+
+    /* Card da poesia presente */
+    .presente-card{background:var(--fundo);border:var(--borda);padding:3rem 3.5rem;position:relative;box-shadow:0 4px 30px rgba(122,90,58,.08),inset 0 0 60px rgba(122,90,58,.02)}
+    .presente-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(122,90,58,.03),transparent 50%);pointer-events:none}
+    /* Linhas decorativas da carta */
+    .presente-card::after{content:'';position:absolute;top:2.5rem;bottom:2.5rem;left:3rem;width:1px;background:rgba(122,90,58,.1);pointer-events:none}
+
+    .presente-poema-titulo{font-family:var(--ft);font-size:1.6rem;font-weight:400;color:var(--tinta);font-style:italic;margin-bottom:.3rem;text-align:center}
+    .presente-poema-estacao{font-family:var(--fd);font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--verão);text-align:center;margin-bottom:2rem;display:block}
+    .presente-poema-corpo{font-family:var(--ft);font-style:italic;font-size:1.1rem;color:var(--tinta-2);line-height:2.2;margin-bottom:2rem;position:relative;z-index:1}
+    .presente-poema-corpo .verso{display:block}
+    .presente-poema-corpo .estrofe{margin-bottom:2rem}
+    .presente-poema-corpo em{color:var(--acento)}
+    .presente-origem{font-family:var(--fd);font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--acento);opacity:.6;text-align:right;display:block;border-top:var(--borda-f);padding-top:1.2rem;margin-top:1.2rem}
+
+    /* Download do livro completo */
+    .presente-dl{margin-top:2.5rem;text-align:center;padding:2rem;background:var(--escuro);position:relative;overflow:hidden}
+    .presente-dl::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(122,90,58,.1),transparent 50%)}
+    .presente-dl h3{font-family:var(--ft);font-size:1.3rem;font-weight:400;color:var(--tinta-clara);margin-bottom:.4rem;font-style:italic;position:relative;z-index:1}
+    .presente-dl p{font-family:var(--fu);font-style:italic;font-size:.9rem;color:var(--tinta-clara-2);margin-bottom:1.5rem;position:relative;z-index:1}
+    .presente-dl form{display:flex;flex-direction:column;gap:.7rem;max-width:420px;margin:0 auto;position:relative;z-index:1}
+    .dl-input{background:rgba(250,247,242,.06);border:var(--borda);color:var(--tinta-clara);font-family:var(--fc);font-size:.95rem;padding:13px 1rem;outline:none;transition:border-color .3s;width:100%;text-align:center}
+    .dl-input::placeholder{color:rgba(200,168,128,.35);font-style:italic}
+    .dl-input:focus{border-color:var(--tinta-clara-2)}
+
+    /* ============================================================
+       ░░░ 9. FICHA + AQUISIÇÃO ░░░
+    ============================================================ */
+    .aq-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .aq-wrap{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+    .ficha{background:var(--escuro);border:var(--borda);padding:2.2rem}
+    .ficha-tit{font-family:var(--fd);font-size:.52rem;letter-spacing:.45em;text-transform:uppercase;color:var(--acento-2);margin-bottom:1.5rem}
+    .fi{display:flex;justify-content:space-between;padding:.75rem 0;border-bottom:1px solid rgba(200,168,128,.08);font-family:var(--fu)}
+    .fi:last-of-type{border-bottom:none}
+    .fi-k{font-size:.85rem;color:rgba(200,168,128,.4);font-style:italic}
+    .fi-v{font-size:.9rem;color:var(--tinta-clara);text-align:right}
+    .fi-v.a{color:var(--acento-2)}
+
+    .aq-card{background:var(--fundo-2);border:var(--borda);padding:2.5rem;text-align:center;position:relative;overflow:hidden;transition:all .4s}
+    .aq-card:hover{border-color:rgba(122,90,58,.3);transform:translateY(-4px);box-shadow:var(--sombra)}
+    .aq-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(122,90,58,.04),transparent 50%);opacity:0;transition:opacity .4s}
+    .aq-card:hover::before{opacity:1}
+    .aq-badge{display:inline-block;font-family:var(--fd);font-size:.44rem;letter-spacing:.4em;text-transform:uppercase;padding:5px 12px;background:var(--acento);color:#fff;margin-bottom:1.5rem}
+    .aq-icone{font-size:2.5rem;margin-bottom:1rem;display:block}
+    .aq-tit{font-family:var(--ft);font-size:1.4rem;font-weight:400;color:var(--tinta);margin-bottom:.4rem;font-style:italic}
+    .aq-sub{font-family:var(--ft);font-style:italic;font-size:.9rem;color:var(--acento);margin-bottom:1.5rem}
+    .aq-desc{font-family:var(--fc);font-size:.9rem;color:var(--tinta-2);line-height:1.9;margin-bottom:2rem;font-style:italic}
+
+    /* ============================================================
+       ░░░ 10. COMENTÁRIOS ░░░
+    ============================================================ */
+    .com-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--fundo-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .com-wrap{max-width:860px;margin:0 auto}
+    .com-header{text-align:center;margin-bottom:3rem}
+    .com-header h2{font-family:var(--ft);font-size:clamp(1.6rem,3vw,2.3rem);font-weight:400;color:var(--tinta)}
+    .com-header h2 em{font-style:italic;color:var(--acento)}
+    .com-header p{font-family:var(--fc);font-style:italic;font-size:.92rem;color:var(--tinta-3);margin-top:.5rem}
+    .com-lista{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem}
+    .com-card{background:var(--fundo);border:var(--borda-f);padding:1.8rem 2rem;transition:border-color .3s}
+    .com-card:hover{border-color:rgba(122,90,58,.22)}
+    .com-aspas{font-family:var(--ft);font-size:2.5rem;color:var(--acento);opacity:.18;line-height:.8;display:block;margin-bottom:.25rem;font-style:italic;user-select:none}
+    .com-texto{font-family:var(--fc);font-style:italic;font-size:.95rem;color:var(--tinta-2);line-height:1.85;margin-bottom:1rem}
+    .com-autor{font-family:var(--fd);font-size:.48rem;letter-spacing:.38em;text-transform:uppercase;color:var(--acento)}
+    .cf-tit{font-family:var(--ft);font-size:1.2rem;font-weight:400;color:var(--tinta);margin-bottom:1.5rem;font-style:italic}
+    .cf-tit em{color:var(--acento)}
+    .fg{margin-bottom:.9rem}
+    .flabel{font-family:var(--fd);font-size:.48rem;letter-spacing:.38em;text-transform:uppercase;color:var(--acento);display:block;margin-bottom:6px}
+    .finput,.ftextarea,.fselect{width:100%;background:var(--fundo);border:var(--borda);color:var(--tinta);font-family:var(--fc);font-size:.95rem;padding:13px 1rem;outline:none;transition:border-color .3s}
+    .finput::placeholder,.ftextarea::placeholder{color:var(--tinta-3);font-style:italic}
+    .finput:focus,.ftextarea:focus,.fselect:focus{border-color:rgba(122,90,58,.4)}
+    .ftextarea{resize:vertical;min-height:110px;font-family:var(--fc)}
+    .fselect{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M0 0l6 8 6-8z' fill='%237a5a3a'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;appearance:none;background-color:var(--fundo)}
+    .fselect option{background:var(--fundo)}
+    .fg2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .faviso{font-family:var(--fu);font-size:.78rem;color:var(--tinta-3);font-style:italic;margin-top:.8rem}
+
+    /* MAIS LIVROS + RODAPÉ */
+    .mais-sec{padding:4.5rem clamp(1.2rem,5vw,5rem);background:var(--escuro);border-top:var(--borda-f);position:relative;z-index:2}
+    .mais-wrap{max-width:1200px;margin:0 auto}
+    .mais-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1.5rem;margin-top:2rem}
+    .mais-card{display:block;transition:transform .3s}
+    .mais-card:hover{transform:translateY(-6px)}
+    .mais-capa{width:100%;filter:brightness(.6) saturate(.4);transition:filter .3s;box-shadow:-4px 6px 20px rgba(0,0,0,.4)}
+    .mais-card:hover .mais-capa{filter:brightness(.85) saturate(.8)}
+    .mais-tit{font-family:var(--ft);font-size:.85rem;color:rgba(200,168,128,.4);margin-top:.55rem;line-height:1.3;transition:color .3s;font-style:italic}
+    .mais-card:hover .mais-tit{color:var(--acento-2)}
+    footer{background:var(--escuro);border-top:1px solid rgba(200,168,128,.06);padding:2.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem}
+    .footer-logo{font-family:var(--fd);font-size:.75rem;color:var(--acento-2);letter-spacing:.15em;text-transform:uppercase}
+    .footer-links{display:flex;gap:2rem;list-style:none;flex-wrap:wrap}
+    .footer-links a{font-family:var(--fu);font-size:.85rem;color:rgba(200,168,128,.3);transition:color .3s;letter-spacing:.05em;font-style:italic}
+    .footer-links a:hover{color:var(--acento-2)}
+    .footer-copy{font-family:var(--fu);font-size:.75rem;color:rgba(200,168,128,.25);font-style:italic}
+
+    /* RESPONSIVO */
+    @media(max-width:1024px){
+      .aq-wrap{grid-template-columns:1fr;gap:2rem}
+      .estacoes-grade{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      html{font-size:16px}
+      .hero{grid-template-columns:1fr;text-align:center;gap:2.5rem;padding-top:85px}
+      .hero-capa-area{order:-1}
+      .livro-3d{transform:rotateY(0) rotateX(0)}
+      .hero-epigrafe{margin:0 auto 2rem}
+      .hero-acoes{justify-content:center}
+      .hero-badges{justify-content:center}
+      .hero-fmt{justify-content:center}
+      .hero-linha{justify-content:center}
+      .hero-pre{justify-content:center}
+      .estacoes{grid-template-columns:1fr 1fr}
+      .fg2{grid-template-columns:1fr}
+      .footer-inner{flex-direction:column;text-align:center}
+      .footer-links{justify-content:center}
+      .presente-card{padding:2rem}
+      .presente-card::after{display:none}
+      .barco-conteudo{justify-content:flex-start}
+    }
+    @media(max-width:480px){
+      .estacoes{grid-template-columns:1fr}
+      .mais-grade{grid-template-columns:repeat(3,1fr)}
+    }
