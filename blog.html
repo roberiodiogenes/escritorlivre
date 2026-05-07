@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="O Diário de um Escritor — Robério Diógenes. Bastidores, reflexões, processo criativo e os pensamentos que não cabem nos livros." />
+  <meta name="author" content="Robério Diógenes" />
+  <title>O Diário de um Escritor | Robério Diógenes</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/blog.css" />
+
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-anel" id="cursorAnel"></div>
+  <a href="#" class="topo-btn" id="topoBtn" aria-label="Voltar ao topo">↑</a>
+
+  <!-- ===== NAVEGAÇÃO ===== -->
+  <nav id="nav">
+    <a href="index.html" class="nav-logo">
+      Robério Diógenes
+      <span>Escritor Independente</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="livros.html">Biblioteca</a></li>
+      <li><a href="autor.html">O Autor</a></li>
+      <li><a href="blog.html" class="ativa">Diário</a></li>
+      <li><a href="contato.html">Contato</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ===== HERO DO BLOG ===== -->
+  <header class="blog-hero">
+    <div class="bh-bg"></div>
+    <div class="bh-grad"></div>
+    <div class="bh-conteudo">
+      <p class="bh-pretitulo">Robério Diógenes · Reflexões e Bastidores</p>
+      <h1 class="bh-titulo">
+        O Diário de um<br /><em>Escritor</em>
+      </h1>
+      <div class="bh-linha"></div>
+      <p class="bh-sub">Pensamentos que não cabem nos livros. Bastidores, reflexões e as histórias que a vida escreve antes da caneta.</p>
+    </div>
+  </header>
+
+  <!-- ===== FILTROS ===== -->
+  <div class="filtros-barra" id="filtrosBarra">
+    <div class="filtros-wrap">
+      <div class="filtros-lista">
+        <button class="filtro-btn ativo" data-cat="todos">Todos</button>
+        <button class="filtro-btn" data-cat="bastidores">Bastidores</button>
+        <button class="filtro-btn" data-cat="reflexao">Reflexão</button>
+        <button class="filtro-btn" data-cat="processo">Processo Criativo</button>
+        <button class="filtro-btn" data-cat="diario">Diário</button>
+        <button class="filtro-btn" data-cat="fe">Fé & Vida</button>
+      </div>
+      <div class="busca-wrap">
+        <input type="search" class="busca-input" placeholder="Buscar no diário..." id="buscaInput" />
+        <button class="busca-btn" aria-label="Buscar">🔍</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ÁREA PRINCIPAL ===== -->
+  <main class="blog-area">
+
+    <!-- ===== COLUNA PRINCIPAL ===== -->
+    <div>
+
+      <!-- POST EM DESTAQUE -->
+      <a href="blog/post-01.html" class="post-destaque reveal" data-cat="bastidores">
+        <div class="pd-img-wrap">
+          <img src="img/post-01.jpg" alt="Por trás da serpente e da maçã" class="pd-img" loading="eager" />
+          <span class="pd-badge">Destaque</span>
+        </div>
+        <div class="pd-corpo">
+          <p class="pd-categoria">Bastidores</p>
+          <h2 class="pd-titulo">Por trás da serpente e da maçã: os bastidores de A Sétima Lei</h2>
+          <p class="pd-resumo">Cada livro começa muito antes da primeira palavra. Aqui conto como nasceu a capa, a ideia, e o silêncio que precedeu tudo isso. Um livro que não veio de inspiração — veio de dor.</p>
+          <div class="pd-meta">
+            <span class="pd-data">15 de Abril de 2025</span>
+            <span class="pd-tempo">· 8 min de leitura</span>
+          </div>
+          <span class="pd-ler">Ler artigo completo</span>
+        </div>
+      </a>
+
+      <!-- GRADE DE POSTS -->
+      <div class="posts-grade" id="postsGrade">
+
+        <a href="blog/post-02.html" class="post-card reveal delay-1" data-cat="reflexao">
+          <div class="pc-img-wrap">
+            <img src="img/bastidores-setima-lei.jpg" alt="O peso do silêncio" class="pc-img" loading="lazy" />
+          </div>
+          <div class="pc-corpo">
+            <p class="pc-categoria">Reflexão</p>
+            <h3 class="pc-titulo">O peso do silêncio entre duas pessoas que se amaram</h3>
+            <p class="pc-resumo">Há um silêncio que é paz — e há um silêncio que é a ausência de tudo que deveria ter sido dito. Sobre esses dois, escrevo hoje.</p>
+            <div class="pc-footer">
+              <span class="pc-data">Março de 2025</span>
+              <span class="pc-ler">Ler →</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="blog/post-03.html" class="post-card reveal delay-2" data-cat="processo">
+          <div class="pc-img-wrap">
+            <img src="img/autor.jpg" alt="Por que escrevo sobre dor" class="pc-img" loading="lazy" />
+          </div>
+          <div class="pc-corpo">
+            <p class="pc-categoria">Processo Criativo</p>
+            <h3 class="pc-titulo">Por que escrevo sobre dor — e por que não me arrependo</h3>
+            <p class="pc-resumo">Há quem prefira histórias que consolam. Eu prefiro as que arrancam a venda dos olhos. Não porque sou cruel — mas porque acredito que a verdade liberta mais do que o conforto.</p>
+            <div class="pc-footer">
+              <span class="pc-data">Fevereiro de 2025</span>
+              <span class="pc-ler">Ler →</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Post sem imagem — estilo diário -->
+        <a href="blog/post-04.html" class="post-card sem-img reveal delay-3" data-cat="diario">
+          <div class="pc-corpo">
+            <p class="pc-categoria">Diário</p>
+            <h3 class="pc-titulo">23h47. Cascavel está em silêncio e eu ainda não fechei o capítulo</h3>
+            <p class="pc-resumo">Escrevo estas linhas com o café frio do lado e o cursor piscando na mesma frase há quarenta minutos. Às vezes o livro resiste. Às vezes sou eu que resisto ao livro.</p>
+            <div class="pc-footer">
+              <span class="pc-data">Janeiro de 2025</span>
+              <span class="pc-ler">Ler →</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="blog/post-05.html" class="post-card reveal delay-4" data-cat="fe">
+          <div class="pc-img-wrap">
+            <img src="img/a-setima-lei.jpg" alt="Deus, o casamento e o versículo incompleto" class="pc-img" loading="lazy" />
+          </div>
+          <div class="pc-corpo">
+            <p class="pc-categoria">Fé & Vida</p>
+            <h3 class="pc-titulo">Deus, o casamento e o versículo que ninguém termina de ler</h3>
+            <p class="pc-resumo">"Deus odeia o divórcio." Você já ouviu isso. Mas você já ouviu a frase inteira? O que vem depois muda tudo — e é exatamente o que não nos ensinaram.</p>
+            <div class="pc-footer">
+              <span class="pc-data">Dezembro de 2024</span>
+              <span class="pc-ler">Ler →</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="blog/post-06.html" class="post-card reveal delay-1" data-cat="processo">
+          <div class="pc-img-wrap">
+            <img src="img/lumen.jpg" alt="O labirinto de Hannah" class="pc-img" loading="lazy" />
+          </div>
+          <div class="pc-corpo">
+            <p class="pc-categoria">Processo Criativo</p>
+            <h3 class="pc-titulo">Como o labirinto de Lúmen nasceu de um pesadelo real</h3>
+            <p class="pc-resumo">Antes de ser cenário, o labirinto de mármore negro era um sonho recorrente que eu tinha. Este post conta como transformei um pesadelo em literatura.</p>
+            <div class="pc-footer">
+              <span class="pc-data">Novembro de 2024</span>
+              <span class="pc-ler">Ler →</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="blog/post-07.html" class="post-card sem-img reveal delay-2" data-cat="reflexao">
+          <div class="pc-corpo">
+            <p class="pc-categoria">Reflexão</p>
+            <h3 class="pc-titulo">Sobre a solidão que produz e a solidão que devora</h3>
+            <p class="pc-resumo">Escritores conhecem bem esses dois tipos. A primeira é o silêncio fértil — aquele de onde surgem histórias. A segunda é o abismo. Aprendi a diferença da maneira mais difícil.</p>
+            <div class="pc-footer">
+              <span class="pc-data">Outubro de 2024</span>
+              <span class="pc-ler">Ler →</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- PAGINAÇÃO -->
+      <div class="paginacao reveal">
+        <a href="#" class="pag-btn ativo" aria-label="Página 1">1</a>
+        <a href="#" class="pag-btn" aria-label="Página 2">2</a>
+        <a href="#" class="pag-btn" aria-label="Página 3">3</a>
+        <span class="pag-btn" style="pointer-events:none; border-color:transparent">…</span>
+        <a href="#" class="pag-btn" aria-label="Próxima página">→</a>
+      </div>
+
+    </div><!-- /coluna principal -->
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+
+      <!-- Widget: Sobre o Autor -->
+      <div class="widget reveal">
+        <p class="widget-titulo">O Escritor</p>
+        <img src="img/autor-4.jpg" alt="Robério Diógenes" class="w-autor-foto" loading="lazy" />
+        <p class="w-autor-nome">Robério Diógenes</p>
+        <p class="w-autor-desc">Escritor independente, nascido no Ceará. Escrevo thrillers psicológicos, horror, ficção e auto-ajuda cristã. Este diário é onde coloco o que não cabe nos livros.</p>
+        <a href="autor.html" class="btn btn-secundario btn-sm" style="width:100%;justify-content:center">Conhecer o autor</a>
+      </div>
+
+      <!-- Widget: Newsletter -->
+      <div class="widget reveal delay-1">
+        <p class="widget-titulo">Receba os Posts</p>
+        <p class="w-newsletter-desc">Novos artigos direto no seu e-mail. Sem spam — só palavras que valem a pena.</p>
+        <form class="w-form" onsubmit="inscricaoBlog(event)">
+          <input type="email" class="w-input" placeholder="seu@email.com" required aria-label="E-mail para newsletter" />
+          <button type="submit" class="btn btn-primario" style="width:100%;justify-content:center">Inscrever-se</button>
+        </form>
+      </div>
+
+      <!-- Widget: Posts Recentes -->
+      <div class="widget reveal delay-2">
+        <p class="widget-titulo">Recentes</p>
+        <a href="blog/post-01.html" class="w-post-recente">
+          <img src="img/post-01.jpg" alt="Post 01" class="wpr-img" loading="lazy" />
+          <div>
+            <p class="wpr-info-titulo">Os bastidores de A Sétima Lei</p>
+            <p class="wpr-info-data">Abril de 2025</p>
+          </div>
+        </a>
+        <a href="blog/post-03.html" class="w-post-recente">
+          <img src="img/autor.jpg" alt="Post 03" class="wpr-img" loading="lazy" />
+          <div>
+            <p class="wpr-info-titulo">Por que escrevo sobre dor</p>
+            <p class="wpr-info-data">Fevereiro de 2025</p>
+          </div>
+        </a>
+        <a href="blog/post-06.html" class="w-post-recente">
+          <img src="img/lumen.jpg" alt="Post 06" class="wpr-img" loading="lazy" />
+          <div>
+            <p class="wpr-info-titulo">O labirinto de Lúmen</p>
+            <p class="wpr-info-data">Novembro de 2024</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Widget: Categorias -->
+      <div class="widget reveal delay-3">
+        <p class="widget-titulo">Categorias</p>
+        <div class="w-categorias">
+          <a href="#" class="w-cat" data-filtro="bastidores">Bastidores <span class="w-cat-num">4</span></a>
+          <a href="#" class="w-cat" data-filtro="reflexao">Reflexão <span class="w-cat-num">6</span></a>
+          <a href="#" class="w-cat" data-filtro="processo">Processo Criativo <span class="w-cat-num">5</span></a>
+          <a href="#" class="w-cat" data-filtro="diario">Diário <span class="w-cat-num">8</span></a>
+          <a href="#" class="w-cat" data-filtro="fe">Fé & Vida <span class="w-cat-num">3</span></a>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer>
+    <div class="footer-wrap">
+      <div>
+        <a href="index.html" class="footer-logo">Robério Diógenes</a>
+        <p class="footer-desc">"Escrevo sobre o que nos assombra no silêncio, sobre os abismos que escondemos atrás das telas e das convenções sociais."</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/diogenesroberio" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+          <a href="https://www.linkedin.com/in/rob%C3%A9rio-di%C3%B3genes-47977b210/" target="_blank" rel="noopener" aria-label="LinkedIn">IN</a>
+          <a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank" rel="noopener" aria-label="Amazon">AM</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-col-titulo">Navegação</p>
+        <ul class="footer-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="livros.html">Biblioteca</a></li>
+          <li><a href="autor.html">O Autor</a></li>
+          <li><a href="blog.html">Diário</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-titulo">Livros em Destaque</p>
+        <ul class="footer-links">
+          <li><a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener">O Jogo das Máscaras</a></li>
+          <li><a href="https://www.amazon.com.br/dp/B0GXGZJV1Y" target="_blank" rel="noopener">A Sétima Lei</a></li>
+          <li><a href="livros.html">Ver todos →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Robério Diógenes. Todos os direitos reservados.</p>
+      <p class="footer-copy">Feito com tinta e silêncio · Cascavel, Ceará</p>
+    </div>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script src="js/script-blog.js"></script>
+
+</body>
+</html>
