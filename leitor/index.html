@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Área do Leitor — Robério Diógenes. Faça login para ver seu histórico de compras, comentários e conteúdo exclusivo." />
+  <title>Área do Leitor | Robério Diógenes</title>
+  <link rel="icon" type="image/png" href="../img/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/leitor.css" />
+</head>
+<body>
+
+<a href="#conteudo-principal" class="pular-nav">Pular para o conteúdo</a>
+<canvas id="canvas-particulas" aria-hidden="true"></canvas>
+
+<nav id="nav" role="navigation" aria-label="Navegação principal">
+  <a href="../index.html" class="nav-logo">Robério Diógenes<span>Escritor Independente</span></a>
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="../index.html">Início</a></li>
+    <li><a href="../livros.html">Biblioteca</a></li>
+    <li><a href="../autor.html">O Autor</a></li>
+    <li><a href="../blog.html">Diário</a></li>
+    <li><a href="../contato.html">Contato</a></li>
+  
+          <!-- Controles de acessibilidade — visíveis no menu mobile -->
+          <li class="mobile-controles" style="display:none;" aria-label="Acessibilidade">
+            <span class="mobile-controles-label">Tema &amp; Fonte</span>
+            <button class="tema-btn" data-tema="claro"     title="Tema claro"    aria-label="Tema claro">☀</button>
+            <button class="tema-btn" data-tema="noturno"   title="Tema noturno"  aria-label="Tema noturno">🌙</button>
+            <button class="tema-btn" data-tema="contraste" title="Alto contraste" aria-label="Alto contraste">◑</button>
+            <button class="fonte-btn fonte-diminuir"       title="Texto menor"   aria-label="Texto menor">A-</button>
+            <button class="fonte-btn fonte-aumentar"       title="Texto maior"   aria-label="Texto maior">A+</button>
+            <button class="tema-btn som-btn"               title="Sons"          aria-label="Sons">♪</button>
+          </li>
+  </ul>
+  <div class="nav-acoes">
+    <div class="tema-controles" role="group"><button class="tema-btn ativo" data-tema="claro" aria-label="Claro">☀</button><button class="tema-btn" data-tema="noturno" aria-label="Noturno">🌙</button><button class="tema-btn" data-tema="contraste" aria-label="Contraste">◑</button></div>
+    <div class="fonte-controles" role="group"><button class="fonte-btn fonte-diminuir" aria-label="A-">A-</button><button class="fonte-btn fonte-aumentar" aria-label="A+">A+</button></div>
+    <button class="tema-btn som-btn" aria-label="Sons">♪</button>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+</nav>
+<a href="#" class="topo-btn" id="topoBtn" aria-label="Voltar ao topo">↑</a>
+
+<main id="conteudo-principal">
+
+  <!-- AUTH (login/cadastro) — mostrado quando não está logado -->
+  <section class="auth-sec" id="authSec" aria-label="Autenticação">
+    <div class="auth-card reveal">
+      <div class="auth-logo">
+        <a href="../index.html">Robério Diógenes</a>
+        <span>Área do Leitor</span>
+      </div>
+
+      <!-- Abas -->
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab ativo" role="tab" data-tab="login" aria-selected="true" aria-controls="tabLogin" id="btnLogin">Entrar</button>
+        <button class="auth-tab" role="tab" data-tab="cadastro" aria-selected="false" aria-controls="tabCadastro" id="btnCadastro">Criar conta</button>
+      </div>
+
+      <!-- Login -->
+      <div class="auth-painel" id="tabLogin" role="tabpanel" aria-labelledby="btnLogin">
+        <form id="formLogin" novalidate aria-label="Formulário de login">
+          <div class="fg">
+            <label for="l-email" class="flabel">E-mail</label>
+            <input type="email" id="l-email" class="finput" placeholder="seu@email.com" required aria-required="true" autocomplete="email" />
+          </div>
+          <div class="fg" style="position:relative;">
+            <label for="l-senha" class="flabel">Senha</label>
+            <input type="password" id="l-senha" class="finput" placeholder="••••••••" required aria-required="true" autocomplete="current-password" />
+            <button type="button" class="ver-senha-btn" onclick="verSenha('l-senha',this)" aria-label="Mostrar senha">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </button>
+          </div>
+          <a href="#" class="auth-link-sec" style="display:block;text-align:right;margin-top:-0.5rem;font-size:0.82rem;">Esqueci minha senha</a>
+          <button type="submit" class="btn btn-primario" style="width:100%;justify-content:center;padding:0.9rem;margin-top:0.5rem;">
+            <i class="fa fa-sign-in-alt" aria-hidden="true"></i> Entrar
+          </button>
+          <div class="auth-separador" aria-hidden="true"><span>ou continue com</span></div>
+          <div class="auth-sociais">
+            <button type="button" class="btn btn-ghost btn-social" aria-label="Entrar com Google">
+              <img src="https://www.google.com/favicon.ico" width="16" height="16" alt="" aria-hidden="true" /> Google
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Cadastro -->
+      <div class="auth-painel" id="tabCadastro" role="tabpanel" aria-labelledby="btnCadastro" hidden>
+        <form id="formCadastro" novalidate aria-label="Formulário de cadastro">
+          <div class="fg-2">
+            <div class="fg">
+              <label for="cad-nome" class="flabel">Nome</label>
+              <input type="text" id="cad-nome" class="finput" placeholder="Seu nome" required aria-required="true" autocomplete="given-name" />
+            </div>
+            <div class="fg">
+              <label for="cad-sobrenome" class="flabel">Sobrenome</label>
+              <input type="text" id="cad-sobrenome" class="finput" placeholder="Sobrenome" autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="fg">
+            <label for="cad-email" class="flabel">E-mail</label>
+            <input type="email" id="cad-email" class="finput" placeholder="seu@email.com" required aria-required="true" autocomplete="email" />
+          </div>
+          <div class="fg" style="position:relative;">
+            <label for="cad-senha" class="flabel">Senha</label>
+            <input type="password" id="cad-senha" class="finput" placeholder="Mínimo 8 caracteres" required aria-required="true" minlength="8" autocomplete="new-password" />
+            <button type="button" class="ver-senha-btn" onclick="verSenha('cad-senha',this)" aria-label="Mostrar senha">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="fg" style="flex-direction:row;align-items:flex-start;gap:0.6rem;margin-top:0.25rem;">
+            <input type="checkbox" id="cad-nl" style="margin-top:3px;accent-color:var(--ouro);flex-shrink:0;" />
+            <label for="cad-nl" class="flabel" style="cursor:pointer;">Quero receber novidades e lançamentos por e-mail</label>
+          </div>
+          <div class="fg" style="flex-direction:row;align-items:flex-start;gap:0.6rem;">
+            <input type="checkbox" id="cad-termos" required aria-required="true" style="margin-top:3px;accent-color:var(--ouro);flex-shrink:0;" />
+            <label for="cad-termos" class="flabel" style="cursor:pointer;">Aceito os <a href="../termos.html" style="color:var(--ouro);">termos de uso</a> e a <a href="../privacidade.html" style="color:var(--ouro);">política de privacidade</a></label>
+          </div>
+          <button type="submit" class="btn btn-primario" style="width:100%;justify-content:center;padding:0.9rem;margin-top:0.5rem;">
+            <i class="fa fa-user-plus" aria-hidden="true"></i> Criar Conta Gratuita
+          </button>
+        </form>
+      </div>
+
+      <p style="text-align:center;margin-top:1.5rem;font-family:var(--fonte-ui);font-size:0.8rem;color:var(--texto-3);">
+        Área gratuita · Sem cartão necessário
+      </p>
+    </div>
+  </section>
+
+  <!-- DASHBOARD — mostrado quando está logado -->
+  <section class="dashboard-sec" id="dashboardSec" aria-label="Área do leitor" style="display:none;">
+    <div class="secao">
+      <div class="dash-header">
+        <div>
+          <p class="secao-pretitulo">Bem-vindo de volta</p>
+          <h1 class="dash-titulo" id="dashNome">Olá, Leitor!</h1>
+        </div>
+        <button class="btn btn-ghost" onclick="fazerLogout()">
+          <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Sair
+        </button>
+      </div>
+
+      <!-- MENU DASHBOARD -->
+      <nav class="dash-nav" aria-label="Menu da área do leitor">
+        <button class="dash-tab ativo" data-dash="biblioteca" aria-selected="true">
+          <i class="fa fa-book" aria-hidden="true"></i> Minha Biblioteca
+        </button>
+        <button class="dash-tab" data-dash="pedidos" aria-selected="false">
+          <i class="fa fa-shopping-bag" aria-hidden="true"></i> Pedidos
+        </button>
+        <button class="dash-tab" data-dash="comentarios" aria-selected="false">
+          <i class="fa fa-comment" aria-hidden="true"></i> Comentários
+        </button>
+        <button class="dash-tab" data-dash="perfil" aria-selected="false">
+          <i class="fa fa-user" aria-hidden="true"></i> Perfil
+        </button>
+      </nav>
+
+      <!-- Biblioteca -->
+      <div class="dash-painel" id="dashBiblioteca">
+        <div class="dash-secao-titulo">
+          <h2>Minha <em>Biblioteca</em></h2>
+          <a href="../livros.html" class="btn btn-secundario" style="font-size:0.8rem;">Descobrir mais livros</a>
+        </div>
+        <div class="dash-livros-grid" id="dashLivrosGrid">
+          <!-- Populated by JS -->
+          <div class="dash-livro-vazio">
+            <span aria-hidden="true">📚</span>
+            <p>Você ainda não adquiriu nenhum livro.</p>
+            <a href="../livros.html" class="btn btn-primario" style="font-size:0.85rem;">Ver catálogo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pedidos -->
+      <div class="dash-painel" id="dashPedidos" hidden>
+        <h2 class="dash-secao-h2">Histórico de <em>Pedidos</em></h2>
+        <div class="dash-pedidos-lista" id="dashPedidosLista">
+          <div class="dash-livro-vazio">
+            <span aria-hidden="true">🛍</span>
+            <p>Nenhum pedido registrado ainda.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comentários -->
+      <div class="dash-painel" id="dashComentarios" hidden>
+        <h2 class="dash-secao-h2">Meus <em>Comentários</em></h2>
+        <div style="background:var(--fundo-card);border:1px solid var(--borda);border-radius:var(--raio-lg);padding:2rem;margin-bottom:2rem;">
+          <h3 style="font-family:var(--fonte-titulo);font-size:1.1rem;margin-bottom:1rem;">Deixar um novo comentário</h3>
+          <div class="fg" style="margin-bottom:1rem;">
+            <label for="com-livro" class="flabel">Sobre qual livro?</label>
+            <select id="com-livro" class="finput fselect">
+              <option value="">Selecione um livro...</option>
+              <option>O Jogo das Máscaras</option>
+              <option>A Sétima Lei</option>
+              <option>Lúmen</option>
+              <option>Gênesis</option>
+              <option>Rosas &amp; Espinhos</option>
+              <option>Cartas do Passado</option>
+              <option>As Marés Secretas do Amor</option>
+              <option>Das Coisas que o Amor Faz</option>
+              <option>O Abismo das Almas</option>
+              <option>A Marca da Besta</option>
+              <option>Caminhos de Outono</option>
+            </select>
+          </div>
+          <div class="fg" style="margin-bottom:1rem;">
+            <label class="flabel">Nota</label>
+            <div class="estrelas-input" id="estrelasInput" role="group" aria-label="Nota de 1 a 5 estrelas">
+              <button type="button" class="estrela" data-val="1" aria-label="1 estrela">★</button>
+              <button type="button" class="estrela" data-val="2" aria-label="2 estrelas">★</button>
+              <button type="button" class="estrela" data-val="3" aria-label="3 estrelas">★</button>
+              <button type="button" class="estrela" data-val="4" aria-label="4 estrelas">★</button>
+              <button type="button" class="estrela" data-val="5" aria-label="5 estrelas">★</button>
+            </div>
+          </div>
+          <div class="fg" style="margin-bottom:1rem;">
+            <label for="com-texto" class="flabel">Seu comentário</label>
+            <textarea id="com-texto" class="finput ftextarea" placeholder="Compartilhe sua experiência de leitura..." rows="4"></textarea>
+          </div>
+          <button type="button" class="btn btn-primario" onclick="enviarComentario()">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i> Publicar Comentário
+          </button>
+        </div>
+        <div id="listaComentarios"></div>
+      </div>
+
+      <!-- Perfil -->
+      <div class="dash-painel" id="dashPerfil" hidden>
+        <h2 class="dash-secao-h2">Meu <em>Perfil</em></h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:640px;">
+          <div class="fg">
+            <label for="pf-nome" class="flabel">Nome</label>
+            <input type="text" id="pf-nome" class="finput" />
+          </div>
+          <div class="fg">
+            <label for="pf-sobrenome" class="flabel">Sobrenome</label>
+            <input type="text" id="pf-sobrenome" class="finput" />
+          </div>
+          <div class="fg" style="grid-column:1/-1">
+            <label for="pf-email" class="flabel">E-mail</label>
+            <input type="email" id="pf-email" class="finput" readonly style="opacity:0.6;cursor:not-allowed;" />
+          </div>
+          <div class="fg" style="grid-column:1/-1">
+            <label for="pf-bio" class="flabel">Mini bio (aparece nos comentários)</label>
+            <textarea id="pf-bio" class="finput ftextarea" rows="3" placeholder="Leitor apaixonado..."></textarea>
+          </div>
+          <div class="fg" style="flex-direction:row;align-items:center;gap:.6rem;">
+            <input type="checkbox" id="pf-nl" style="accent-color:var(--ouro);" />
+            <label for="pf-nl" class="flabel" style="cursor:pointer;">Receber newsletter</label>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primario" style="margin-top:1.5rem;" onclick="salvarPerfil()">
+          <i class="fa fa-save" aria-hidden="true"></i> Salvar Alterações
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<div class="toast-wrap" role="status" aria-live="polite" aria-atomic="true"></div>
+<script src="../js/global.js"></script>
+<script>
+// ── AUTENTICAÇÃO DEMO (localStorage) ──────────────────────────
+function verSenha(id, btn) {
+  const input = document.getElementById(id);
+  if (input.type === 'password') { input.type = 'text'; btn.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true"></i>'; }
+  else { input.type = 'password'; btn.innerHTML = '<i class="fa fa-eye" aria-hidden="true"></i>'; }
+}
+
+// Abas auth
+document.querySelectorAll('.auth-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.auth-tab').forEach(t => { t.classList.remove('ativo'); t.setAttribute('aria-selected', 'false'); });
+    document.querySelectorAll('.auth-painel').forEach(p => p.hidden = true);
+    tab.classList.add('ativo'); tab.setAttribute('aria-selected', 'true');
+    document.getElementById('tab' + tab.dataset.tab.charAt(0).toUpperCase() + tab.dataset.tab.slice(1)).hidden = false;
+    if(window.Sons) Sons.tocar('clique');
+  });
+});
+
+// Login
+document.getElementById('formLogin').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = document.getElementById('l-email').value;
+  const senha = document.getElementById('l-senha').value;
+  if (!email || !senha) { mostrarToast('Preencha e-mail e senha.', 'aviso'); return; }
+  // Demo: aceita qualquer login
+  const usuario = JSON.parse(localStorage.getItem('rd_usuario') || 'null');
+  const nome = (usuario && usuario.email === email) ? usuario.nome : email.split('@')[0];
+  localStorage.setItem('rd_logado', JSON.stringify({ email, nome }));
+  mostrarToast(`Bem-vindo de volta, ${nome}! 📖`, 'sucesso');
+  setTimeout(() => mostrarDashboard({ email, nome }), 800);
+});
+
+// Cadastro
+document.getElementById('formCadastro').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const nome = document.getElementById('cad-nome').value;
+  const email = document.getElementById('cad-email').value;
+  const senha = document.getElementById('cad-senha').value;
+  const termos = document.getElementById('cad-termos').checked;
+  if (!nome || !email || !senha) { mostrarToast('Preencha todos os campos.', 'aviso'); return; }
+  if (senha.length < 8) { mostrarToast('A senha deve ter no mínimo 8 caracteres.', 'aviso'); return; }
+  if (!termos) { mostrarToast('Aceite os termos para continuar.', 'aviso'); return; }
+  const usuario = { nome, email };
+  localStorage.setItem('rd_usuario', JSON.stringify(usuario));
+  localStorage.setItem('rd_logado', JSON.stringify(usuario));
+  mostrarToast(`Conta criada! Bem-vindo, ${nome}! 🎉`, 'sucesso');
+  Sons.tocar('sucesso');
+  setTimeout(() => mostrarDashboard(usuario), 800);
+});
+
+// Dashboard
+function mostrarDashboard(usuario) {
+  document.getElementById('authSec').style.display = 'none';
+  document.getElementById('dashboardSec').style.display = '';
+  document.getElementById('dashNome').textContent = `Olá, ${usuario.nome}!`;
+  document.getElementById('pf-nome').value = usuario.nome || '';
+  document.getElementById('pf-email').value = usuario.email || '';
+}
+
+function fazerLogout() {
+  localStorage.removeItem('rd_logado');
+  document.getElementById('dashboardSec').style.display = 'none';
+  document.getElementById('authSec').style.display = '';
+  mostrarToast('Você saiu da sua conta.', 'info');
+}
+
+// Tabs dashboard
+document.querySelectorAll('.dash-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.dash-tab').forEach(t => { t.classList.remove('ativo'); t.setAttribute('aria-selected','false'); });
+    document.querySelectorAll('.dash-painel').forEach(p => p.hidden = true);
+    tab.classList.add('ativo'); tab.setAttribute('aria-selected','true');
+    const alvo = 'dash' + tab.dataset.dash.charAt(0).toUpperCase() + tab.dataset.dash.slice(1);
+    document.getElementById(alvo).hidden = false;
+    if(window.Sons) Sons.tocar('clique');
+  });
+});
+
+// Estrelas
+let notaAtual = 0;
+document.querySelectorAll('.estrela').forEach(e => {
+  e.addEventListener('click', () => {
+    notaAtual = parseInt(e.dataset.val);
+    atualizarEstrelas(notaAtual);
+  });
+  e.addEventListener('mouseenter', () => atualizarEstrelas(parseInt(e.dataset.val)));
+  e.addEventListener('mouseleave', () => atualizarEstrelas(notaAtual));
+});
+function atualizarEstrelas(n) {
+  document.querySelectorAll('.estrela').forEach((e, i) => {
+    e.style.color = i < n ? 'var(--ouro)' : 'var(--borda-media)';
+  });
+}
+atualizarEstrelas(0);
+
+function enviarComentario() {
+  const livro = document.getElementById('com-livro').value;
+  const texto = document.getElementById('com-texto').value;
+  if (!livro || !texto || !notaAtual) { mostrarToast('Preencha todos os campos do comentário.', 'aviso'); return; }
+  mostrarToast('Comentário enviado! Obrigado pela avaliação. ⭐', 'sucesso');
+  Sons.tocar('sucesso');
+  document.getElementById('com-texto').value = '';
+  document.getElementById('com-livro').value = '';
+  notaAtual = 0; atualizarEstrelas(0);
+}
+
+function salvarPerfil() {
+  const nome = document.getElementById('pf-nome').value;
+  mostrarToast('Perfil atualizado!', 'sucesso');
+  document.getElementById('dashNome').textContent = `Olá, ${nome}!`;
+  const logado = JSON.parse(localStorage.getItem('rd_logado') || '{}');
+  logado.nome = nome;
+  localStorage.setItem('rd_logado', JSON.stringify(logado));
+  Sons.tocar('sucesso');
+}
+
+// Verifica se já está logado
+window.addEventListener('DOMContentLoaded', () => {
+  const logado = JSON.parse(localStorage.getItem('rd_logado') || 'null');
+  if (logado) setTimeout(() => mostrarDashboard(logado), 100);
+});
+</script>
+</body>
+</html>

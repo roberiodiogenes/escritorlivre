@@ -1,0 +1,390 @@
+/* ============================================================
+   theme.css — Variáveis globais, reset, tipografia e
+               componentes reutilizáveis em todo o site.
+   Edite apenas este arquivo para mudar a identidade visual.
+   ============================================================ */
+
+/* ---------- IMPORTAÇÃO DE FONTES ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap');
+
+/* ============================================================
+   1. VARIÁVEIS — PALETA E TIPOGRAFIA
+   ============================================================ */
+:root {
+  /* Cores principais */
+  --color-bg:             #0d0d0d;   /* fundo principal (quase preto) */
+  --color-surface:        #141414;   /* cards, painéis */
+  --color-surface-raised: #1c1c1c;   /* superfícies elevadas */
+  --color-border:         #2a2a2a;   /* bordas sutis */
+
+  /* Texto */
+  --color-heading:        #f0ece4;   /* títulos (branco-creme) */
+  --color-text:           #c8c2b8;   /* corpo de texto */
+  --color-text-muted:     #7a746c;   /* textos secundários */
+
+  /* Acento — dourado envelhecido */
+  --color-accent:         #c9a96e;
+  --color-accent-dark:    #a8854a;
+  --color-accent-light:   #e0c898;
+
+  /* Tipografia */
+  --font-serif:  'Cormorant Garamond', Georgia, serif;
+  --font-sans:   'Lato', system-ui, sans-serif;
+
+  /* Espaçamentos e bordas */
+  --radius-sm:   3px;
+  --radius-md:   6px;
+  --container:   1140px;
+  --header-h:    70px;
+
+  /* Transições */
+  --transition:  0.25s ease;
+}
+
+/* ============================================================
+   2. RESET MÍNIMO
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+a   { color: inherit; }
+ul, ol { list-style: none; }
+button { cursor: pointer; font-family: inherit; }
+
+/* ============================================================
+   3. CONTAINER
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* ============================================================
+   4. HEADER GLOBAL
+   ============================================================ */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  background: rgba(13,13,13,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition), box-shadow var(--transition);
+}
+
+.site-header.scrolled {
+  background: rgba(13,13,13,0.97);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.6);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Logo */
+.logo {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--color-heading);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+.logo:hover { color: var(--color-accent); }
+
+/* Nav desktop */
+.main-nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.main-nav a {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--transition);
+}
+
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--color-accent);
+  transition: width var(--transition);
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--color-accent);
+}
+
+.main-nav a:hover::after,
+.main-nav a.active::after { width: 100%; }
+
+/* Botão hamburguer (mobile) */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-heading);
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0.25rem;
+}
+
+/* Nav mobile */
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+
+  .main-nav {
+    display: none;
+    position: fixed;
+    top: var(--header-h);
+    left: 0; right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: #0d0d0d;
+    border-top: 1px solid var(--color-border);
+    padding: 1.5rem 0;
+    z-index: 999;
+  }
+
+  .main-nav.open { display: flex; }
+
+  .main-nav a {
+    padding: 0.85rem 2rem;
+    font-size: 0.9rem;
+    width: 100%;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .main-nav a:last-child { border-bottom: none; }
+  .main-nav a::after { display: none; }
+}
+
+/* Espaçador para conteúdo não ficar atrás do header fixo */
+body > *:not(.site-header):first-of-type,
+.post-hero,
+.page-hero {
+  padding-top: var(--header-h);
+}
+
+/* ============================================================
+   5. FOOTER GLOBAL
+   ============================================================ */
+.site-footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: 3rem 0 2rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.footer-quote {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-text-muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-links a {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.footer-links a:hover { color: var(--color-accent); }
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   6. BOTÕES
+   ============================================================ */
+.btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.7rem 1.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition: background var(--transition), color var(--transition),
+              border-color var(--transition), transform var(--transition);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #0d0d0d;
+}
+.btn--primary:hover {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent-light);
+  transform: translateY(-1px);
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.btn--outline:hover {
+  background: var(--color-accent);
+  color: #0d0d0d;
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
+}
+.btn--ghost:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.btn--sm  { padding: 0.45rem 1rem; font-size: 0.72rem; }
+.btn--lg  { padding: 0.9rem 2.2rem; font-size: 0.88rem; }
+
+/* ============================================================
+   7. UTILITÁRIOS GERAIS
+   ============================================================ */
+
+/* Separador decorativo */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 3rem 0;
+  color: var(--color-accent);
+  font-size: 1rem;
+  opacity: 0.4;
+}
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* Badge de gênero/categoria */
+.badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.65rem;
+  border-radius: 2px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Linha decorativa dourada abaixo de títulos de seção */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
+  color: var(--color-heading);
+  margin-bottom: 0.5rem;
+}
+
+.section-title + .section-line {
+  width: 48px;
+  height: 2px;
+  background: var(--color-accent);
+  margin-bottom: 2.5rem;
+}
+
+/* Animação de fade-up (ativada pelo main.js via IntersectionObserver) */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Atraso escalonado para grupos de elementos */
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+.fade-up:nth-child(5) { transition-delay: 0.4s; }
+
+/* ============================================================
+   8. SCROLLBAR PERSONALIZADA (Webkit)
+   ============================================================ */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-dark); }
+
+/* ============================================================
+   9. SELEÇÃO DE TEXTO
+   ============================================================ */
+::selection {
+  background: var(--color-accent);
+  color: #0d0d0d;
+}

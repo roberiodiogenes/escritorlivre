@@ -1,3 +1,107 @@
+Saída
+
+index.css
+variables.css
+componentes.js
+global.js
+admin
+blog
+css
+img
+index.html
+js
+leitor
+livros
+
+-------------------------------------
+bash
+
+ls /home/claude/site/livros/ && ls /home/claude/site/img/ | head -30
+Saída
+
+a-marca-da-besta.html
+a-setima-lei.html
+caminhos-de-outono.html
+cartas-do-passado.html
+das-coisas-que-o-amor-faz.html
+genesis.html
+jogo-das-mascaras.html
+lumen.html
+mares-secretas.html
+o-abismo-das-almas.html
+rosas-e-espinhos.html
+Cartas--do-pasado-trincheira.jpg
+a-marca-da-besta-capa.jpg
+a-marca-da-besta-img-0.jpg
+a-marca-da-besta-img-02.jpg
+a-setima-lei-img-01.jpg
+a-setima-lei-img-02.jpg
+a-setima-lei-img-03.jpg
+a-setima-lei-img-04.jpg
+a-setima-lei-img-05.jpg
+a-setima-lei-img-06.jpg
+a-setima-lei.jpg
+adan-personagem.jpg
+aiyra-personagem.jpg
+aldo.jpg
+autor-3.jpg
+autor-4.jpg
+autor.jpg
+autor2.jpg
+bastidores-setima-lei.jpg
+caminhos-de-outono.jpg
+cartas-do-passado-img-01.jpg
+cartas-do-passado-soldado-lucas.jpg
+cartas-do-passado.jpg
+coisas-que-o-amor-faz.jpg
+das-coisas-que-o-amor-faz-img-0.jpg
+das-coisas-que-o-amor-faz-img-01.jpg
+das-coisas-que-o-amor-faz-img-02.jpg
+das-coisas-que-o-amor-faz-img-03.jpg
+favicon.png
+genesis.jpg
+
+--------------------------------------------
+bash
+
+# Read existing livros pages for content data
+cat /home/claude/site/livros/jogo-das-mascaras.html | grep -E 'sinopse|personagem|comprar|amazon|titulo|genero|isbn' | head -30
+echo "==="
+# Get Amazon links from all livros
+grep -h "amazon\|amzn\|dp/B0" /home/claude/site/livros/*.html | grep -oP 'https?://[^"]+' | sort -u
+Saída
+
+    .hero-titulo{font-family:var(--ft);font-size:clamp(2.8rem,6vw,5.5rem);font-weight:700;line-height:.93;color:var(--perola);margin-bottom:.5rem}
+    .hero-titulo em{font-style:italic;color:var(--ouro);display:block}
+    .sinopse-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .sinopse-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:4.5rem;align-items:start}
+    .caixa-pretitulo{font-family:var(--fd);font-size:.55rem;letter-spacing:.6em;text-transform:uppercase;color:var(--ouro);margin-bottom:1rem}
+    .caixa-titulo{font-family:var(--ft);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:400;color:var(--perola);line-height:1.2;margin-bottom:1rem}
+    .caixa-titulo em{font-style:italic;color:var(--ouro)}
+    .modal-titulo{font-family:var(--ft);font-size:1.6rem;font-weight:700;color:var(--perola);text-align:center;margin-bottom:.5rem}
+    /* Pérola / código do personagem */
+      .sinopse-wrap{grid-template-columns:1fr;gap:3rem}
+      <h2 class="modal-titulo">O Presente do Cavaleiro</h2>
+      <h1 class="hero-titulo">
+        <a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener" class="btn btn-o">📱 Comprar no Kindle</a>
+  <section class="sinopse-sec">
+    <div class="sinopse-wrap">
+          <a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener" class="btn btn-o" style="width:100%;justify-content:center">Comprar no Kindle</a>
+      <p class="caixa-pretitulo r">Uma oferta do Cavaleiro</p>
+      <h2 class="caixa-titulo r d1">
+        <p class="pers-intro r d2">Nenhum personagem aqui é o que parece. Cada máscara cobre outra máscara. Você vai amar e odiar as mesmas pessoas no mesmo fôlego.</p>
+          <a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener" class="btn btn-o" style="width:100%;justify-content:center">Comprar no Kindle →</a>
+          <p class="com-texto">Aldo é o personagem mais fascinante e desconcertante que já li. Você o odeia. Você o quer de volta. Você entende que está doente por isso. E o livro não te dá absolvição — apenas um espelho.</p>
+===
+https://www.amazon.com.br
+https://www.amazon.com.br/Rosas-espinhos-onde-voc%C3%AA-sente-ebook/dp/B0DMHSDJPX/
+https://www.amazon.com.br/dp/B0GXGZJV1Y
+https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB
+
+---------------------------------------------------
+bash
+
+cat > /home/claude/site-novo/css/blog.css << 'CSSEOF'
 /* ================================================================
    ROBÉRIO DIÓGENES — blog.css
    ================================================================ */
@@ -66,3 +170,10 @@
   .posts-grade{grid-template-columns:1fr}
   .nl-blog-form{flex-direction:column}
 }
+CSSEOF
+echo "blog.css criado"
+Saída
+
+blog.css criado
+
+-----------------------------------------------

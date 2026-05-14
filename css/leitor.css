@@ -1,0 +1,49 @@
+.pular-nav:focus{position:fixed;top:1rem;left:1rem;background:var(--ouro);color:var(--fundo);padding:.5rem 1rem;border-radius:var(--raio);z-index:9999;font-family:var(--fonte-ui);text-decoration:none}
+
+/* AUTH */
+.auth-sec{min-height:100svh;display:flex;align-items:center;justify-content:center;padding:calc(var(--altura-nav) + 2rem) 1.5rem 3rem;background:var(--fundo-2)}
+.auth-card{background:var(--fundo-card);border:1px solid var(--borda);border-radius:var(--raio-xl);padding:2.5rem;width:100%;max-width:480px;box-shadow:var(--sombra-lg)}
+.auth-logo{text-align:center;margin-bottom:2rem}
+.auth-logo a{font-family:var(--fonte-display);font-size:1.2rem;color:var(--texto);text-decoration:none;display:block;letter-spacing:.08em}
+.auth-logo span{font-family:var(--fonte-ui);font-size:.72rem;color:var(--texto-3);text-transform:uppercase;letter-spacing:.15em;font-style:italic}
+.auth-tabs{display:flex;border-bottom:1px solid var(--borda);margin-bottom:1.75rem}
+.auth-tab{flex:1;padding:.75rem;background:none;border:none;font-family:var(--fonte-ui);font-size:.9rem;color:var(--texto-3);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all var(--trans)}
+.auth-tab:hover{color:var(--ouro)}
+.auth-tab.ativo{color:var(--ouro);border-bottom-color:var(--ouro)}
+.auth-painel{display:flex;flex-direction:column;gap:1rem}
+.ver-senha-btn{position:absolute;right:.75rem;bottom:.75rem;background:none;border:none;cursor:pointer;color:var(--texto-3);padding:.25rem;transition:color var(--trans)}
+.ver-senha-btn:hover{color:var(--ouro)}
+.auth-link-sec{font-family:var(--fonte-ui);font-size:.82rem;color:var(--texto-3);text-decoration:none;transition:color var(--trans)}
+.auth-link-sec:hover{color:var(--ouro)}
+.auth-separador{text-align:center;position:relative;margin:.5rem 0;font-family:var(--fonte-ui);font-size:.78rem;color:var(--texto-3)}
+.auth-separador::before,.auth-separador::after{content:'';position:absolute;top:50%;width:calc(50% - 40px);height:1px;background:var(--borda)}
+.auth-separador::before{left:0}.auth-separador::after{right:0}
+.auth-sociais{display:flex;gap:.5rem}
+.btn-social{flex:1;justify-content:center;gap:.5rem;font-size:.85rem}
+.btn-social img{border-radius:2px}
+
+/* DASHBOARD */
+.dashboard-sec{padding-top:var(--altura-nav)}
+.dash-header{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+.dash-titulo{font-family:var(--fonte-titulo);font-size:clamp(1.8rem,4vw,3rem);font-weight:300;color:var(--texto)}
+.dash-nav{display:flex;gap:.25rem;border-bottom:1px solid var(--borda);margin-bottom:2rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.dash-tab{display:flex;align-items:center;gap:.4rem;padding:.75rem 1.25rem;background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;font-family:var(--fonte-ui);font-size:.875rem;color:var(--texto-3);cursor:pointer;transition:all var(--trans);white-space:nowrap}
+.dash-tab:hover{color:var(--ouro)}
+.dash-tab.ativo{color:var(--ouro);border-bottom-color:var(--ouro)}
+.dash-painel{}
+.dash-secao-titulo{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.dash-secao-titulo h2{font-family:var(--fonte-titulo);font-size:clamp(1.4rem,3vw,2rem);font-weight:400}
+.dash-secao-titulo h2 em{color:var(--ouro)}
+.dash-secao-h2{font-family:var(--fonte-titulo);font-size:clamp(1.4rem,3vw,2rem);font-weight:400;margin-bottom:1.5rem}
+.dash-secao-h2 em{color:var(--ouro)}
+.dash-livros-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:1.5rem}
+.dash-livro-vazio{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:1rem;padding:4rem;color:var(--texto-3);font-family:var(--fonte-ui);font-style:italic}
+.dash-livro-vazio span{font-size:3rem}
+
+/* Estrelas */
+.estrelas-input{display:flex;gap:.35rem}
+.estrela{background:none;border:none;font-size:1.6rem;color:var(--borda-media);cursor:pointer;transition:color .15s,transform .15s;padding:0}
+.estrela:hover{transform:scale(1.15)}
+
+@media(max-width:480px){.auth-card{padding:1.75rem 1.25rem}}
+@media(max-width:768px){.fg-2{grid-template-columns:1fr}}

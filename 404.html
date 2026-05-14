@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Página não encontrada | Robério Diógenes</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <style>
+    body{display:flex;flex-direction:column;min-height:100svh;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;overflow:hidden}
+    .erro-num{font-family:var(--fonte-titulo);font-size:clamp(8rem,20vw,16rem);font-weight:300;line-height:1;color:var(--borda-media);position:relative;z-index:1;animation:pulsar 4s ease-in-out infinite}
+    @keyframes pulsar{0%,100%{opacity:.3}50%{opacity:.6}}
+    .erro-titulo{font-family:var(--fonte-titulo);font-size:clamp(1.8rem,4vw,3rem);font-weight:400;color:var(--texto);margin-bottom:1rem;position:relative;z-index:1}
+    .erro-titulo em{color:var(--ouro)}
+    .erro-desc{font-family:var(--fonte-titulo);font-style:italic;font-size:1.05rem;color:var(--texto-2);max-width:480px;line-height:1.7;margin-bottom:2.5rem;position:relative;z-index:1}
+    .erro-acoes{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:1}
+    .erro-ornamento{position:absolute;font-family:var(--fonte-titulo);color:var(--ornamento-cor);font-size:18rem;opacity:.06;pointer-events:none;user-select:none;z-index:0;animation:flutuar 8s ease-in-out infinite}
+    @keyframes flutuar{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-20px) rotate(5deg)}}
+    .erro-links{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:2rem;position:relative;z-index:1}
+    .erro-link{font-family:var(--fonte-ui);font-size:.85rem;color:var(--texto-3);padding:.4rem .9rem;border:1px solid var(--borda);border-radius:20px;text-decoration:none;transition:all var(--trans)}
+    .erro-link:hover{border-color:var(--ouro);color:var(--ouro)}
+  </style>
+</head>
+<body>
+
+<canvas id="canvas-particulas" aria-hidden="true"></canvas>
+
+<nav id="nav" role="navigation" aria-label="Navegação principal" style="position:fixed;top:0;left:0;right:0;">
+  <a href="index.html" class="nav-logo">Robério Diógenes<span>Escritor Independente</span></a>
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="livros.html">Biblioteca</a></li>
+    <li><a href="autor.html">O Autor</a></li>
+    <li><a href="blog.html">Diário</a></li>
+    <li><a href="contato.html">Contato</a></li>
+  
+          <!-- Controles de acessibilidade — visíveis no menu mobile -->
+          <li class="mobile-controles" style="display:none;" aria-label="Acessibilidade">
+            <span class="mobile-controles-label">Tema &amp; Fonte</span>
+            <button class="tema-btn" data-tema="claro"     title="Tema claro"    aria-label="Tema claro">☀</button>
+            <button class="tema-btn" data-tema="noturno"   title="Tema noturno"  aria-label="Tema noturno">🌙</button>
+            <button class="tema-btn" data-tema="contraste" title="Alto contraste" aria-label="Alto contraste">◑</button>
+            <button class="fonte-btn fonte-diminuir"       title="Texto menor"   aria-label="Texto menor">A-</button>
+            <button class="fonte-btn fonte-aumentar"       title="Texto maior"   aria-label="Texto maior">A+</button>
+            <button class="tema-btn som-btn"               title="Sons"          aria-label="Sons">♪</button>
+          </li>
+  </ul>
+  <div class="nav-acoes">
+    <div class="tema-controles" role="group"><button class="tema-btn ativo" data-tema="claro" aria-label="Claro">☀</button><button class="tema-btn" data-tema="noturno" aria-label="Noturno">🌙</button><button class="tema-btn" data-tema="contraste" aria-label="Contraste">◑</button></div>
+    <div class="fonte-controles" role="group"><button class="fonte-btn fonte-diminuir" aria-label="A-">A-</button><button class="fonte-btn fonte-aumentar" aria-label="A+">A+</button></div>
+    <button class="tema-btn som-btn" aria-label="Sons">♪</button>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+</nav>
+
+<main style="display:contents;" aria-label="Página não encontrada">
+  <div class="erro-ornamento" aria-hidden="true">?</div>
+
+  <p class="erro-num" aria-hidden="true">404</p>
+
+  <h1 class="erro-titulo">Esta página <em>não existe</em></h1>
+
+  <p class="erro-desc">
+    Como os personagens de Robério Diógenes, esta página parece ter desaparecido sem deixar rastros. Talvez esteja escondida atrás de uma máscara — ou simplesmente nunca existiu.
+  </p>
+
+  <div class="erro-acoes">
+    <a href="index.html" class="btn btn-primario">
+      <i class="fa fa-home" aria-hidden="true"></i> Voltar ao início
+    </a>
+    <a href="livros.html" class="btn btn-secundario">
+      <i class="fa fa-book" aria-hidden="true"></i> Ver a biblioteca
+    </a>
+  </div>
+
+  <p style="font-family:var(--fonte-ui);font-size:.8rem;color:var(--texto-3);margin-top:2rem;position:relative;z-index:1;">Ou explore:</p>
+  <div class="erro-links">
+    <a href="autor.html" class="erro-link">O Autor</a>
+    <a href="blog.html" class="erro-link">Diário</a>
+    <a href="contato.html" class="erro-link">Contato</a>
+    <a href="leitor/index.html" class="erro-link">Área do Leitor</a>
+  </div>
+</main>
+
+<div class="toast-wrap" role="status" aria-live="polite" aria-atomic="true"></div>
+<script src="js/global.js"></script>
+</body>
+</html>

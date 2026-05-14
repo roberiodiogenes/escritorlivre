@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Caminhos de Outono — As estações da vida. Romance espiritual de Robério Diógenes. Entre a fé que cai como folhas e o amor que renasce entre elas." />
+  <meta property="og:title" content="Caminhos de Outono | Robério Diógenes" />
+  <meta property="og:description" content="Como o outono pinta a terra com folhas douradas, Clara e Miguel descobrem que a vida também se renova em ciclos." />
+  <title>Caminhos de Outono | Robério Diógenes</title>
+  <link rel="icon" type="image/png" href="../img/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Cinzel:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" />
+
+  <style>
+    /* ============================================================
+       VARIÁVEIS — TEMA CAMINHOS DE OUTONO
+       Outono espiritual: folhas douradas + céu-cinza-suave + terracota
+       + verde-musgo que persiste + creme aquecido
+    ============================================================ */
+    :root {
+      --fundo:        #f7f2eb;   /* creme folha-seca */
+      --fundo-2:      #f0e9dc;
+      --fundo-3:      #e8dfd0;
+      --escuro:       #1e1608;   /* tronco de árvore */
+      --escuro-2:     #2e2210;
+
+      /* Outono */
+      --ouro:         #c8882a;   /* folha dourada */
+      --ouro-2:       #e8a840;
+      --ouro-pale:    rgba(200,136,42,.1);
+      --terracota:    #9a4a20;   /* folha queimada */
+      --terracota-2:  #ba6a3a;
+      --verde-musgo:  #5a7a4a;   /* a vida que persiste */
+      --verde-2:      #7a9a6a;
+      --cinza-ceu:    #8a9aaa;   /* céu de outono */
+
+      /* Texto */
+      --tinta:        #1a1208;
+      --tinta-2:      #5a4020;
+      --tinta-3:      #9a8060;
+      --tinta-clara:  #f5eedd;
+      --tinta-clara-2:#c8a870;
+
+      /* Bordas */
+      --borda:        1px solid rgba(200,136,42,.22);
+      --borda-f:      1px solid rgba(200,136,42,.09);
+      --sombra:       0 0 40px rgba(200,136,42,.1);
+
+      --ft:  'Cormorant Garamond', Georgia, serif;
+      --fc:  'Lora', Georgia, serif;
+      --fd:  'Cinzel', serif;
+      --fu:  'EB Garamond', Georgia, serif;
+      --ease: cubic-bezier(.25,.46,.45,.94);
+    }
+
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:18px}
+    body{background:var(--fundo);color:var(--tinta);font-family:var(--fc);line-height:1.85;overflow-x:hidden;cursor:none}
+    body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)' opacity='0.018'/%3E%3C/svg%3E");pointer-events:none;z-index:500;opacity:.5}
+    img{max-width:100%;display:block}
+    a{text-decoration:none}
+
+    /* FOLHAS CAINDO */
+    .folha{position:fixed;pointer-events:none;z-index:0;font-size:1.1rem;opacity:0;animation:folhaCair var(--dur,10s) var(--del,0s) infinite linear;color:var(--ouro)}
+    @keyframes folhaCair{
+      0%{opacity:0;transform:translateY(-20px) rotate(0deg) translateX(0)}
+      10%{opacity:.4}
+      90%{opacity:.15}
+      100%{opacity:0;transform:translateY(105vh) rotate(720deg) translateX(60px)}
+    }
+
+    .cursor{width:10px;height:10px;background:var(--ouro);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:999;transform:translate(-50%,-50%);box-shadow:0 0 10px rgba(200,136,42,.3);transition:width .3s,height .3s}
+    .cursor-anel{width:30px;height:30px;border:1px solid rgba(200,136,42,.35);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:999;transform:translate(-50%,-50%);transition:width .25s,height .25s}
+    @media(hover:none){.cursor,.cursor-anel{display:none}}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 clamp(1.2rem,4vw,4rem);display:flex;align-items:center;justify-content:space-between;height:68px;transition:background .4s,backdrop-filter .4s}
+    nav.scrolled{background:rgba(247,242,235,.94);backdrop-filter:blur(16px);border-bottom:var(--borda-f);box-shadow:0 2px 20px rgba(200,136,42,.06)}
+    .nav-logo{font-family:var(--fd);font-size:.76rem;color:var(--escuro);letter-spacing:.15em;text-transform:uppercase;transition:color .3s}
+    .nav-logo:hover{color:var(--ouro)}
+    .nav-logo span{color:var(--ouro);font-size:.6em;display:block;letter-spacing:.3em}
+    .nav-voltar{font-family:var(--fu);font-size:.88rem;letter-spacing:.08em;color:var(--tinta-3);display:flex;align-items:center;gap:8px;transition:color .3s;font-style:italic}
+    .nav-voltar:hover{color:var(--ouro)}
+
+    .btn{font-family:var(--fd);font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;padding:16px 34px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:all .35s;position:relative;overflow:hidden}
+    .btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,.1);transform:translateX(-100%);transition:transform .35s}
+    .btn:hover::before{transform:translateX(0)}
+    .btn-o{background:var(--ouro);color:#fff;font-weight:500}
+    .btn-o:hover{background:var(--terracota);box-shadow:0 8px 30px rgba(200,136,42,.4);transform:translateY(-2px)}
+    .btn-b{background:transparent;color:var(--ouro);border:var(--borda)}
+    .btn-b:hover{background:var(--ouro-pale);transform:translateY(-2px)}
+    .btn-sm{padding:12px 24px;font-size:.72rem}
+
+    .topo-btn{position:fixed;bottom:2rem;right:2rem;width:46px;height:46px;background:var(--escuro);color:var(--tinta-clara);display:flex;align-items:center;justify-content:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .4s,transform .4s;border-radius:50%;font-size:.9rem}
+    .topo-btn.v{opacity:1;pointer-events:all}
+    .topo-btn:hover{transform:translateY(-4px) scale(1.05);background:var(--ouro)}
+
+    .r{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .re{opacity:0;transform:translateX(-26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .rd{opacity:0;transform:translateX(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .r.v,.re.v,.rd.v{opacity:1;transform:translate(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+    .div-ornamento{text-align:center;padding:.8rem 0;font-family:var(--fu);color:var(--ouro);opacity:.35;user-select:none;letter-spacing:.4rem;font-size:1rem}
+    .div-linha{height:1px;background:linear-gradient(90deg,transparent,rgba(200,136,42,.22),transparent);max-width:1000px;margin:0 auto}
+
+    /* ============================================================ HERO ============================================================ */
+    .hero{min-height:100vh;position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:2rem;padding:100px clamp(1.2rem,5vw,5rem) 4rem;overflow:hidden}
+
+    /* Fundo — outono suave */
+    .hero-fundo{position:absolute;inset:0;z-index:0;background:
+      radial-gradient(ellipse 70% 60% at 80% 40%,rgba(200,136,42,.06),transparent 65%),
+      radial-gradient(ellipse 50% 70% at 10% 80%,rgba(154,74,32,.05),transparent 60%),
+      linear-gradient(165deg,var(--fundo) 60%,var(--fundo-2) 100%)}
+
+    /* Capa 3D */
+    .hero-capa-area{position:relative;z-index:2;display:flex;justify-content:center;align-items:center;perspective:1100px;opacity:0;animation:sE 1.2s .3s forwards}
+    @keyframes sE{from{opacity:0;transform:translateX(-30px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes sD{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+
+    .livro-3d{position:relative;transform-style:preserve-3d;transform:rotateY(-15deg) rotateX(2deg);transition:transform .8s var(--ease);width:min(265px,70vw)}
+    .livro-3d:hover{transform:rotateY(-4deg) rotateX(1deg) scale(1.03)}
+    .livro-lombada{position:absolute;top:0;right:100%;bottom:0;width:28px;background:linear-gradient(180deg,#2a1a06 0%,#1e1205 50%,#160e04 100%);transform-origin:right;transform:rotateY(90deg);display:flex;align-items:center;justify-content:center;box-shadow:inset -4px 0 10px rgba(0,0,0,.3)}
+    .livro-lombada span{font-family:var(--ft);font-size:.5rem;color:rgba(240,220,180,.4);letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-rl;transform:rotate(180deg)}
+    .livro-frente{position:relative;box-shadow:-14px 18px 40px rgba(154,74,32,.25),-4px 4px 0 rgba(200,136,42,.1)}
+    .livro-frente img{width:100%}
+    .livro-reflexo{position:absolute;left:0;right:0;top:100%;height:60px;overflow:hidden;pointer-events:none}
+    .livro-reflexo img{width:100%;transform:scaleY(-1);filter:brightness(.2) blur(3px) sepia(.3);mask-image:linear-gradient(to bottom,rgba(0,0,0,.3),transparent);-webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.3),transparent)}
+    .livro-brilho{position:absolute;inset:-20px;background:radial-gradient(ellipse at center,rgba(200,136,42,.05),transparent 70%);pointer-events:none;animation:pBrilho 6s ease-in-out infinite}
+    @keyframes pBrilho{0%,100%{opacity:.4}50%{opacity:.9}}
+
+    /* Texto hero */
+    .hero-texto{position:relative;z-index:2;opacity:0;animation:sD 1.2s .5s forwards}
+    .hero-pre{font-family:var(--fd);font-size:.58rem;letter-spacing:.5em;text-transform:uppercase;color:var(--ouro);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
+    .hero-pre::before{content:'';flex:0 0 28px;height:1px;background:linear-gradient(90deg,var(--ouro),transparent)}
+    .hero-titulo{font-family:var(--ft);font-size:clamp(2.5rem,5.5vw,5rem);font-weight:300;line-height:.92;color:var(--tinta);margin-bottom:.5rem;letter-spacing:-.01em}
+    .hero-titulo em{font-style:italic;color:var(--ouro);display:block}
+    .hero-sub{font-family:var(--fu);font-style:italic;font-size:clamp(.9rem,1.6vw,1.15rem);color:var(--tinta-2);margin-bottom:2rem;display:block}
+    .hero-linha{display:flex;align-items:center;gap:1rem;margin:1.8rem 0}
+    .hero-linha-traço{flex:0 0 28px;height:1px;background:rgba(200,136,42,.4)}
+    .hero-linha-sym{color:var(--ouro);font-size:.9rem;opacity:.5}
+    .hero-frase{font-family:var(--ft);font-style:italic;font-size:1.1rem;color:var(--tinta-2);line-height:1.9;max-width:480px;margin-bottom:2rem;border-left:2px solid rgba(200,136,42,.3);padding-left:1.2rem}
+    .hero-frase em{color:var(--ouro)}
+    .hero-badges{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem}
+    .badge{font-family:var(--fd);font-size:.44rem;letter-spacing:.3em;text-transform:uppercase;padding:5px 11px;border:var(--borda);color:var(--ouro)}
+    .badge-f{background:var(--ouro-pale)}
+    .badge-v{background:rgba(90,122,74,.12);color:var(--verde-2);border-color:rgba(90,122,74,.25)}
+    .hero-acoes{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+    .hero-fmt{font-family:var(--fu);font-size:.88rem;color:var(--tinta-3);font-style:italic;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+    .hero-fmt span{color:var(--ouro);font-style:normal}
+
+    /* ============================================================ EPÍGRAFE ============================================================ */
+    .epig{padding:5rem clamp(1.2rem,5vw,5rem);background:var(--fundo-2);border-top:var(--borda-f);border-bottom:var(--borda-f);text-align:center;position:relative;z-index:2;overflow:hidden}
+    .epig::before{content:'🍂';position:absolute;font-size:clamp(8rem,18vw,16rem);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.04;pointer-events:none;user-select:none}
+    .epig-aspas{font-family:var(--ft);font-size:clamp(4rem,8vw,7rem);color:var(--ouro);opacity:.1;line-height:.8;display:block;font-style:italic;user-select:none;margin-bottom:-1.8rem}
+    .epig-frase{font-family:var(--ft);font-style:italic;font-size:clamp(1.15rem,2.2vw,1.75rem);color:var(--tinta);line-height:1.7;max-width:720px;margin:0 auto 1.5rem;position:relative;z-index:1}
+    .epig-frase em{color:var(--ouro)}
+    .epig-attr{font-family:var(--fd);font-size:.52rem;letter-spacing:.45em;text-transform:uppercase;color:var(--tinta-3)}
+
+    /* ============================================================ SINOPSE + FICHA ============================================================ */
+    .sinopse-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .sinopse-wrap{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:4.5rem;align-items:start}
+    .slabel{font-family:var(--fd);font-size:.55rem;letter-spacing:.45em;text-transform:uppercase;color:var(--ouro);margin-bottom:1rem;display:block}
+    .stit{font-family:var(--ft);font-size:clamp(1.9rem,3.5vw,3rem);font-weight:400;color:var(--tinta);line-height:1.2;margin-bottom:2rem}
+    .stit em{font-style:italic;color:var(--ouro)}
+    .stexto{font-family:var(--fc);font-size:1rem;color:var(--tinta-2);line-height:1.95}
+    .stexto p+p{margin-top:1.2rem}
+    .stexto strong{color:var(--tinta)}
+    .stexto em{color:var(--ouro);font-style:italic}
+
+    /* Ficha */
+    .ficha{background:var(--escuro);border:var(--borda);padding:2.2rem;position:sticky;top:84px;box-shadow:var(--sombra)}
+    .ficha-tit{font-family:var(--fd);font-size:.52rem;letter-spacing:.45em;text-transform:uppercase;color:var(--ouro);margin-bottom:1.5rem}
+    .fi{display:flex;justify-content:space-between;padding:.75rem 0;border-bottom:1px solid rgba(240,220,180,.08);font-family:var(--fu)}
+    .fi:last-of-type{border-bottom:none}
+    .fi-k{font-size:.85rem;color:rgba(240,220,180,.4);font-style:italic}
+    .fi-v{font-size:.9rem;color:var(--tinta-clara);text-align:right}
+    .fi-v.o{color:var(--ouro)}
+    .fi-v.v{color:var(--verde-2)}
+    .ficha-acoes{margin-top:1.5rem;display:flex;flex-direction:column;gap:.7rem}
+
+    /* ============================================================ DOIS PERSONAGENS ============================================================ */
+    .pers-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--fundo-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .pers-wrap{max-width:1100px;margin:0 auto}
+    .pers-header{text-align:center;margin-bottom:3.5rem}
+    .pers-grade{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .pers-card{background:var(--fundo);border:var(--borda-f);overflow:hidden;position:relative;transition:all .4s}
+    .pers-card:hover{border-color:rgba(200,136,42,.28);transform:translateY(-6px);box-shadow:0 16px 40px rgba(154,74,32,.1)}
+    .pers-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+    .pers-card.clara::before{background:linear-gradient(90deg,var(--ouro),rgba(200,136,42,.3))}
+    .pers-card.miguel::before{background:linear-gradient(90deg,var(--verde-musgo),rgba(90,122,74,.3))}
+    .pers-top{padding:2rem 2rem 1rem;text-align:center}
+    .pers-inicial{width:80px;height:80px;border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-family:var(--ft);font-size:2.2rem;font-weight:300;color:#fff}
+    .pers-card.clara .pers-inicial{background:linear-gradient(135deg,var(--ouro),var(--terracota))}
+    .pers-card.miguel .pers-inicial{background:linear-gradient(135deg,var(--verde-musgo),#3a5a2a)}
+    .pers-nome{font-family:var(--ft);font-size:1.3rem;font-weight:500;color:var(--tinta);margin-bottom:.3rem}
+    .pers-papel{font-family:var(--fd);font-size:.48rem;letter-spacing:.35em;text-transform:uppercase;display:block;margin-bottom:.5rem}
+    .pers-card.clara .pers-papel{color:var(--ouro)}
+    .pers-card.miguel .pers-papel{color:var(--verde-musgo)}
+    .pers-info{padding:0 2rem 2rem}
+    .pers-desc{font-family:var(--fc);font-style:italic;font-size:.92rem;color:var(--tinta-2);line-height:1.85;margin-bottom:.75rem}
+    .pers-frase{font-family:var(--ft);font-style:italic;font-size:.9rem;border-top:var(--borda-f);padding-top:.75rem;line-height:1.6}
+    .pers-card.clara .pers-frase{color:var(--ouro)}
+    .pers-card.miguel .pers-frase{color:var(--verde-musgo)}
+
+    /* ============================================================ IMAGEM ATMOSFÉRICA ============================================================ */
+    .atmos{position:relative;z-index:2;overflow:hidden;height:clamp(260px,42vw,520px);border-top:var(--borda-f);border-bottom:var(--borda-f)}
+    .atmos-img{width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.65) sepia(.25) contrast(1.1);transition:filter .6s,transform 8s}
+    .atmos:hover .atmos-img{filter:brightness(.75) sepia(.15);transform:scale(1.02)}
+    .atmos-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(30,22,8,.9) 40%,transparent 80%),linear-gradient(to top,rgba(30,22,8,.75) 0%,transparent 40%)}
+    .atmos-texto{position:absolute;bottom:3rem;left:clamp(1.5rem,5vw,5rem);z-index:1;max-width:540px}
+    .atmos-texto p{font-family:var(--ft);font-style:italic;font-size:clamp(1rem,2vw,1.45rem);color:var(--tinta-clara);line-height:1.7}
+    .atmos-texto p em{color:var(--tinta-clara-2)}
+    .atmos-texto span{font-family:var(--fd);font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(240,220,180,.35);display:block;margin-top:.75rem}
+
+    /* ============================================================ TEMAS ============================================================ */
+    .temas-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--fundo-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .temas-wrap{max-width:1200px;margin:0 auto}
+    .temas-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;margin-top:3rem}
+    .tema-card{background:var(--fundo);border:var(--borda-f);padding:2rem;position:relative;overflow:hidden;transition:all .4s}
+    .tema-card:hover{border-color:rgba(200,136,42,.25);transform:translateY(-4px)}
+    .tema-icone{font-size:2rem;margin-bottom:1rem;display:block;opacity:.7}
+    .tema-tit{font-family:var(--ft);font-size:1rem;font-weight:500;color:var(--tinta);margin-bottom:.5rem}
+    .tema-desc{font-family:var(--fc);font-style:italic;font-size:.88rem;color:var(--tinta-3);line-height:1.75}
+
+    /* ============================================================ RESPIRO ============================================================ */
+    .respiro{padding:5rem clamp(1.2rem,5vw,5rem);text-align:center;position:relative;z-index:2;background:var(--escuro);overflow:hidden}
+    .respiro::before{content:'🍁';position:absolute;font-size:clamp(10rem,20vw,18rem);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.04;pointer-events:none;user-select:none}
+    .respiro-linha{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--tinta-clara-2),transparent);margin:1.5rem auto}
+    .respiro-texto{font-family:var(--ft);font-style:italic;font-size:clamp(1.15rem,2.3vw,1.8rem);color:var(--tinta-clara);line-height:1.75;max-width:760px;margin:0 auto 1rem;position:relative;z-index:1}
+    .respiro-texto em{color:var(--tinta-clara-2)}
+    .respiro-orig{font-family:var(--fd);font-size:.52rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(240,220,180,.35)}
+
+    /* ============================================================ DOWNLOAD ============================================================ */
+    .dl-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2;overflow:hidden}
+    .dl-sec::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:500px;height:350px;background:radial-gradient(ellipse at top,rgba(200,136,42,.07),transparent 70%);pointer-events:none}
+    .dl-wrap{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+    .dl-lista{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2rem}
+    .dl-lista li{font-family:var(--fc);font-size:.95rem;color:var(--tinta-2);display:flex;align-items:center;gap:.75rem}
+    .dl-lista li::before{content:'🍂';font-size:.65rem}
+    .dl-card{background:var(--escuro);border:var(--borda);padding:2.8rem;text-align:center;box-shadow:var(--sombra);position:relative;overflow:hidden}
+    .dl-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,136,42,.08),transparent 50%)}
+    .dl-icone{font-size:2.8rem;margin-bottom:.8rem;display:block}
+    .dl-tit{font-family:var(--ft);font-size:1.3rem;font-weight:400;color:var(--tinta-clara);margin-bottom:.4rem;font-style:italic}
+    .dl-sub{font-family:var(--fu);font-style:italic;font-size:.9rem;color:var(--tinta-clara-2);margin-bottom:2rem}
+    .dl-form{display:flex;flex-direction:column;gap:.7rem;margin-bottom:.6rem}
+    .dl-input{background:rgba(200,136,42,.06);border:var(--borda);color:var(--tinta-clara);font-family:var(--fc);font-size:.95rem;padding:14px 1rem;outline:none;transition:border-color .3s;width:100%;text-align:center}
+    .dl-input::placeholder{color:rgba(240,220,180,.3);font-style:italic}
+    .dl-input:focus{border-color:var(--ouro)}
+    .dl-aviso{font-family:var(--fu);font-size:.78rem;color:rgba(240,220,180,.3);font-style:italic;margin-top:.8rem}
+
+    /* ============================================================ AQUISIÇÃO ============================================================ */
+    .aq-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);background:var(--fundo-2);border-top:var(--borda-f);position:relative;z-index:2}
+    .aq-wrap{max-width:720px;margin:0 auto;text-align:center}
+    .aq-header{margin-bottom:3rem}
+    .aq-unico{background:var(--fundo);border:var(--borda);padding:3rem;position:relative;overflow:hidden;transition:all .4s;box-shadow:var(--sombra)}
+    .aq-unico:hover{border-color:rgba(200,136,42,.35);transform:translateY(-4px)}
+    .aq-badge{display:inline-block;font-family:var(--fd);font-size:.46rem;letter-spacing:.4em;text-transform:uppercase;padding:5px 12px;background:var(--ouro);color:#fff;margin-bottom:1.5rem}
+    .aq-icone{font-size:2.8rem;margin-bottom:1rem;display:block}
+    .aq-tit{font-family:var(--ft);font-size:1.5rem;font-weight:400;color:var(--tinta);margin-bottom:.4rem;font-style:italic}
+    .aq-sub{font-family:var(--ft);font-style:italic;font-size:.92rem;color:var(--ouro);margin-bottom:1.5rem}
+    .aq-desc{font-family:var(--fc);font-size:.92rem;color:var(--tinta-2);line-height:1.9;margin-bottom:2rem;font-style:italic}
+
+    /* COMENTÁRIOS */
+    .com-sec{padding:5.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2;border-top:var(--borda-f)}
+    .com-wrap{max-width:860px;margin:0 auto}
+    .com-header{text-align:center;margin-bottom:3rem}
+    .com-lista{display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem}
+    .com-card{background:var(--fundo-2);border:var(--borda-f);padding:1.8rem 2rem;transition:border-color .3s}
+    .com-card:hover{border-color:rgba(200,136,42,.22)}
+    .com-aspas{font-family:var(--ft);font-size:2.8rem;color:var(--ouro);opacity:.18;line-height:.8;display:block;margin-bottom:.25rem;font-style:italic;user-select:none}
+    .com-texto{font-family:var(--fc);font-style:italic;font-size:.95rem;color:var(--tinta-2);line-height:1.85;margin-bottom:1rem}
+    .com-autor{font-family:var(--fd);font-size:.5rem;letter-spacing:.38em;text-transform:uppercase;color:var(--ouro)}
+    .cf-tit{font-family:var(--ft);font-size:1.3rem;font-weight:400;color:var(--tinta);margin-bottom:1.5rem;font-style:italic}
+    .cf-tit em{color:var(--ouro)}
+    .fg{margin-bottom:.9rem}
+    .flabel{font-family:var(--fd);font-size:.5rem;letter-spacing:.38em;text-transform:uppercase;color:var(--ouro);display:block;margin-bottom:6px}
+    .finput,.ftextarea{width:100%;background:var(--fundo-2);border:var(--borda);color:var(--tinta);font-family:var(--fc);font-size:.95rem;padding:13px 1rem;outline:none;transition:border-color .3s}
+    .finput::placeholder,.ftextarea::placeholder{color:var(--tinta-3);font-style:italic}
+    .finput:focus,.ftextarea:focus{border-color:rgba(200,136,42,.4)}
+    .ftextarea{resize:vertical;min-height:110px;font-family:var(--fc)}
+    .fg2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .faviso{font-family:var(--fu);font-size:.78rem;color:var(--tinta-3);font-style:italic;margin-top:.8rem}
+
+    /* MAIS LIVROS + RODAPÉ */
+    .mais-sec{padding:4.5rem clamp(1.2rem,5vw,5rem);background:var(--escuro);border-top:var(--borda-f);position:relative;z-index:2}
+    .mais-wrap{max-width:1200px;margin:0 auto}
+    .mais-grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1.5rem;margin-top:2rem}
+    .mais-card{display:block;transition:transform .3s}
+    .mais-card:hover{transform:translateY(-6px)}
+    .mais-capa{width:100%;filter:brightness(.6) saturate(.4) sepia(.2);transition:filter .3s;box-shadow:-4px 6px 20px rgba(0,0,0,.4)}
+    .mais-card:hover .mais-capa{filter:brightness(.85) saturate(.8) sepia(.05)}
+    .mais-tit{font-family:var(--ft);font-size:.85rem;color:rgba(240,220,180,.4);margin-top:.55rem;line-height:1.3;transition:color .3s;font-style:italic}
+    .mais-card:hover .mais-tit{color:var(--ouro)}
+    footer{background:var(--escuro);border-top:1px solid rgba(240,220,180,.07);padding:2.5rem clamp(1.2rem,5vw,5rem);position:relative;z-index:2}
+    .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem}
+    .footer-logo{font-family:var(--fd);font-size:.76rem;color:var(--ouro);letter-spacing:.15em;text-transform:uppercase}
+    .footer-links{display:flex;gap:2rem;list-style:none;flex-wrap:wrap}
+    .footer-links a{font-family:var(--fu);font-size:.85rem;color:rgba(240,220,180,.35);transition:color .2s;font-style:italic}
+    .footer-links a:hover{color:var(--ouro)}
+    .footer-copy{font-family:var(--fu);font-size:.75rem;color:rgba(240,220,180,.25);font-style:italic}
+
+    @media(max-width:1024px){.sinopse-wrap{grid-template-columns:1fr;gap:3rem}.ficha{position:relative;top:0}.dl-wrap{grid-template-columns:1fr;gap:3rem}}
+    @media(max-width:768px){html{font-size:16px}.hero{grid-template-columns:1fr;text-align:center;gap:2.5rem;padding-top:85px}.hero-capa-area{order:-1}.livro-3d{transform:rotateY(0) rotateX(0)}.hero-frase{margin:0 auto 2rem}.hero-acoes,.hero-badges,.hero-fmt{justify-content:center}.hero-linha,.hero-pre{justify-content:center}.pers-grade{grid-template-columns:1fr}.fg2{grid-template-columns:1fr}.footer-inner{flex-direction:column;text-align:center}.footer-links{justify-content:center}}
+    @media(max-width:480px){.mais-grade{grid-template-columns:repeat(3,1fr)}}
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-anel" id="cursorAnel"></div>
+  <a href="#" class="topo-btn" id="topoBtn">↑</a>
+
+  <!-- Folhas caindo -->
+  <div id="folhas" aria-hidden="true"></div>
+
+  <nav id="nav">
+    <a href="../index.html" class="nav-logo">Robério Diógenes<span>Escritor Independente</span></a>
+    <a href="../livros.html" class="nav-voltar">← Biblioteca</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-fundo"></div>
+    <div class="hero-capa-area">
+      <div class="livro-brilho" aria-hidden="true"></div>
+      <div class="livro-3d" id="livro3d">
+        <div class="livro-lombada"><span>Caminhos de Outono · Robério Diógenes</span></div>
+        <div class="livro-frente">
+          <img src="../img/caminhos-de-outono.jpg" alt="Caminhos de Outono — Robério Diógenes" />
+        </div>
+        <div class="livro-reflexo" aria-hidden="true">
+          <img src="../img/caminhos-de-outono.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="hero-texto">
+      <p class="hero-pre">Romance Espiritual · Drama · 1ª Edição</p>
+      <h1 class="hero-titulo">Caminhos<br />de <em>Outono</em></h1>
+      <span class="hero-sub">As estações da vida</span>
+      <div class="hero-linha">
+        <div class="hero-linha-traço"></div>
+        <span class="hero-linha-sym">🍂</span>
+        <div class="hero-linha-traço"></div>
+      </div>
+      <p class="hero-frase">
+        "Como o outono pinta a terra com suas folhas douradas,<br />
+        Clara e Miguel descobrem que a vida também se renova em ciclos —<br />
+        onde a morte de velhos conceitos dá lugar a <em>um novo florescer.</em>"
+      </p>
+      <div class="hero-badges">
+        <span class="badge badge-f">Romance Espiritual</span>
+        <span class="badge badge-f">Drama</span>
+        <span class="badge badge-v">Fé · Perdão · Recomeço</span>
+        <span class="badge badge-f">1ª Edição · 2025</span>
+      </div>
+      <div class="hero-acoes">
+        <a href="https://www.amazon.com.br" target="_blank" rel="noopener" class="btn btn-o">📱 Comprar no Kindle</a>
+        <a href="#download" class="btn btn-b">🍂 Ler Capítulo Grátis</a>
+      </div>
+      <p class="hero-fmt">Disponível em: <span>Digital — Amazon Kindle</span></p>
+    </div>
+    <span style="position:absolute;bottom:3rem;right:clamp(1.2rem,5vw,5rem);z-index:2;font-size:4rem;opacity:.08;pointer-events:none;user-select:none" aria-hidden="true">🍁</span>
+  </section>
+
+  <div class="div-ornamento" aria-hidden="true">🍂 &nbsp; 🍂 &nbsp; 🍂</div>
+
+  <!-- EPÍGRAFE -->
+  <section class="epig">
+    <span class="epig-aspas r" aria-hidden="true">"</span>
+    <p class="epig-frase r d1">
+      "Como as folhas do outono que caem para que a árvore possa florescer na primavera,<br />
+      às vezes precisamos deixar ir o que fomos<br />
+      para nos tornarmos <em>o que devemos ser.</em>"
+    </p>
+    <p class="epig-attr r d2">— Robério Diógenes · Caminhos de Outono</p>
+  </section>
+
+  <!-- SINOPSE + FICHA -->
+  <section class="sinopse-sec">
+    <div class="sinopse-wrap">
+      <div>
+        <span class="slabel r">Sobre o Livro</span>
+        <h2 class="stit r d1">Quando a fé cai como folha —<br /><em>e o amor nasce entre elas.</em></h2>
+        <div class="stexto r d2">
+          <p>Clara passou anos vagando pelas sombras do desespero. Não o tipo dramático que os outros veem — o tipo silencioso, de quem ainda sorri nas fotos mas não consegue explicar para si mesma por que continua. Até que o inesperado chega como sempre chega: sem avisar.</p>
+          <p>Do outro lado, Padre Miguel carrega um peso diferente. <strong>Um homem de fé que vê sua fé desmoronar</strong> — uma folha por vez, como o outono que dá nome ao livro. Questiona a própria essência de suas crenças, a validade de tudo que construiu, o preço do que escolheu renunciar.</p>
+          <p>Quando os caminhos de Clara e Miguel se cruzam, nenhum deles está pronto para o outro. Mas a vida raramente espera que estejamos prontos. E é nessa travessia — no espaço entre o que se perde e o que pode nascer — que <em>ambos descobrem que o perdão começa de dentro.</em></p>
+          <p>Caminhos de Outono é um romance sobre segundas chances que chegam disfarçadas de fim. Sobre a fé que sobrevive exatamente por ter sido questionada. Sobre o tipo de amor que não resolve nada — mas que torna tudo mais possível de ser vivido.</p>
+        </div>
+      </div>
+      <div class="ficha r d3">
+        <p class="ficha-tit">Ficha do Livro</p>
+        <div class="fi"><span class="fi-k">Título</span><span class="fi-v">Caminhos de Outono</span></div>
+        <div class="fi"><span class="fi-k">Subtítulo</span><span class="fi-v">As estações da vida</span></div>
+        <div class="fi"><span class="fi-k">Autor</span><span class="fi-v">Robério Diógenes</span></div>
+        <div class="fi"><span class="fi-k">Gênero</span><span class="fi-v o">Romance Espiritual</span></div>
+        <div class="fi"><span class="fi-k">Tema</span><span class="fi-v">Fé · Perdão · Recomeço</span></div>
+        <div class="fi"><span class="fi-k">Edição</span><span class="fi-v">1ª Ed. · 2025</span></div>
+        <div class="fi"><span class="fi-k">Digital</span><span class="fi-v o">Amazon Kindle</span></div>
+        <div class="fi"><span class="fi-k">Físico</span><span class="fi-v v">Sob Encomenda</span></div>
+        <div class="ficha-acoes">
+          <a href="https://www.amazon.com.br" target="_blank" rel="noopener" class="btn btn-o" style="width:100%;justify-content:center">Comprar no Kindle</a>
+          <a href="mailto:diogenes.escritor@gmail.com?subject=Pedido%20físico%20-%20Caminhos%20de%20Outono" class="btn btn-b btn-sm" style="width:100%;justify-content:center">Solicitar Físico</a>
+          <a href="#download" class="btn btn-b btn-sm" style="width:100%;justify-content:center">🍂 Cap. 1 Grátis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAGENS -->
+  <section class="pers-sec">
+    <div class="pers-wrap">
+      <div class="pers-header r">
+        <span class="slabel" style="text-align:center">As Pessoas desta História</span>
+        <h2 class="stit" style="text-align:center;font-size:clamp(1.8rem,3.5vw,2.8rem)">Dois <em>caminhos.</em><br />Um mesmo outono.</h2>
+        <p style="font-family:var(--fc);font-style:italic;font-size:.95rem;color:var(--tinta-3);max-width:540px;margin:.75rem auto 0;line-height:1.9;text-align:center">Nenhum deles está buscando o outro. Os dois estão buscando a si mesmos. Às vezes é exatamente por isso que o encontro acontece.</p>
+      </div>
+      <div class="pers-grade">
+        <div class="pers-card clara r d1">
+          <div class="pers-top">
+            <div class="pers-inicial">C</div>
+            <h3 class="pers-nome">Clara</h3>
+            <span class="pers-papel">A Protagonista · A Alma Perdida</span>
+          </div>
+          <div class="pers-info">
+            <p class="pers-desc">Passou anos no desespero silencioso — o tipo que ninguém vê, porque ela aprendeu a sorrir na hora certa. Quando chegou ao limite, chegou também ao inesperado: uma segunda chance que não foi reconhecida de imediato como tal.</p>
+            <p class="pers-frase">"Não sei mais o que estou procurando — mas sei que ainda estou procurando."</p>
+          </div>
+        </div>
+        <div class="pers-card miguel r d2">
+          <div class="pers-top">
+            <div class="pers-inicial">M</div>
+            <h3 class="pers-nome">Padre Miguel</h3>
+            <span class="pers-papel">O Padre · A Fé que Questiona</span>
+          </div>
+          <div class="pers-info">
+            <p class="pers-desc">Um homem de Deus que perdeu a certeza de Deus — e não sabe o que isso significa. Cada certeza que cai é uma folha. Ele olha para a árvore e ainda não sabe se o que vê é morte ou preparação para florescer.</p>
+            <p class="pers-frase">"Talvez a fé verdadeira comece exatamente onde as certezas terminam."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATMOSFÉRICA -->
+  <div class="atmos r">
+    <img src="../img/caminhos-de-outono.jpg" alt="Caminhos de Outono — capa" class="atmos-img" loading="lazy" style="object-position:center 15%" />
+    <div class="atmos-overlay"></div>
+    <div class="atmos-texto">
+      <p>"Havia algo de profético no outono:<br />
+      a coragem de se despir de tudo<br />
+      para que o novo <em>pudesse crescer.</em>"</p>
+      <span>Caminhos de Outono · Robério Diógenes</span>
+    </div>
+  </div>
+
+  <!-- TEMAS -->
+  <section class="temas-sec">
+    <div class="temas-wrap">
+      <div style="text-align:center">
+        <span class="slabel r">O que este livro carrega</span>
+        <h2 class="stit r d1" style="text-align:center">As <em>estações</em> que o romance atravessa</h2>
+      </div>
+      <div class="temas-grade">
+        <div class="tema-card r d1"><span class="tema-icone">🍂</span><h3 class="tema-tit">A crise de fé</h3><p class="tema-desc">Não a crise que os outros veem — a interior, silenciosa, que acontece enquanto o padre ainda diz a missa e a feligresa ainda aparece no banco da frente.</p></div>
+        <div class="tema-card r d2"><span class="tema-icone">🌅</span><h3 class="tema-tit">Segundas chances</h3><p class="tema-desc">Que chegam sem aviso, disfarçadas de coincidência. O livro sugere que talvez nenhuma seja coincidência de verdade.</p></div>
+        <div class="tema-card r d3"><span class="tema-icone">🕊</span><h3 class="tema-tit">O perdão como processo</h3><p class="tema-desc">Não o perdão instantâneo dos sermões — o perdão real, que leva tempo, que dói no meio e que, quando chega, chega diferente do que esperávamos.</p></div>
+        <div class="tema-card r d1"><span class="tema-icone">🌿</span><h3 class="tema-tit">A renovação espiritual</h3><p class="tema-desc">Como o outono não é fim — é preparação. O livro usa a metáfora das estações para falar sobre os ciclos internos da alma.</p></div>
+        <div class="tema-card r d2"><span class="tema-icone">❤️</span><h3 class="tema-tit">O amor como presença</h3><p class="tema-desc">Não o amor que resolve — o que fica ao lado. Aquele que não salva, mas que torna o peso mais distribuído.</p></div>
+        <div class="tema-card r d3"><span class="tema-icone">✝</span><h3 class="tema-tit">A fé que sobrevive à dúvida</h3><p class="tema-desc">O argumento central do livro: talvez a fé que nunca foi questionada não seja fé de verdade — seja apenas conforto.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESPIRO -->
+  <section class="respiro">
+    <div class="respiro-linha r"></div>
+    <p class="respiro-texto r d1">
+      "Se você já se perguntou sobre o sentido da vida,<br />
+      o perdão, ou os mistérios da fé —<br />
+      esta é uma leitura que promete <em>despertar a esperança,</em><br />
+      em meio às folhas que caem<br />
+      e aos novos começos que sempre virão."
+    </p>
+    <div class="respiro-linha r d2"></div>
+    <p class="respiro-orig r d3">— Caminhos de Outono · Robério Diógenes</p>
+  </section>
+
+  <!-- DOWNLOAD -->
+  <section class="dl-sec" id="download">
+    <div class="dl-wrap">
+      <div>
+        <span class="slabel r">Gratuito · Sem cadastro obrigatório</span>
+        <h2 class="stit r d1">Leia o primeiro capítulo<br /><em>antes de decidir.</em></h2>
+        <p class="stexto r d2" style="font-style:italic;margin-bottom:1.5rem">O começo de Caminhos de Outono já diz tudo sobre o tom e a profundidade do que vem depois. Se as primeiras páginas ficarem com você, o livro inteiro vai.</p>
+        <ul class="dl-lista r d3">
+          <li>Capítulo 1 completo — sem cortes</li>
+          <li>Formato PDF — leia em qualquer dispositivo</li>
+          <li>Download direto e imediato</li>
+          <li>Sem cadastro obrigatório</li>
+        </ul>
+      </div>
+      <div class="dl-card rd">
+        <span class="dl-icone">🍂</span>
+        <h3 class="dl-tit">Capítulo 1</h3>
+        <p class="dl-sub">Caminhos de Outono · Robério Diógenes · PDF</p>
+        <form class="dl-form" onsubmit="baixarAmostra(event)">
+          <input type="email" class="dl-input" placeholder="Seu e-mail (opcional)" id="emailDl" />
+          <button type="submit" class="btn btn-o" style="width:100%;justify-content:center">🍂 &nbsp;Baixar Capítulo Grátis</button>
+        </form>
+        <p class="dl-aviso">📎 PDF · Download imediato</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AQUISIÇÃO -->
+  <section class="aq-sec" id="adquirir">
+    <div class="aq-wrap">
+      <div class="aq-header r">
+        <span class="slabel">Leve para casa</span>
+        <h2 class="stit" style="font-size:clamp(1.8rem,3.5vw,2.8rem)">Leia <em>Caminhos de Outono</em></h2>
+      </div>
+      <div class="aq-unico r d1">
+        <span class="aq-badge">Disponível Agora</span>
+        <span class="aq-icone">📱</span>
+        <h3 class="aq-tit">Digital — Amazon Kindle</h3>
+        <p class="aq-sub">Leia em minutos, em qualquer dispositivo</p>
+        <p class="aq-desc">Disponível agora no Amazon Kindle. Compre e comece a leitura imediatamente — no celular, tablet, computador ou e-reader.</p>
+        <a href="https://www.amazon.com.br" target="_blank" rel="noopener" class="btn btn-o" style="width:100%;justify-content:center;max-width:360px">Comprar no Kindle →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMENTÁRIOS -->
+  <section class="com-sec" id="comentarios">
+    <div class="com-wrap">
+      <div class="com-header r">
+        <span class="slabel">Vozes de quem caminhou</span>
+        <h2 class="cf-tit" style="font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:.5rem">O que os <em>leitores dizem</em></h2>
+        <p style="font-family:var(--fc);font-style:italic;font-size:.92rem;color:var(--tinta-3);margin-top:.5rem">Sua impressão pode ser o que falta para outra pessoa encontrar este livro.</p>
+      </div>
+      <div class="com-lista">
+        <div class="com-card r d1">
+          <span class="com-aspas">"</span>
+          <p class="com-texto">Esperava um romance cristão convencional — e encontrei algo muito mais honesto. O padre que duvida me tocou mais do que qualquer personagem de fé inabalável que já li. Porque é real. É o que acontece com a maioria de nós.</p>
+          <p class="com-autor">— Leitor · Fortaleza, CE</p>
+        </div>
+        <div class="com-card r d2">
+          <span class="com-aspas">"</span>
+          <p class="com-texto">Li durante um outono difícil na minha vida. A metáfora das folhas caindo — que não é morte, é preparação — ficou comigo de uma maneira que poucas leituras ficaram.</p>
+          <p class="com-autor">— [Seja o próximo — deixe seu comentário]</p>
+        </div>
+      </div>
+      <div class="r d3">
+        <h3 class="cf-tit">Deixe o seu <em>comentário</em></h3>
+        <form onsubmit="enviarComentario(event)">
+          <div class="fg2">
+            <div class="fg"><label class="flabel" for="cn">Seu nome</label><input type="text" id="cn" class="finput" placeholder="Como quer ser chamado(a)?" required /></div>
+            <div class="fg"><label class="flabel" for="cc">Cidade</label><input type="text" id="cc" class="finput" placeholder="Opcional" /></div>
+          </div>
+          <div class="fg"><label class="flabel" for="ct">Seu comentário</label><textarea id="ct" class="ftextarea" placeholder="O que o livro moveu em você?" required></textarea></div>
+          <button type="submit" class="btn btn-o">Publicar Comentário</button>
+          <p class="faviso">⚠ Comentários aguardam moderação.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIS LIVROS -->
+  <section class="mais-sec">
+    <div class="mais-wrap">
+      <span class="slabel" style="color:var(--tinta-clara-2)">Outros livros de Robério Diógenes</span>
+      <div class="mais-grade r d1">
+        <a href="../livros/lumen.html" class="mais-card"><img src="../img/lumen.jpg" alt="Lúmen" class="mais-capa" loading="lazy" /><p class="mais-tit">Lúmen</p></a>
+        <a href="../livros/a-setima-lei.html" class="mais-card"><img src="../img/a-setima-lei.jpg" alt="A Sétima Lei" class="mais-capa" loading="lazy" /><p class="mais-tit">A Sétima Lei</p></a>
+        <a href="../livros/rosas-e-espinhos.html" class="mais-card"><img src="../img/rosas-e-espinhos.jpg" alt="Rosas & Espinhos" class="mais-capa" loading="lazy" /><p class="mais-tit">Rosas & Espinhos</p></a>
+        <a href="../livros/das-coisas-que-o-amor-faz.html" class="mais-card"><img src="../img/coisas-que-o-amor-faz.jpg" alt="Das Coisas que o Amor Faz" class="mais-capa" loading="lazy" /><p class="mais-tit">Das Coisas que o Amor Faz</p></a>
+        <a href="../livros.html" class="mais-card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;border:var(--borda);background:var(--escuro-2)">
+          <span style="font-size:1.8rem;color:var(--ouro);margin-bottom:.4rem">→</span>
+          <p class="mais-tit" style="color:var(--ouro);text-align:center">Ver toda a biblioteca</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <a href="../index.html" class="footer-logo">Robério Diógenes</a>
+      <ul class="footer-links">
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="../livros.html">Biblioteca</a></li>
+        <li><a href="../autor.html">O Autor</a></li>
+        <li><a href="../blog.html">Diário</a></li>
+        <li><a href="../contato.html">Contato</a></li>
+      </ul>
+      <p class="footer-copy">© 2025 Robério Diógenes · Caminhos de Outono</p>
+    </div>
+  </footer>
+
+  <script>
+    const cur=document.getElementById('cursor'),cAn=document.getElementById('cursorAnel');
+    let mx=0,my=0,ax=0,ay=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+    (function t(){ax+=(mx-ax)*.11;ay+=(my-ay)*.11;cAn.style.left=ax+'px';cAn.style.top=ay+'px';requestAnimationFrame(t)})();
+    const nav=document.getElementById('nav'),topoBtn=document.getElementById('topoBtn');
+    window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40);topoBtn.classList.toggle('v',scrollY>500)},{passive:true});
+    const l3d=document.getElementById('livro3d');
+    document.addEventListener('mousemove',e=>{if(window.innerWidth<768)return;const rx=-(e.clientY-innerHeight/2)/innerHeight*6;const ry=(e.clientX-innerWidth/2)/innerWidth*10;l3d.style.transform=`rotateX(${rx}deg) rotateY(${ry-15}deg)`});
+    document.addEventListener('mouseleave',()=>{l3d.style.transform='rotateY(-15deg) rotateX(2deg)'});
+
+    // Folhas caindo
+    const folhasEl=document.getElementById('folhas');
+    const emojis=['🍂','🍁'];
+    for(let i=0;i<14;i++){
+      const f=document.createElement('span');
+      f.className='folha';
+      f.textContent=emojis[i%2];
+      f.style.cssText=`left:${Math.random()*100}%;--dur:${10+Math.random()*14}s;--del:${Math.random()*12}s;font-size:${.8+Math.random()*.8}rem`;
+      folhasEl.appendChild(f);
+    }
+
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('v');obs.unobserve(e.target)}})},{threshold:.08});
+    document.querySelectorAll('.r,.re,.rd').forEach(el=>obs.observe(el));
+
+    function baixarAmostra(e){
+      e.preventDefault();
+      const btn=e.target.querySelector('button');
+      btn.textContent='⏳ Preparando...';btn.disabled=true;
+      setTimeout(()=>{const a=document.createElement('a');a.href='../img/caminhos-de-outono.jpg';a.download='Caminhos-de-Outono-Roberio-Diogenes.pdf';a.click();btn.textContent='✓ Download iniciado!';btn.style.background='var(--verde-musgo)';setTimeout(()=>{btn.textContent='🍂 Baixar Capítulo Grátis';btn.style.background='';btn.disabled=false;},4000);},700);
+    }
+    function enviarComentario(e){
+      e.preventDefault();
+      const btn=e.target.querySelector('button[type="submit"]');
+      btn.textContent='✓ Enviado!';btn.style.background='var(--verde-musgo)';btn.disabled=true;
+      e.target.reset();
+      setTimeout(()=>{btn.textContent='Publicar Comentário';btn.style.background='';btn.disabled=false;},5000);
+    }
+  </script>
+</body>
+</html>

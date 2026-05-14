@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sobre a solidão que produz — e a que apenas consome — Robério Diógenes" />
+  <title>Sobre a solidão que produz — e a que apenas consome | Diário | Robério Diógenes</title>
+  <link rel="icon" type="image/png" href="../img/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/post.css" />
+</head>
+<body>
+<a href="#conteudo-principal" class="pular-nav">Pular para o conteúdo</a>
+<canvas id="canvas-particulas" aria-hidden="true"></canvas>
+<nav id="nav" role="navigation" aria-label="Navegação principal">
+  <a href="../index.html" class="nav-logo">Robério Diógenes<span>Escritor Independente</span></a>
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="../index.html">Início</a></li><li><a href="../livros.html">Biblioteca</a></li>
+    <li><a href="../autor.html">O Autor</a></li><li><a href="../blog.html" class="ativa" aria-current="page">Diário</a></li>
+    <li><a href="../contato.html">Contato</a></li>
+  
+          <!-- Controles de acessibilidade — visíveis no menu mobile -->
+          <li class="mobile-controles" style="display:none;" aria-label="Acessibilidade">
+            <span class="mobile-controles-label">Tema &amp; Fonte</span>
+            <button class="tema-btn" data-tema="claro"     title="Tema claro"    aria-label="Tema claro">☀</button>
+            <button class="tema-btn" data-tema="noturno"   title="Tema noturno"  aria-label="Tema noturno">🌙</button>
+            <button class="tema-btn" data-tema="contraste" title="Alto contraste" aria-label="Alto contraste">◑</button>
+            <button class="fonte-btn fonte-diminuir"       title="Texto menor"   aria-label="Texto menor">A-</button>
+            <button class="fonte-btn fonte-aumentar"       title="Texto maior"   aria-label="Texto maior">A+</button>
+            <button class="tema-btn som-btn"               title="Sons"          aria-label="Sons">♪</button>
+          </li>
+  </ul>
+  <div class="nav-acoes">
+    <div class="tema-controles" role="group"><button class="tema-btn ativo" data-tema="claro" aria-label="Claro">☀</button><button class="tema-btn" data-tema="noturno" aria-label="Noturno">🌙</button><button class="tema-btn" data-tema="contraste" aria-label="Contraste">◑</button></div>
+    <div class="fonte-controles" role="group"><button class="fonte-btn fonte-diminuir" aria-label="A-">A-</button><button class="fonte-btn fonte-aumentar" aria-label="A+">A+</button></div>
+    <button class="tema-btn som-btn" aria-label="Sons">♪</button>
+    <a href="../leitor/index.html" class="btn btn-secundario" style="padding:.4rem .9rem;font-size:.8rem;"><i class="fa fa-user" aria-hidden="true"></i> Entrar</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+</nav>
+<a href="#" class="topo-btn" id="topoBtn" aria-label="Voltar ao topo">↑</a>
+<div class="progresso-leitura" id="progressoLeitura" aria-hidden="true" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<main id="conteudo-principal">
+  <header class="post-hero">
+    <div class="post-hero-img-wrap">
+      <img src="../img/bastidores-setima-lei.jpg" alt="Solidão criativa" class="post-hero-img" loading="eager" />
+      <div class="post-hero-overlay" aria-hidden="true"></div>
+    </div>
+    <div class="post-hero-conteudo">
+      <a href="../blog.html" class="post-voltar reveal"><i class="fa fa-arrow-left" aria-hidden="true"></i> Diário</a>
+      <span class="post-categoria reveal reveal-delay-1">Do Escritor</span>
+      <h1 class="post-titulo reveal reveal-delay-2">Sobre a solidão que produz — e a que apenas consome</h1>
+      <div class="post-meta reveal reveal-delay-3">
+        <span><i class="fa fa-calendar" aria-hidden="true"></i> Outubro de 2024</span>
+        <span><i class="fa fa-clock" aria-hidden="true"></i> 5 min de leitura</span>
+        <span><i class="fa fa-user" aria-hidden="true"></i> Robério Diógenes</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="post-layout">
+    <article class="post-corpo" itemscope itemtype="https://schema.org/BlogPosting">
+      <div class="post-texto" itemprop="articleBody">
+        <p class="post-destaque-intro">Existe uma diferença entre a solidão que gera e a solidão que apenas esvazia. Aprendi a distinguir as duas — e aprendi a escolher qual cultivar.</p>
+        <p>Neste espaço, compartilho as reflexões que nascem no processo de criar — não apenas sobre os livros, mas sobre o que os alimenta. Sobre as pessoas que observo, os silêncios que ouço, as pequenas verdades que só aparecem quando a caneta está na mão e ninguém está olhando.</p>
+        <blockquote class="post-citacao">"Escrever é a única forma que encontrei de entender o que sinto antes de sentir."</blockquote>
+        <p>Cada post neste diário é um fragmento. Uma janela aberta para o lado de cá da narrativa — onde as histórias ainda estão ganhando forma, onde os personagens ainda não têm nomes definitivos, onde as ideias chegam e às vezes vão embora antes de virar frases.</p>
+        <p>Se você chegou até aqui, já é leitor. E isso, para mim, significa mais do que qualquer número de vendas ou de seguidores poderia significar.</p>
+        <p>Obrigado por ler.</p>
+        <div class="post-assinatura">
+          <img src="../img/autor.jpg" alt="Robério Diógenes" class="post-assinatura-foto" loading="lazy" />
+          <div>
+            <p class="post-assinatura-nome">Robério Diógenes</p>
+            <p class="post-assinatura-local">Cascavel, Ceará · Outubro de 2024</p>
+          </div>
+        </div>
+      </div>
+      <div class="post-compartilhar">
+        <p class="post-compartilhar-titulo">Compartilhar</p>
+        <div class="post-compartilhar-btns">
+          <a href="https://wa.me/?text=Sobre a solidão que produz — e a que apenas consome%20—%20Robério%20Diógenes" target="_blank" rel="noopener" class="btn btn-ghost" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="btn btn-ghost" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram</a>
+        </div>
+      </div>
+      <nav class="post-nav" aria-label="Navegar entre posts">
+        <a href="post-06.html" class="post-nav-ant"><span class="post-nav-label"><i class="fa fa-arrow-left"></i> Post anterior</span><span class="post-nav-titulo">O labirinto de Lúmen</span></a>
+        <span class="post-nav-vazio"></span>
+      </nav>
+    </article>
+    <aside class="post-sidebar">
+      <div class="sidebar-card">
+        <img src="../img/autor2.jpg" alt="Robério Diógenes" class="sidebar-autor-foto" loading="lazy" />
+        <p class="sidebar-pretitulo">O Autor</p>
+        <h3 class="sidebar-autor-nome">Robério Diógenes</h3>
+        <p class="sidebar-autor-bio">Escritor cearense de thrillers psicológicos, romance e drama. Autor independente, 11 livros publicados.</p>
+        <a href="../autor.html" class="btn btn-secundario" style="width:100%;justify-content:center;font-size:.82rem;margin-top:.75rem;">Ver biografia →</a>
+      </div>
+      <div class="sidebar-card">
+        <p class="sidebar-pretitulo">Outros posts</p>
+        <div class="sidebar-posts">
+          <a href="post-01.html" class="sidebar-post"><span class="sidebar-post-cat">Bastidores</span><span class="sidebar-post-titulo">Por trás da serpente e da maçã</span></a>
+          <a href="post-03.html" class="sidebar-post"><span class="sidebar-post-cat">Do Escritor</span><span class="sidebar-post-titulo">Por que escrevo sobre dor</span></a>
+          <a href="post-05.html" class="sidebar-post"><span class="sidebar-post-cat">Sobre os Livros</span><span class="sidebar-post-titulo">Deus e o versículo incompleto</span></a>
+        </div>
+      </div>
+      <div class="sidebar-card sidebar-nl">
+        <span class="sidebar-nl-icon" aria-hidden="true">✉</span>
+        <h3>Não perca nenhum post</h3>
+        <form onsubmit="submeterNewsletter(event)" aria-label="Newsletter">
+          <input type="email" class="finput" placeholder="seu@email.com" required aria-label="E-mail" style="font-size:.85rem;margin-bottom:.5rem;" />
+          <button type="submit" class="btn btn-primario" style="width:100%;justify-content:center;font-size:.82rem;">Inscrever-me</button>
+        </form>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-wrap">
+    <div><a href="../index.html" class="footer-logo">Robério Diógenes</a><p class="footer-desc">"Escrevo sobre o que nos assombra no silêncio."</p>
+      <div class="footer-social"><a href="https://www.instagram.com/diogenesroberio" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a><a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank" rel="noopener" aria-label="Amazon" title="Amazon"><i class="fa-brands fa-amazon" aria-hidden="true"></i></a><a href="https://wa.me/5585999999999" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a></div>
+    </div>
+    <div><p class="footer-col-titulo">Navegação</p><ul class="footer-links"><li><a href="../index.html">Início</a></li><li><a href="../livros.html">Biblioteca</a></li><li><a href="../autor.html">O Autor</a></li><li><a href="../blog.html">Diário</a></li><li><a href="../contato.html">Contato</a></li></ul></div>
+    <div><p class="footer-col-titulo">Livros</p><ul class="footer-links"><li><a href="../livros/jogo-das-mascaras.html">O Jogo das Máscaras</a></li><li><a href="../livros/a-setima-lei.html">A Sétima Lei</a></li><li><a href="../livros.html">Ver todos →</a></li></ul></div>
+    <div></div>
+  </div>
+  <div class="footer-bottom"><p class="footer-copy">© 2025 Robério Diógenes. Todos os direitos reservados.</p><p class="footer-copy">Cascavel, Ceará</p></div>
+</footer>
+<div class="toast-wrap" role="status" aria-live="polite" aria-atomic="true"></div>
+<script src="../js/global.js"></script>
+<script>
+window.addEventListener('scroll', () => {
+  const el = document.getElementById('progressoLeitura');
+  const corpo = document.querySelector('.post-texto');
+  if (!el || !corpo) return;
+  const total = corpo.offsetHeight - window.innerHeight;
+  const scrolled = Math.max(0, -corpo.getBoundingClientRect().top);
+  el.style.width = Math.min(100, (scrolled/total)*100) + '%';
+});
+window.submeterNewsletter = function(e) {
+  e.preventDefault(); const i = e.target.querySelector('input[type="email"]');
+  mostrarToast('Inscrição realizada! 📖', 'sucesso'); if(i) i.value='';
+};
+</script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Entre em contato com Robério Diógenes — escritor, autor, palestras, parcerias e muito mais." />
+  <title>Contato | Robério Diógenes</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/contato.css" />
+</head>
+<body>
+
+<a href="#conteudo-principal" class="pular-nav">Pular para o conteúdo</a>
+<canvas id="canvas-particulas" aria-hidden="true"></canvas>
+
+<nav id="nav" role="navigation" aria-label="Navegação principal">
+  <a href="index.html" class="nav-logo">Robério Diógenes<span>Escritor Independente</span></a>
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="index.html">Início</a></li><li><a href="livros.html">Biblioteca</a></li>
+    <li><a href="autor.html">O Autor</a></li><li><a href="blog.html">Diário</a></li>
+    <li><a href="contato.html" class="ativa" aria-current="page">Contato</a></li>
+  
+          <!-- Controles de acessibilidade — visíveis no menu mobile -->
+          <li class="mobile-controles" style="display:none;" aria-label="Acessibilidade">
+            <span class="mobile-controles-label">Tema &amp; Fonte</span>
+            <button class="tema-btn" data-tema="claro"     title="Tema claro"    aria-label="Tema claro">☀</button>
+            <button class="tema-btn" data-tema="noturno"   title="Tema noturno"  aria-label="Tema noturno">🌙</button>
+            <button class="tema-btn" data-tema="contraste" title="Alto contraste" aria-label="Alto contraste">◑</button>
+            <button class="fonte-btn fonte-diminuir"       title="Texto menor"   aria-label="Texto menor">A-</button>
+            <button class="fonte-btn fonte-aumentar"       title="Texto maior"   aria-label="Texto maior">A+</button>
+            <button class="tema-btn som-btn"               title="Sons"          aria-label="Sons">♪</button>
+          </li>
+  </ul>
+  <div class="nav-acoes">
+    <div class="busca-nav" role="search"><span class="busca-nav-icone">🔍</span><input type="search" placeholder="Buscar..." aria-label="Buscar" /></div>
+    <div class="tema-controles" role="group"><button class="tema-btn ativo" data-tema="claro" aria-label="Claro">☀</button><button class="tema-btn" data-tema="noturno" aria-label="Noturno">🌙</button><button class="tema-btn" data-tema="contraste" aria-label="Contraste">◑</button></div>
+    <div class="fonte-controles" role="group"><button class="fonte-btn fonte-diminuir" aria-label="A-">A-</button><button class="fonte-btn fonte-aumentar" aria-label="A+">A+</button></div>
+    <button class="tema-btn som-btn" aria-label="Sons">♪</button>
+    <a href="leitor/index.html" class="btn btn-secundario" style="padding:0.4rem 0.9rem;font-size:0.8rem;"><i class="fa fa-user" aria-hidden="true"></i> Entrar</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+</nav>
+<a href="#" class="topo-btn" id="topoBtn" aria-label="Voltar ao topo">↑</a>
+
+<main id="conteudo-principal">
+
+  <!-- HERO -->
+  <header class="cont-hero">
+    <div class="cont-hero-inner">
+      <p class="secao-pretitulo reveal">Fale comigo</p>
+      <h1 class="cont-titulo reveal reveal-delay-1">Entre em <em>Contato</em></h1>
+      <p class="cont-desc reveal reveal-delay-2">Para parcerias, palestras, resenhas ou simplesmente para dizer que um livro mudou algo em você — cada mensagem é lida com atenção.</p>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO -->
+  <section class="secao" id="formulario">
+    <div class="cont-layout">
+
+      <!-- FORMULÁRIO -->
+      <div class="cont-form-col reveal">
+        <h2 class="cont-form-titulo">Envie uma <em>mensagem</em></h2>
+        <form id="formContato" class="cont-form" novalidate aria-label="Formulário de contato">
+          <div class="fg-2">
+            <div class="fg">
+              <label for="c-nome" class="flabel">Nome <span aria-hidden="true">*</span></label>
+              <input type="text" id="c-nome" name="nome" class="finput" placeholder="Seu nome completo" required aria-required="true" autocomplete="name" />
+            </div>
+            <div class="fg">
+              <label for="c-email" class="flabel">E-mail <span aria-hidden="true">*</span></label>
+              <input type="email" id="c-email" name="email" class="finput" placeholder="seu@email.com" required aria-required="true" autocomplete="email" />
+            </div>
+          </div>
+          <div class="fg">
+            <label for="c-assunto" class="flabel">Assunto</label>
+            <select id="c-assunto" name="assunto" class="finput fselect">
+              <option value="">Selecione o assunto...</option>
+              <option value="leitor">Mensagem de leitor</option>
+              <option value="parceria">Parceria / Colaboração</option>
+              <option value="palestra">Palestra / Evento</option>
+              <option value="resenha">Resenha / Imprensa</option>
+              <option value="compra">Dúvida sobre compra</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="c-msg" class="flabel">Mensagem <span aria-hidden="true">*</span></label>
+            <textarea id="c-msg" name="mensagem" class="finput ftextarea" placeholder="Escreva sua mensagem..." required aria-required="true" rows="6"></textarea>
+          </div>
+          <div class="fg" style="flex-direction:row;align-items:flex-start;gap:0.75rem;">
+            <input type="checkbox" id="c-privacidade" name="privacidade" required aria-required="true" style="margin-top:3px;accent-color:var(--ouro);flex-shrink:0;" />
+            <label for="c-privacidade" class="flabel" style="cursor:pointer;font-size:0.85rem;">
+              Li e aceito a <a href="privacidade.html" style="color:var(--ouro);">política de privacidade</a>. Meus dados serão usados apenas para responder esta mensagem.
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primario" style="width:100%;justify-content:center;padding:0.9rem;">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar Mensagem
+          </button>
+        </form>
+      </div>
+
+      <!-- INFORMAÇÕES -->
+      <aside class="cont-info-col reveal reveal-delay-2">
+        <h2 class="cont-info-titulo">Outros <em>canais</em></h2>
+
+        <div class="cont-info-lista">
+          <div class="cont-info-item">
+            <div class="cont-info-icon" aria-hidden="true"><i class="fa fa-envelope"></i></div>
+            <div>
+              <p class="cont-info-label">E-mail</p>
+              <a href="mailto:diogenes.escritor@gmail.com" class="cont-info-valor">diogenes.escritor@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="cont-info-item">
+            <div class="cont-info-icon" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></div>
+            <div>
+              <p class="cont-info-label">WhatsApp</p>
+              <a href="https://wa.me/5585999999999?text=Olá%20Robério!" target="_blank" rel="noopener" class="cont-info-valor">Lista de transmissão →</a>
+            </div>
+          </div>
+
+          <div class="cont-info-item">
+            <div class="cont-info-icon" aria-hidden="true"><i class="fa-brands fa-instagram"></i></div>
+            <div>
+              <p class="cont-info-label">Instagram</p>
+              <a href="https://www.instagram.com/diogenesroberio" target="_blank" rel="noopener" class="cont-info-valor">@diogenesroberio</a>
+            </div>
+          </div>
+
+          <div class="cont-info-item">
+            <div class="cont-info-icon" aria-hidden="true"><i class="fa-brands fa-linkedin-in"></i></div>
+            <div>
+              <p class="cont-info-label">LinkedIn</p>
+              <a href="https://www.linkedin.com/in/rob%C3%A9rio-di%C3%B3genes-47977b210/" target="_blank" rel="noopener" class="cont-info-valor">Robério Diógenes</a>
+            </div>
+          </div>
+
+          <div class="cont-info-item">
+            <div class="cont-info-icon" aria-hidden="true"><i class="fa-brands fa-amazon"></i></div>
+            <div>
+              <p class="cont-info-label">Amazon</p>
+              <a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank" rel="noopener" class="cont-info-valor">Página do autor →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tempo de resposta -->
+        <div class="cont-aviso">
+          <span aria-hidden="true">⏱</span>
+          <p>Respondo normalmente em até <strong>48 horas</strong> nos dias úteis. Mensagens de leitores têm prioridade especial.</p>
+        </div>
+
+        <!-- Newsletter lateral -->
+        <div class="cont-nl">
+          <p class="cont-nl-titulo">Newsletter</p>
+          <p class="cont-nl-desc">Receba novos lançamentos e capítulos exclusivos por e-mail.</p>
+          <form onsubmit="submeterNewsletter(event)" class="cont-nl-form" aria-label="Newsletter">
+            <input type="email" class="finput" placeholder="seu@email.com" required aria-label="E-mail" style="font-size:0.85rem;" />
+            <button type="submit" class="btn btn-primario" style="width:100%;justify-content:center;font-size:0.85rem;">Inscrever-se</button>
+          </form>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-wrap">
+    <div>
+      <a href="index.html" class="footer-logo">Robério Diógenes</a>
+      <p class="footer-desc">"Escrevo sobre o que nos assombra no silêncio."</p>
+      <div class="footer-social" aria-label="Redes sociais">
+        <a href="https://www.instagram.com/diogenesroberio" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank" rel="noopener" aria-label="Amazon" title="Amazon"><i class="fa-brands fa-amazon" aria-hidden="true"></i></a>
+        <a href="https://wa.me/5585999999999" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
+      </div>
+    </div>
+    <div><p class="footer-col-titulo">Navegação</p><ul class="footer-links"><li><a href="index.html">Início</a></li><li><a href="livros.html">Biblioteca</a></li><li><a href="autor.html">O Autor</a></li><li><a href="blog.html">Diário</a></li></ul></div>
+    <div><p class="footer-col-titulo">Livros</p><ul class="footer-links"><li><a href="livros/jogo-das-mascaras.html">O Jogo das Máscaras</a></li><li><a href="livros/a-setima-lei.html">A Sétima Lei</a></li><li><a href="livros.html">Ver todos →</a></li></ul></div>
+    <div></div>
+  </div>
+  <div class="footer-bottom"><p class="footer-copy">© 2025 Robério Diógenes. Todos os direitos reservados.</p><p class="footer-copy">Cascavel, Ceará</p></div>
+</footer>
+
+<div class="toast-wrap" role="status" aria-live="polite" aria-atomic="true"></div>
+<script src="js/global.js"></script>
+<script>
+document.getElementById('formContato').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const nome = document.getElementById('c-nome').value;
+  const email = document.getElementById('c-email').value;
+  const msg = document.getElementById('c-msg').value;
+  if (!nome || !email || !msg) { mostrarToast('Preencha todos os campos obrigatórios.', 'aviso'); return; }
+  // TODO: integrar com serviço de e-mail (EmailJS, Formspree, etc.)
+  mostrarToast(`Mensagem enviada! Em breve entrarei em contato, ${nome.split(' ')[0]}. 📖`, 'sucesso', 5000);
+  Sons.tocar('sucesso');
+  this.reset();
+});
+
+window.submeterNewsletter = function(e) {
+  e.preventDefault();
+  const input = e.target.querySelector('input[type="email"]');
+  mostrarToast('Inscrição realizada! 📖', 'sucesso');
+  if (input) input.value = '';
+};
+</script>
+</body>
+</html>

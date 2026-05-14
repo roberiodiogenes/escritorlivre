@@ -1,0 +1,47 @@
+# ================================================================
+# ROBÉRIO DIÓGENES — .htaccess raiz do backend
+# Redireciona todas as chamadas /api/* para api/index.php
+# Compatível com Apache (HostGator compartilhado e VPS)
+# ================================================================
+
+Options -Indexes
+Options -MultiViews
+
+RewriteEngine On
+
+# ── Segurança: bloqueia acesso direto a arquivos sensíveis ────────
+<FilesMatch "\.(sql|env|log|sh|json|lock|md|gitignore)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Bloqueia acesso às pastas de configuração e serviços
+RewriteRule ^config/ - [F,L]
+RewriteRule ^middleware/ - [F,L]
+RewriteRule ^services/ - [F,L]
+
+# ── Roteamento: /api/* → api/index.php ───────────────────────────
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ api/index.php [QSA,L]
+
+# ── Headers de segurança ─────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ── Compressão GZIP para respostas JSON ──────────────────────────
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/javascript
+</IfModule>
+
+# ── Uploads: bloqueia execução de PHP na pasta de uploads ────────
+<IfModule mod_rewrite.c>
+    RewriteRule ^uploads/.*\.php$ - [F,L]
+</IfModule>

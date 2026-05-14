@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Painel Admin | Robério Diógenes</title>
+  <link rel="icon" type="image/png" href="../img/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body data-tema="noturno">
+
+<!-- LOGIN ADMIN -->
+<section class="admin-login" id="adminLogin">
+  <div class="admin-login-card">
+    <div class="admin-login-logo">
+      <span class="admin-login-icone" aria-hidden="true">🔐</span>
+      <h1>Painel Administrativo</h1>
+      <p>Robério Diógenes · Área restrita</p>
+    </div>
+    <form id="formAdminLogin" novalidate aria-label="Login administrativo">
+      <div class="fg">
+        <label for="adm-email" class="flabel">E-mail</label>
+        <input type="email" id="adm-email" class="finput" placeholder="admin@email.com" required autocomplete="username" />
+      </div>
+      <div class="fg" style="position:relative;">
+        <label for="adm-senha" class="flabel">Senha</label>
+        <input type="password" id="adm-senha" class="finput" placeholder="••••••••" required autocomplete="current-password" />
+        <button type="button" onclick="toggleSenha()" class="ver-senha-btn" aria-label="Ver senha">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+        </button>
+      </div>
+      <button type="submit" class="btn btn-primario" style="width:100%;justify-content:center;padding:.9rem;margin-top:.5rem;">
+        <i class="fa fa-sign-in-alt" aria-hidden="true"></i> Entrar no Painel
+      </button>
+    </form>
+    <p style="text-align:center;margin-top:1rem;font-family:var(--fonte-ui);font-size:.78rem;color:var(--texto-3);">
+      <a href="../index.html" style="color:var(--texto-3);">← Voltar ao site</a>
+    </p>
+  </div>
+</section>
+
+<!-- PAINEL ADMIN -->
+<div class="admin-wrap" id="adminWrap" style="display:none;">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar" role="navigation" aria-label="Menu administrativo">
+    <div class="admin-sidebar-logo">
+      <a href="../index.html" style="text-decoration:none;color:inherit;">
+        <span style="font-family:var(--fonte-display);font-size:.9rem;letter-spacing:.1em;">Robério Diógenes</span>
+        <span style="font-family:var(--fonte-ui);font-size:.65rem;color:var(--texto-3);text-transform:uppercase;letter-spacing:.15em;display:block;">Admin</span>
+      </a>
+    </div>
+    <nav class="admin-nav" aria-label="Seções do painel">
+      <button class="adm-nav-btn ativo" data-sec="dashboard" aria-selected="true">
+        <i class="fa fa-chart-bar" aria-hidden="true"></i> Dashboard
+      </button>
+      <button class="adm-nav-btn" data-sec="posts" aria-selected="false">
+        <i class="fa fa-file-alt" aria-hidden="true"></i> Posts do Blog
+      </button>
+      <button class="adm-nav-btn" data-sec="livros" aria-selected="false">
+        <i class="fa fa-book" aria-hidden="true"></i> Livros
+      </button>
+      <button class="adm-nav-btn" data-sec="leitores" aria-selected="false">
+        <i class="fa fa-users" aria-hidden="true"></i> Leitores
+      </button>
+      <button class="adm-nav-btn" data-sec="mensagens" aria-selected="false">
+        <i class="fa fa-envelope" aria-hidden="true"></i> Mensagens
+        <span class="adm-badge">3</span>
+      </button>
+    </nav>
+    <button class="adm-logout-btn" onclick="adminLogout()">
+      <i class="fa fa-sign-out-alt" aria-hidden="true"></i> Sair
+    </button>
+  </aside>
+
+  <!-- CONTEÚDO -->
+  <main class="admin-main" id="adminMain">
+
+    <!-- DASHBOARD -->
+    <section class="adm-sec" id="secDashboard">
+      <div class="adm-header">
+        <h2 class="adm-titulo">Dashboard</h2>
+        <span class="adm-data" id="admData"></span>
+      </div>
+      <div class="adm-stats">
+        <div class="adm-stat-card">
+          <i class="fa fa-users adm-stat-icon" aria-hidden="true"></i>
+          <div class="adm-stat-num">128</div>
+          <div class="adm-stat-label">Leitores cadastrados</div>
+        </div>
+        <div class="adm-stat-card">
+          <i class="fa fa-envelope adm-stat-icon" aria-hidden="true"></i>
+          <div class="adm-stat-num">847</div>
+          <div class="adm-stat-label">Inscritos na newsletter</div>
+        </div>
+        <div class="adm-stat-card">
+          <i class="fa fa-file-alt adm-stat-icon" aria-hidden="true"></i>
+          <div class="adm-stat-num">7</div>
+          <div class="adm-stat-label">Posts publicados</div>
+        </div>
+        <div class="adm-stat-card">
+          <i class="fa fa-book adm-stat-icon" aria-hidden="true"></i>
+          <div class="adm-stat-num">11</div>
+          <div class="adm-stat-label">Livros no catálogo</div>
+        </div>
+      </div>
+      <div class="adm-atalhos">
+        <h3 class="adm-secao-titulo">Ações Rápidas</h3>
+        <div class="adm-atalhos-grid">
+          <button class="adm-atalho" onclick="irPara('posts')">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span>Novo Post</span>
+          </button>
+          <button class="adm-atalho" onclick="irPara('livros')">
+            <i class="fa fa-book-open" aria-hidden="true"></i>
+            <span>Novo Livro</span>
+          </button>
+          <button class="adm-atalho" onclick="irPara('mensagens')">
+            <i class="fa fa-envelope-open" aria-hidden="true"></i>
+            <span>Ver Mensagens</span>
+          </button>
+          <button class="adm-atalho" onclick="irPara('leitores')">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            <span>Ver Leitores</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- POSTS DO BLOG -->
+    <section class="adm-sec" id="secPosts" hidden>
+      <div class="adm-header">
+        <h2 class="adm-titulo">Posts do Blog</h2>
+        <button class="btn btn-primario" onclick="abrirEditorPost()" style="font-size:.85rem;padding:.6rem 1.25rem;">
+          <i class="fa fa-plus" aria-hidden="true"></i> Novo Post
+        </button>
+      </div>
+
+      <!-- Editor de post -->
+      <div class="adm-editor" id="editorPost" style="display:none;">
+        <div class="adm-editor-header">
+          <h3>Novo Post</h3>
+          <button class="btn btn-ghost" onclick="fecharEditor('editorPost')" style="font-size:.82rem;">Cancelar</button>
+        </div>
+        <div class="adm-form">
+          <div class="fg"><label class="flabel">Título do Post</label><input type="text" class="finput" id="post-titulo-novo" placeholder="Título..." /></div>
+          <div class="fg-2">
+            <div class="fg"><label class="flabel">Categoria</label>
+              <select class="finput fselect" id="post-cat-nova">
+                <option>Bastidores</option><option>Reflexão</option><option>Do Escritor</option><option>Sobre os Livros</option>
+              </select>
+            </div>
+            <div class="fg"><label class="flabel">Tempo de leitura (min)</label><input type="number" class="finput" id="post-min-novo" value="5" min="1" /></div>
+          </div>
+          <div class="fg"><label class="flabel">Resumo (para a listagem)</label><textarea class="finput ftextarea" id="post-resumo-novo" rows="3" placeholder="Breve resumo do post..."></textarea></div>
+          <div class="fg"><label class="flabel">Conteúdo completo</label><textarea class="finput ftextarea" id="post-conteudo-novo" rows="12" placeholder="Escreva o conteúdo do post em HTML ou texto simples..."></textarea></div>
+          <div class="fg"><label class="flabel">Imagem de capa (URL ou caminho)</label><input type="text" class="finput" id="post-img-nova" placeholder="../img/..." /></div>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <button class="btn btn-primario" onclick="salvarPost()"><i class="fa fa-save" aria-hidden="true"></i> Publicar Post</button>
+            <button class="btn btn-ghost" onclick="salvarPost(true)"><i class="fa fa-clock" aria-hidden="true"></i> Salvar Rascunho</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lista de posts -->
+      <div class="adm-lista">
+        <div class="adm-lista-item">
+          <div class="adm-lista-info">
+            <span class="adm-lista-cat">Bastidores</span>
+            <h4 class="adm-lista-titulo">Por trás da serpente e da maçã</h4>
+            <span class="adm-lista-meta">Abril 2025 · 8 min · <span style="color:var(--ouro)">Publicado</span></span>
+          </div>
+          <div class="adm-lista-acoes">
+            <a href="../blog/post-01.html" target="_blank" class="btn btn-ghost" style="font-size:.78rem;padding:.4rem .8rem;">Ver</a>
+            <button class="btn btn-secundario" style="font-size:.78rem;padding:.4rem .8rem;">Editar</button>
+          </div>
+        </div>
+        <div class="adm-lista-item">
+          <div class="adm-lista-info">
+            <span class="adm-lista-cat">Reflexão</span>
+            <h4 class="adm-lista-titulo">O peso do silêncio entre duas pessoas que se amaram</h4>
+            <span class="adm-lista-meta">Março 2025 · 5 min · <span style="color:var(--ouro)">Publicado</span></span>
+          </div>
+          <div class="adm-lista-acoes">
+            <a href="../blog/post-02.html" target="_blank" class="btn btn-ghost" style="font-size:.78rem;padding:.4rem .8rem;">Ver</a>
+            <button class="btn btn-secundario" style="font-size:.78rem;padding:.4rem .8rem;">Editar</button>
+          </div>
+        </div>
+        <!-- Mais posts seriam carregados dinamicamente -->
+      </div>
+    </section>
+
+    <!-- LIVROS -->
+    <section class="adm-sec" id="secLivros" hidden>
+      <div class="adm-header">
+        <h2 class="adm-titulo">Catálogo de Livros</h2>
+        <button class="btn btn-primario" onclick="abrirEditorLivro()" style="font-size:.85rem;padding:.6rem 1.25rem;">
+          <i class="fa fa-plus" aria-hidden="true"></i> Novo Livro
+        </button>
+      </div>
+
+      <!-- Editor de livro -->
+      <div class="adm-editor" id="editorLivro" style="display:none;">
+        <div class="adm-editor-header">
+          <h3>Novo Livro</h3>
+          <button class="btn btn-ghost" onclick="fecharEditor('editorLivro')" style="font-size:.82rem;">Cancelar</button>
+        </div>
+        <div class="adm-form">
+          <div class="fg-2">
+            <div class="fg"><label class="flabel">Título</label><input type="text" class="finput" placeholder="Título do livro..." /></div>
+            <div class="fg"><label class="flabel">Subtítulo</label><input type="text" class="finput" placeholder="Tagline..." /></div>
+          </div>
+          <div class="fg-2">
+            <div class="fg"><label class="flabel">Gênero</label>
+              <select class="finput fselect">
+                <option>Thriller Psicológico</option><option>Romance</option><option>Drama</option>
+                <option>Horror</option><option>Distopia</option><option>Poesia</option><option>Auto-Ajuda</option>
+              </select>
+            </div>
+            <div class="fg"><label class="flabel">Formato disponível</label>
+              <select class="finput fselect">
+                <option>e-book e Físico</option><option>Apenas e-book</option><option>Apenas Físico</option>
+              </select>
+            </div>
+          </div>
+          <div class="fg"><label class="flabel">Sinopse</label><textarea class="finput ftextarea" rows="4" placeholder="Sinopse do livro..."></textarea></div>
+          <div class="fg-2">
+            <div class="fg"><label class="flabel">Link Amazon</label><input type="url" class="finput" placeholder="https://amazon.com.br/dp/..." /></div>
+            <div class="fg"><label class="flabel">Capa (caminho da imagem)</label><input type="text" class="finput" placeholder="img/nome-do-livro.jpg" /></div>
+          </div>
+          <button class="btn btn-primario" onclick="salvarLivro()"><i class="fa fa-save" aria-hidden="true"></i> Adicionar ao Catálogo</button>
+        </div>
+      </div>
+
+      <div class="adm-lista adm-livros-lista">
+        <!-- Lista simplificada dos 11 livros -->
+        <div class="adm-lista-item">
+          <div class="adm-lista-info">
+            <span class="adm-lista-cat">Thriller</span>
+            <h4 class="adm-lista-titulo">O Jogo das Máscaras</h4>
+            <span class="adm-lista-meta"><span style="color:var(--ouro)">Ativo · Amazon</span></span>
+          </div>
+          <div class="adm-lista-acoes">
+            <a href="../livros/jogo-das-mascaras.html" target="_blank" class="btn btn-ghost" style="font-size:.78rem;padding:.4rem .8rem;">Ver</a>
+            <button class="btn btn-secundario" style="font-size:.78rem;padding:.4rem .8rem;">Editar</button>
+          </div>
+        </div>
+        <div class="adm-lista-item">
+          <div class="adm-lista-info">
+            <span class="adm-lista-cat">Auto-Ajuda</span>
+            <h4 class="adm-lista-titulo">A Sétima Lei</h4>
+            <span class="adm-lista-meta"><span style="color:var(--ouro)">Ativo · Amazon</span></span>
+          </div>
+          <div class="adm-lista-acoes">
+            <a href="../livros/a-setima-lei.html" target="_blank" class="btn btn-ghost" style="font-size:.78rem;padding:.4rem .8rem;">Ver</a>
+            <button class="btn btn-secundario" style="font-size:.78rem;padding:.4rem .8rem;">Editar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEITORES -->
+    <section class="adm-sec" id="secLeitores" hidden>
+      <div class="adm-header"><h2 class="adm-titulo">Leitores Cadastrados</h2></div>
+      <div class="adm-filtros">
+        <input type="search" class="finput" placeholder="Buscar por nome ou e-mail..." style="max-width:320px;" aria-label="Buscar leitor" />
+      </div>
+      <div class="adm-lista">
+        <div class="adm-lista-header">
+          <span>Nome</span><span>E-mail</span><span>Cadastro</span><span>Newsletter</span>
+        </div>
+        <div class="adm-lista-item">
+          <div class="adm-lista-info"><h4 class="adm-lista-titulo">Ana Clara Mendes</h4><span class="adm-lista-meta">ana.clara@email.com</span></div>
+          <span class="adm-lista-meta">Jan 2025</span>
+          <span style="color:var(--ouro);font-family:var(--fonte-ui);font-size:.8rem;">✓ Inscrita</span>
+        </div>
+        <div class="adm-lista-item">
+          <div class="adm-lista-info"><h4 class="adm-lista-titulo">Pedro Alves</h4><span class="adm-lista-meta">pedro.a@email.com</span></div>
+          <span class="adm-lista-meta">Fev 2025</span>
+          <span style="color:var(--texto-3);font-family:var(--fonte-ui);font-size:.8rem;">— Não inscrito</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENSAGENS -->
+    <section class="adm-sec" id="secMensagens" hidden>
+      <div class="adm-header"><h2 class="adm-titulo">Mensagens</h2></div>
+      <div class="adm-lista">
+        <div class="adm-lista-item adm-lista-item-nao-lido">
+          <div class="adm-lista-info">
+            <h4 class="adm-lista-titulo">Mariana Costa <span class="adm-novo-badge">Nova</span></h4>
+            <span class="adm-lista-meta">mariana@email.com · Resenha / Imprensa</span>
+            <p class="adm-msg-preview">Olá Robério! Li O Jogo das Máscaras e fiquei completamente impactada. Escrevo para um blog de literatura...</p>
+          </div>
+          <div class="adm-lista-acoes">
+            <button class="btn btn-primario" style="font-size:.78rem;padding:.4rem .8rem;" onclick="mostrarToast('Funcionalidade de resposta — integrar com serviço de e-mail.','info')">Responder</button>
+          </div>
+        </div>
+        <div class="adm-lista-item adm-lista-item-nao-lido">
+          <div class="adm-lista-info">
+            <h4 class="adm-lista-titulo">João Ferreira <span class="adm-novo-badge">Nova</span></h4>
+            <span class="adm-lista-meta">joao.f@email.com · Parceria / Colaboração</span>
+            <p class="adm-msg-preview">Boa tarde! Tenho um podcast sobre literatura brasileira independente e gostaria de convidá-lo...</p>
+          </div>
+          <div class="adm-lista-acoes">
+            <button class="btn btn-primario" style="font-size:.78rem;padding:.4rem .8rem;" onclick="mostrarToast('Funcionalidade de resposta — integrar com serviço de e-mail.','info')">Responder</button>
+          </div>
+        </div>
+        <div class="adm-lista-item">
+          <div class="adm-lista-info">
+            <h4 class="adm-lista-titulo">Carlos Lima</h4>
+            <span class="adm-lista-meta">carlos.lima@email.com · Mensagem de leitor</span>
+            <p class="adm-msg-preview">Terminei Lúmen ontem e não consegui dormir. Hannah ficou na minha cabeça...</p>
+          </div>
+          <div class="adm-lista-acoes">
+            <button class="btn btn-ghost" style="font-size:.78rem;padding:.4rem .8rem;" onclick="mostrarToast('Funcionalidade de resposta — integrar com serviço de e-mail.','info')">Responder</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="toast-wrap" role="status" aria-live="polite" aria-atomic="true"></div>
+<script src="../js/global.js"></script>
+<script>
+// ── ADMIN AUTH ───────────────────────────────────────────────────
+const ADMIN_PASS = 'admin2025'; // TODO: trocar por auth real no backend
+
+function toggleSenha() {
+  const input = document.getElementById('adm-senha');
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+document.getElementById('formAdminLogin').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const email = document.getElementById('adm-email').value;
+  const senha = document.getElementById('adm-senha').value;
+  if (senha === ADMIN_PASS) {
+    sessionStorage.setItem('rd_admin', '1');
+    entrarAdmin();
+  } else {
+    mostrarToast('Senha incorreta.', 'erro');
+    Sons.tocar('erro');
+  }
+});
+
+function entrarAdmin() {
+  document.getElementById('adminLogin').style.display = 'none';
+  document.getElementById('adminWrap').style.display = 'flex';
+  document.getElementById('admData').textContent = new Date().toLocaleDateString('pt-BR', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+  mostrarToast('Bem-vindo ao painel, Robério.', 'sucesso');
+}
+
+function adminLogout() {
+  sessionStorage.removeItem('rd_admin');
+  document.getElementById('adminWrap').style.display = 'none';
+  document.getElementById('adminLogin').style.display = '';
+  mostrarToast('Sessão encerrada.', 'info');
+}
+
+// ── NAVEGAÇÃO ─────────────────────────────────────────────────────
+function irPara(sec) {
+  document.querySelectorAll('.adm-nav-btn').forEach(b => { b.classList.remove('ativo'); b.setAttribute('aria-selected','false'); });
+  document.querySelectorAll('.adm-sec').forEach(s => s.hidden = true);
+  const btn = document.querySelector(`.adm-nav-btn[data-sec="${sec}"]`);
+  if (btn) { btn.classList.add('ativo'); btn.setAttribute('aria-selected','true'); }
+  const secEl = document.getElementById('sec' + sec.charAt(0).toUpperCase() + sec.slice(1));
+  if (secEl) secEl.hidden = false;
+  if(window.Sons) Sons.tocar('clique');
+}
+
+document.querySelectorAll('.adm-nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => irPara(btn.dataset.sec));
+});
+
+// ── EDITORES ──────────────────────────────────────────────────────
+function abrirEditorPost() { document.getElementById('editorPost').style.display = ''; document.getElementById('editorPost').scrollIntoView({behavior:'smooth'}); }
+function abrirEditorLivro() { document.getElementById('editorLivro').style.display = ''; document.getElementById('editorLivro').scrollIntoView({behavior:'smooth'}); }
+function fecharEditor(id) { document.getElementById(id).style.display = 'none'; }
+
+function salvarPost(rascunho = false) {
+  const titulo = document.getElementById('post-titulo-novo').value;
+  if (!titulo) { mostrarToast('Insira o título do post.', 'aviso'); return; }
+  mostrarToast(rascunho ? 'Rascunho salvo!' : `Post "${titulo}" publicado! ✓`, 'sucesso');
+  Sons.tocar('sucesso');
+  fecharEditor('editorPost');
+}
+
+function salvarLivro() {
+  mostrarToast('Livro adicionado ao catálogo! ✓', 'sucesso');
+  Sons.tocar('sucesso');
+  fecharEditor('editorLivro');
+}
+
+// Verificar sessão
+window.addEventListener('DOMContentLoaded', () => {
+  if (sessionStorage.getItem('rd_admin')) entrarAdmin();
+  // Demo: aceitar clique direto (remover em produção)
+});
+
+window.mostrarToast = window.mostrarToast || function(msg, tipo, dur) {
+  const wrap = document.querySelector('.toast-wrap');
+  if (!wrap) return;
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  wrap.appendChild(t);
+  setTimeout(() => { t.classList.add('saindo'); setTimeout(() => t.remove(), 400); }, dur || 3500);
+};
+</script>
+</body>
+</html>

@@ -3,481 +3,423 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Biblioteca completa de Robério Diógenes — thrillers psicológicos, romances, horror, distopia e auto-ajuda cristã. Conheça todos os livros e adquira o seu." />
-  <meta name="author" content="Robério Diógenes" />
+  <meta name="description" content="Catálogo completo dos livros de Robério Diógenes — Thrillers Psicológicos, Romance, Drama, Horror e Auto-Ajuda. Adquira em e-book ou físico." />
   <title>Biblioteca | Robério Diógenes</title>
   <link rel="icon" type="image/png" href="img/favicon.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/livros.css" />
-
-
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-anel" id="cursorAnel"></div>
-  <a href="#" class="topo-btn" id="topoBtn" aria-label="Voltar ao topo">↑</a>
+<a href="#conteudo-principal" class="pular-nav">Pular para o conteúdo</a>
+<canvas id="canvas-particulas" aria-hidden="true"></canvas>
 
-  <!-- ===== NAVEGAÇÃO ===== -->
-  <nav id="nav">
-    <a href="index.html" class="nav-logo">
-      Robério Diógenes
-      <span>Escritor Independente</span>
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="index.html">Início</a></li>
-      <li><a href="livros.html" class="ativa">Biblioteca</a></li>
-      <li><a href="autor.html">O Autor</a></li>
-      <li><a href="blog.html">Diário</a></li>
-      <li><a href="contato.html">Contato</a></li>
-    </ul>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <!-- ===== HERO DA BIBLIOTECA ===== -->
-  <header class="biblioteca-hero">
-    <div class="bh-bg"></div>
-    <div class="bh-prateleira" aria-hidden="true">
-      <img src="img/a-setima-lei.jpg" class="bh-capa-bg" alt="" />
-      <img src="img/lumen.jpg" class="bh-capa-bg" alt="" />
-      <img src="img/jogo-das-mascaras.jpg" class="bh-capa-bg" alt="" />
-      <img src="img/a-marca-da-besta-capa.jpg" class="bh-capa-bg" alt="" />
-      <img src="img/o-abismo-das-almas-vol-1.jpg" class="bh-capa-bg" alt="" />
-      <img src="img/cartas-do-passado.jpg" class="bh-capa-bg" alt="" />
-      <img src="img/rosas-e-espinhos.jpg" class="bh-capa-bg" alt="" />
-      <img src="img/caminhos-de-outono.jpg" class="bh-capa-bg" alt="" />
-      <img src="img/genesis.jpg" class="bh-capa-bg" alt="" />
+<nav id="nav" role="navigation" aria-label="Navegação principal">
+  <a href="index.html" class="nav-logo">Robério Diógenes<span>Escritor Independente</span></a>
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="index.html">Início</a></li>
+    <li><a href="livros.html" class="ativa" aria-current="page">Biblioteca</a></li>
+    <li><a href="autor.html">O Autor</a></li>
+    <li><a href="blog.html">Diário</a></li>
+    <li><a href="contato.html">Contato</a></li>
+  
+          <!-- Controles de acessibilidade — visíveis no menu mobile -->
+          <li class="mobile-controles" style="display:none;" aria-label="Acessibilidade">
+            <span class="mobile-controles-label">Tema &amp; Fonte</span>
+            <button class="tema-btn" data-tema="claro"     title="Tema claro"    aria-label="Tema claro">☀</button>
+            <button class="tema-btn" data-tema="noturno"   title="Tema noturno"  aria-label="Tema noturno">🌙</button>
+            <button class="tema-btn" data-tema="contraste" title="Alto contraste" aria-label="Alto contraste">◑</button>
+            <button class="fonte-btn fonte-diminuir"       title="Texto menor"   aria-label="Texto menor">A-</button>
+            <button class="fonte-btn fonte-aumentar"       title="Texto maior"   aria-label="Texto maior">A+</button>
+            <button class="tema-btn som-btn"               title="Sons"          aria-label="Sons">♪</button>
+          </li>
+  </ul>
+  <div class="nav-acoes">
+    <div class="busca-nav" role="search"><span class="busca-nav-icone">🔍</span><input type="search" placeholder="Buscar..." aria-label="Buscar no site" /></div>
+    <div class="tema-controles" role="group" aria-label="Tema">
+      <button class="tema-btn ativo" data-tema="claro" title="Claro" aria-label="Tema claro">☀</button>
+      <button class="tema-btn" data-tema="noturno" title="Noturno" aria-label="Tema noturno">🌙</button>
+      <button class="tema-btn" data-tema="contraste" title="Alto contraste" aria-label="Alto contraste">◑</button>
     </div>
-    <div class="bh-gradiente-dir" aria-hidden="true"></div>
-    <div class="bh-gradiente-esq" aria-hidden="true"></div>
-
-    <div class="bh-conteudo">
-      <p class="bh-pretitulo">Robério Diógenes</p>
-      <h1 class="bh-titulo">
-        A<br /><em>Biblioteca</em>
-      </h1>
-      <div class="bh-linha"></div>
-      <p class="bh-subtitulo">Histórias que habitam o limiar entre o que se vê e o que se cala. Escolha o espelho que deseja encarar.</p>
-      <div class="bh-contador">
-        <div class="bh-stat">
-          <span class="bh-stat-num">11</span>
-          <span class="bh-stat-label">Obras</span>
-        </div>
-        <div class="bh-stat">
-          <span class="bh-stat-num">4</span>
-          <span class="bh-stat-label">Gêneros</span>
-        </div>
-        <div class="bh-stat">
-          <span class="bh-stat-num">2</span>
-          <span class="bh-stat-label">Em Breve</span>
-        </div>
-      </div>
+    <div class="fonte-controles" role="group" aria-label="Fonte">
+      <button class="fonte-btn fonte-diminuir" aria-label="Diminuir texto">A-</button>
+      <button class="fonte-btn fonte-aumentar" aria-label="Aumentar texto">A+</button>
     </div>
-  </header>
+    <button class="tema-btn som-btn" title="Sons" aria-label="Sons">♪</button>
+    <a href="leitor/index.html" class="btn btn-secundario" style="padding:0.4rem 0.9rem;font-size:0.8rem;"><i class="fa fa-user" aria-hidden="true"></i> Entrar</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+</nav>
+<a href="#" class="topo-btn" id="topoBtn" aria-label="Voltar ao topo">↑</a>
 
-  <!-- ===== FILTROS ===== -->
-  <div class="filtros-barra" id="filtrosBarra">
-    <div class="filtros-wrap">
-      <div class="filtros-lista">
+<main id="conteudo-principal">
+
+  <!-- HERO -->
+  <header class="cat-hero">
+    <div class="cat-hero-inner">
+      <p class="secao-pretitulo reveal">Obras Publicadas</p>
+      <h1 class="cat-titulo reveal reveal-delay-1">A <em>Biblioteca</em></h1>
+      <p class="cat-subtitulo reveal reveal-delay-2">Histórias que habitam o limiar entre o que se vê e o que se cala.<br />Escolha o espelho que deseja encarar.</p>
+
+      <!-- Filtros por gênero -->
+      <div class="filtros reveal reveal-delay-3" role="group" aria-label="Filtrar por gênero">
         <button class="filtro-btn ativo" data-filtro="todos">Todos</button>
-        <button class="filtro-btn" data-filtro="thriller">Thriller Psicológico</button>
-        <button class="filtro-btn" data-filtro="romance">Romance & Drama</button>
-        <button class="filtro-btn" data-filtro="distopia">Distopia & Horror</button>
-        <button class="filtro-btn" data-filtro="gospel">Gospel & Auto-Ajuda</button>
+        <button class="filtro-btn" data-filtro="thriller">Thriller</button>
+        <button class="filtro-btn" data-filtro="romance">Romance</button>
+        <button class="filtro-btn" data-filtro="drama">Drama</button>
+        <button class="filtro-btn" data-filtro="horror">Horror</button>
+        <button class="filtro-btn" data-filtro="autoajuda">Auto-Ajuda</button>
         <button class="filtro-btn" data-filtro="poesia">Poesia</button>
       </div>
-      <span class="filtros-contagem" id="filtrosContagem">11 obras</span>
     </div>
-  </div>
+    <div class="cat-hero-ornamento" aria-hidden="true">❧</div>
+  </header>
 
-  <!-- ===== PRÓXIMOS LANÇAMENTOS ===== -->
-  <section class="em-breve-section" id="em-breve">
-    <div class="em-breve-wrap">
-      <p class="secao-label reveal">Chegando em breve</p>
-      <h2 class="secao-titulo reveal d1">Próximos <em>Lançamentos</em></h2>
+  <!-- CATÁLOGO -->
+  <section class="secao" id="catalogo" aria-label="Catálogo de livros">
+    <div class="livros-catalogo" id="gradeLivros" role="list">
 
-      <div class="em-breve-grid">
-
-        <!-- A Marca da Besta -->
-        <div class="breve-card reveal d2" data-genero="gospel distopia">
-          <img src="img/a-marca-da-besta-capa.jpg" alt="A Marca da Besta" class="breve-capa" loading="lazy" />
-          <div class="breve-info">
-            <span class="breve-badge">Agosto · 2026</span>
-            <div>
-              <h3 class="breve-titulo">A Marca da Besta</h3>
-              <p class="breve-sub">O décimo quinto algoritmo</p>
-            </div>
-            <p class="breve-sinopse">A marca já está aqui. Está na sua mão. No seu bolso. Na sua mesa de cabeceira. Um livro que desconstrói as teorias conspiratórias e expõe a arquitetura real do controle.</p>
-            <p class="breve-previsao">📅 Previsão: Agosto de 2026 · Gospel / Distopia</p>
+      <!-- 1. O Jogo das Máscaras -->
+      <article class="livro-item reveal" data-genero="thriller" role="listitem">
+        <a href="livros/jogo-das-mascaras.html" class="livro-item-capa-link" tabindex="-1" aria-hidden="true">
+          <div class="livro-item-capa-wrap">
+            <img src="img/jogo-das-mascaras.jpg" alt="Capa do livro O Jogo das Máscaras" class="livro-item-capa" loading="eager" />
+            <div class="livro-item-spine" aria-hidden="true"></div>
+          </div>
+        </a>
+        <div class="livro-item-info">
+          <span class="livro-item-genero">Thriller Psicológico</span>
+          <h2 class="livro-item-titulo"><a href="livros/jogo-das-mascaras.html">O Jogo das Máscaras</a></h2>
+          <p class="livro-item-subtitulo">Toda verdade usa disfarce</p>
+          <p class="livro-item-sinopse">Juliette acreditava que a dor era eterna, até conhecer o Cavaleiro — um homem enigmático que não ofereceu salvação, mas algo ainda mais perigoso: um sentido para sofrer.</p>
+          <div class="livro-item-badges">
+            <span class="badge badge-ferrugem"><i class="fa fa-star" aria-hidden="true"></i> Em destaque</span>
+            <span class="badge badge-ouro">e-book · Físico</span>
+          </div>
+          <div class="livro-item-acoes">
+            <a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener" class="btn btn-primario">
+              <i class="fa-brands fa-amazon" aria-hidden="true"></i> Comprar
+            </a>
+            <a href="livros/jogo-das-mascaras.html" class="btn btn-ghost">Ver mais</a>
           </div>
         </div>
+      </article>
 
-        <!-- O Abismo das Almas -->
-        <div class="breve-card reveal d3" data-genero="distopia">
-          <img src="img/o-abismo-das-almas-vol-1.jpg" alt="O Abismo das Almas" class="breve-capa" loading="lazy" />
-          <div class="breve-info">
-            <span class="breve-badge">Junho · 2026</span>
-            <div>
-              <h3 class="breve-titulo">O Abismo das Almas</h3>
-              <p class="breve-sub">Volume 1 — Cinco histórias distópicas</p>
-            </div>
-            <p class="breve-sinopse">Uma coletânea de cinco histórias onde a humanidade enfrenta os abismos que ela mesma cavou. Distopia que respira perto demais da realidade.</p>
-            <p class="breve-previsao">📅 Previsão: Junho de 2026 · Ficção / Distopia</p>
+      <!-- 2. A Sétima Lei -->
+      <article class="livro-item reveal reveal-delay-1" data-genero="autoajuda" role="listitem">
+        <a href="livros/a-setima-lei.html" class="livro-item-capa-link" tabindex="-1" aria-hidden="true">
+          <div class="livro-item-capa-wrap">
+            <img src="img/a-setima-lei.jpg" alt="Capa do livro A Sétima Lei" class="livro-item-capa" loading="lazy" />
+            <div class="livro-item-spine" aria-hidden="true"></div>
+          </div>
+        </a>
+        <div class="livro-item-info">
+          <span class="livro-item-genero">Auto-Ajuda Cristã</span>
+          <h2 class="livro-item-titulo"><a href="livros/a-setima-lei.html">A Sétima Lei</a></h2>
+          <p class="livro-item-subtitulo">A guerra silenciosa no casamento</p>
+          <p class="livro-item-sinopse">Existe uma lei que ninguém te ensina sobre relacionamentos, mas que todo casal descobre — às vezes tarde demais. Uma reflexão cristã sobre amor, conflito e restauração.</p>
+          <div class="livro-item-badges">
+            <span class="badge badge-ouro">e-book · Físico</span>
+          </div>
+          <div class="livro-item-acoes">
+            <a href="https://www.amazon.com.br/dp/B0GXGZJV1Y" target="_blank" rel="noopener" class="btn btn-primario">
+              <i class="fa-brands fa-amazon" aria-hidden="true"></i> Comprar
+            </a>
+            <a href="livros/a-setima-lei.html" class="btn btn-ghost">Ver mais</a>
           </div>
         </div>
+      </article>
 
+      <!-- 3. Lúmen -->
+      <article class="livro-item reveal reveal-delay-2" data-genero="romance" role="listitem">
+        <a href="livros/lumen.html" class="livro-item-capa-link" tabindex="-1" aria-hidden="true">
+          <div class="livro-item-capa-wrap">
+            <img src="img/lumen.jpg" alt="Capa do livro Lúmen" class="livro-item-capa" loading="lazy" />
+            <div class="livro-item-spine" aria-hidden="true"></div>
+          </div>
+        </a>
+        <div class="livro-item-info">
+          <span class="livro-item-genero">Ficção · Romance</span>
+          <h2 class="livro-item-titulo"><a href="livros/lumen.html">Lúmen</a></h2>
+          <p class="livro-item-subtitulo">A outra metade do céu</p>
+          <p class="livro-item-sinopse">Hannah convive com sonhos que parecem avisos, um labirinto de portas fechadas e um silêncio que sussurra verdades que ela não quer ouvir. Mas nem tudo que parece real… é real.</p>
+          <div class="livro-item-badges">
+            <span class="badge badge-ouro">e-book · Físico</span>
+          </div>
+          <div class="livro-item-acoes">
+            <a href="livros/lumen.html" class="btn btn-secundario">Ver detalhes</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Gênesis -->
+      <article class="livro-item reveal" data-genero="romance" role="listitem">
+        <a href="livros/genesis.html" class="livro-item-capa-link" tabindex="-1" aria-hidden="true">
+          <div class="livro-item-capa-wrap">
+            <img src="img/genesis.jpg" alt="Capa do livro Gênesis" class="livro-item-capa" loading="lazy" />
+            <div class="livro-item-spine" aria-hidden="true"></div>
+          </div>
+        </a>
+        <div class="livro-item-info">
+          <span class="livro-item-genero">Ficção · Romance</span>
+          <h2 class="livro-item-titulo"><a href="livros/genesis.html">Gênesis</a></h2>
+          <p class="livro-item-subtitulo">Um novo começo</p>
+          <p class="livro-item-sinopse">Esta é uma história sobre o fim — mas também sobre começos. Sobre fé, mesmo quando não há sinais. Sobre perder tudo e, ainda assim, encontrar o que realmente importa.</p>
+          <div class="livro-item-badges"><span class="badge badge-ouro">e-book · Físico</span></div>
+          <div class="livro-item-acoes">
+            <a href="livros/genesis.html" class="btn btn-secundario">Ver detalhes</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Rosas & Espinhos -->
+      <article class="livro-item reveal reveal-delay-1" data-genero="drama romance" role="listitem">
+        <a href="livros/rosas-e-espinhos.html" class="livro-item-capa-link" tabindex="-1" aria-hidden="true">
+          <div class="livro-item-capa-wrap">
+            <img src="img/rosas-e-espinhos.jpg" alt="Capa do livro Rosas e Espinhos" class="livro-item-capa" loading="lazy" />
+            <div class="livro-item-spine" aria-hidden="true"></div>
+          </div>
+        </a>
+        <div class="livro-item-info">
+          <span class="livro-item-genero">Drama · Romance</span>
+          <h2 class="livro-item-titulo"><a href="livros/rosas-e-espinhos.html">Rosas &amp; Espinhos</a></h2>
+          <p class="livro-item-subtitulo">O diário secreto de uma alma apaixonada</p>
+          <p class="livro-item-sinopse">Em Campos do Jordão, entre montanhas e névoa, Camille vive uma vida que parece perfeita por fora. Até que uma carta antiga perturba a paz cuidadosamente construída.</p>
+          <div class="livro-item-badges">
+            <span class="badge badge-ouro">e-book</span>
+          </div>
+          <div class="livro-item-acoes">
+            <a href="https://www.amazon.com.br/Rosas-espinhos-onde-voc%C3%AA-sente-ebook/dp/B0DMHSDJPX/" target="_blank" rel="noopener" class="btn btn-primario">
+              <i class="fa-brands fa-amazon" aria-hidden="true"></i> Comprar
+            </a>
+            <a href="livros/rosas-e-espinhos.html" class="btn btn-ghost">Ver mais</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. Cartas do Passado -->
+      <article class="livro-item reveal reveal-delay-2" data-genero="romance drama" role="listitem">
+        <a href="livros/cartas-do-passado.html" class="livro-item-capa-link" tabindex="-1" aria-hidden="true">
+          <div class="livro-item-capa-wrap">
+            <img src="img/cartas-do-passado.jpg" alt="Capa do livro Cartas do Passado" class="livro-item-capa" loading="lazy" />
+            <div class="livro-item-spine" aria-hidden="true"></div>
+          </div>
+        </a>
+        <div class="livro-item-info">
+          <span class="livro-item-genero">Ficção · Romance</span>
+          <h2 class="livro-item-titulo"><a href="livros/cartas-do-passado.html">Cartas do Passado</a></h2>
+          <p class="livro-item-subtitulo">O verdadeiro amor nunca morre</p>
+          <p class="livro-item-sinopse">Lucas, soldado brasileiro, escreve cartas de amor entre bombardeios. Do lado de fora, a guerra. Dentro do papel, tudo o que o mantém vivo: Giulia, o lar, a promessa de voltar.</p>
+          <div class="livro-item-badges"><span class="badge badge-ouro">e-book · Físico</span></div>
+          <div class="livro-item-acoes">
+            <a href="livros/cartas-do-passado.html" class="btn btn-secundario">Ver detalhes</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7. As Marés Secretas -->
+      <article class="livro-item reveal" data-genero="romance drama" role="listitem">
+        <a href="livros/mares-secretas.html" class="livro-item-capa-link" tabindex="-1" aria-hidden="true">
+          <div class="livro-item-capa-wrap">
+            <img src="img/mares-secretas.jpg" alt="Capa do livro As Marés Secretas do Amor" class="livro-item-capa" loading="lazy" />
+            <div class="livro-item-spine" aria-hidden="true"></div>
+          </div>
+        </a>
+        <div class="livro-item-info">
+          <span class="livro-item-genero">Romance · Drama</span>
+          <h2 class="livro-item-titulo"><a href="livros/mares-secretas.html">As Marés Secretas do Amor</a></h2>
+          <p class="livro-item-subtitulo">O mar não devolve tudo que engole</p>
+          <p class="livro-item-sinopse">Entre ondas e silêncios, dois corações descobrem que o amor mais intenso é aquele que não pede permissão para entrar.</p>
+          <div class="livro-item-badges"><span class="badge badge-ouro">e-book · Físico</span></div>
+          <div class="livro-item-acoes">
+            <a href="livros/mares-secretas.html" class="btn btn-secundario">Ver detalhes</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8. Das Coisas que o Amor Faz -->
+      <article class="livro-item reveal reveal-delay-1" data-genero="poesia romance" role="listitem">
+        <a href="livros/das-coisas-que-o-amor-faz.html" class="livro-item-capa-link" tabindex="-1" aria-hidden="true">
+          <div class="livro-item-capa-wrap">
+            <img src="img/coisas-que-o-amor-faz.jpg" alt="Capa do livro Das Coisas que o Amor Faz" class="livro-item-capa" loading="lazy" />
+            <div class="livro-item-spine" aria-hidden="true"></div>
+          </div>
+        </a>
+        <div class="livro-item-info">
+          <span class="livro-item-genero">Poesia · Romance</span>
+          <h2 class="livro-item-titulo"><a href="livros/das-coisas-que-o-amor-faz.html">Das Coisas que o Amor Faz</a></h2>
+          <p class="livro-item-subtitulo">Poesias que sangram e florescem</p>
+          <p class="livro-item-sinopse">Uma coleção de poemas que capturam os extremos do amor: a ternura que cura e a dor que transforma. Para os que já amaram com toda a alma.</p>
+          <div class="livro-item-badges"><span class="badge badge-ouro">e-book · Físico</span></div>
+          <div class="livro-item-acoes">
+            <a href="livros/das-coisas-que-o-amor-faz.html" class="btn btn-secundario">Ver detalhes</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9. O Abismo das Almas -->
+      <article class="livro-item reveal reveal-delay-2" data-genero="horror" role="listitem">
+        <a href="livros/o-abismo-das-almas.html" class="livro-item-capa-link" tabindex="-1" aria-hidden="true">
+          <div class="livro-item-capa-wrap">
+            <img src="img/o-abismo-das-almas-vol-1.jpg" alt="Capa do livro O Abismo das Almas" class="livro-item-capa" loading="lazy" />
+            <div class="livro-item-spine" aria-hidden="true"></div>
+          </div>
+        </a>
+        <div class="livro-item-info">
+          <span class="livro-item-genero">Distopia · Horror</span>
+          <h2 class="livro-item-titulo"><a href="livros/o-abismo-das-almas.html">O Abismo das Almas</a></h2>
+          <p class="livro-item-subtitulo">O horror que mora dentro de nós</p>
+          <p class="livro-item-sinopse">Em um mundo onde as emoções são proibidas, o último homem capaz de sentir precisa escolher entre a sobrevivência e a humanidade. Vol. 1.</p>
+          <div class="livro-item-badges"><span class="badge badge-ferrugem">Série</span><span class="badge badge-ouro">e-book · Físico</span></div>
+          <div class="livro-item-acoes">
+            <a href="livros/o-abismo-das-almas.html" class="btn btn-secundario">Ver detalhes</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10. A Marca da Besta -->
+      <article class="livro-item reveal" data-genero="horror" role="listitem">
+        <a href="livros/a-marca-da-besta.html" class="livro-item-capa-link" tabindex="-1" aria-hidden="true">
+          <div class="livro-item-capa-wrap">
+            <img src="img/a-marca-da-besta-capa.jpg" alt="Capa do livro A Marca da Besta" class="livro-item-capa" loading="lazy" />
+            <div class="livro-item-spine" aria-hidden="true"></div>
+          </div>
+        </a>
+        <div class="livro-item-info">
+          <span class="livro-item-genero">Distopia · Horror</span>
+          <h2 class="livro-item-titulo"><a href="livros/a-marca-da-besta.html">A Marca da Besta</a></h2>
+          <p class="livro-item-subtitulo">Ninguém escapa da marca</p>
+          <p class="livro-item-sinopse">Quando o controle social se torna total, a resistência se torna sagrada. Uma distopia perturbadora sobre fé, identidade e o preço da liberdade.</p>
+          <div class="livro-item-badges"><span class="badge badge-ouro">e-book · Físico</span></div>
+          <div class="livro-item-acoes">
+            <a href="livros/a-marca-da-besta.html" class="btn btn-secundario">Ver detalhes</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11. Caminhos de Outono -->
+      <article class="livro-item reveal reveal-delay-1" data-genero="romance" role="listitem">
+        <a href="livros/caminhos-de-outono.html" class="livro-item-capa-link" tabindex="-1" aria-hidden="true">
+          <div class="livro-item-capa-wrap">
+            <img src="img/caminhos-de-outono.jpg" alt="Capa do livro Caminhos de Outono" class="livro-item-capa" loading="lazy" />
+            <div class="livro-item-spine" aria-hidden="true"></div>
+          </div>
+        </a>
+        <div class="livro-item-info">
+          <span class="livro-item-genero">Romance</span>
+          <h2 class="livro-item-titulo"><a href="livros/caminhos-de-outono.html">Caminhos de Outono</a></h2>
+          <p class="livro-item-subtitulo">O outono que muda tudo</p>
+          <p class="livro-item-sinopse">Algumas estações chegam para transformar. Quando Léa decide recomeçar em uma cidade nova, ela não esperava encontrar mais do que paisagens — mas o outono tem seus próprios planos.</p>
+          <div class="livro-item-badges"><span class="badge badge-ouro">e-book · Físico</span></div>
+          <div class="livro-item-acoes">
+            <a href="livros/caminhos-de-outono.html" class="btn btn-secundario">Ver detalhes</a>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /gradeLivros -->
+
+    <!-- Estado vazio (filtro sem resultado) -->
+    <div class="vazio-msg" id="vazioMsg" aria-live="polite" style="display:none;">
+      <span aria-hidden="true">📚</span>
+      <p>Nenhum livro encontrado nesta categoria.</p>
+    </div>
+
+  </section>
+
+  <!-- CTA AMAZON -->
+  <section class="cta-amazon secao" aria-labelledby="titulo-amazon">
+    <div class="cta-amazon-wrap reveal">
+      <div class="cta-amazon-texto">
+        <h2 id="titulo-amazon">Todos os livros disponíveis na <em>Amazon</em></h2>
+        <p>Adquira em e-book para leitura imediata no Kindle ou app Kindle, ou encomende o físico. Frete grátis para Prime.</p>
+      </div>
+      <a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank" rel="noopener" class="btn btn-primario cta-amazon-btn">
+        <i class="fa-brands fa-amazon" aria-hidden="true"></i> Ver na Amazon
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- RODAPÉ -->
+<footer role="contentinfo">
+  <div class="footer-wrap">
+    <div>
+      <a href="index.html" class="footer-logo">Robério Diógenes</a>
+      <p class="footer-desc">"Escrevo sobre o que nos assombra no silêncio."</p>
+      <div class="footer-social" aria-label="Redes sociais">
+        <a href="https://www.instagram.com/diogenesroberio" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank" rel="noopener" aria-label="Amazon" title="Amazon"><i class="fa-brands fa-amazon" aria-hidden="true"></i></a>
+        <a href="https://wa.me/5585999999999" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a>
       </div>
     </div>
-  </section>
-
-  <!-- Divisor -->
-  <div class="divisor" style="padding: var(--espaco-xl) var(--espaco-xl);" aria-hidden="true">
-    <div class="divisor-linha"></div>
-    <span class="divisor-simbolo">✦</span>
-    <div class="divisor-linha"></div>
-  </div>
-
-  <!-- ===== GRADE DE LIVROS ===== -->
-  <section class="grade-section" id="livros">
-    <div class="grade-wrap">
-      <p class="secao-label reveal">Obras publicadas</p>
-      <h2 class="secao-titulo reveal d1">Cada livro, <em>um espelho</em></h2>
-
-      <div class="livros-grade" id="livrosGrade">
-
-        <!-- 1. A SÉTIMA LEI — wide card -->
-        <article class="livro-card livro-card-wide reveal" data-genero="gospel" style="position:relative;">
-          <div class="livro-capa-wrap">
-            <img src="img/a-setima-lei.jpg" alt="A Sétima Lei" class="livro-capa" loading="lazy" />
-          </div>
-          <div class="wide-info">
-            <p class="wide-genero">Auto-Ajuda Cristã · Nº 1</p>
-            <h3 class="wide-titulo">A Sétima Lei</h3>
-            <p class="wide-sub">A guerra silenciosa no casamento</p>
-            <p class="wide-sinopse">Este livro não veio para te dar um abraço. Ele veio para arrancar as vendas dos seus olhos. Para quem está cansado de versículos usados como algemas, e que busca a verdade nua e crua — mesmo que ela doa.</p>
-            <div class="wide-acoes">
-              <a href="https://www.amazon.com.br/dp/B0GXGZJV1Y" target="_blank" rel="noopener" class="btn btn-primario btn-sm">Kindle & Físico</a>
-              <a href="livros/a-setima-lei.html" class="btn btn-secundario btn-sm">Ver detalhes</a>
-            </div>
-            <div class="livro-disponibilidade" style="margin-top: var(--espaco-sm);">
-              <span class="disp-tag disp-kindle">Kindle</span>
-              <span class="disp-tag disp-encomenda">Sob Encomenda</span>
-            </div>
-          </div>
-          <span class="wide-num" aria-hidden="true">01</span>
-        </article>
-
-        <!-- 2. LÚMEN -->
-        <article class="livro-card reveal d1" data-genero="thriller romance">
-          <div class="livro-capa-wrap">
-            <span class="livro-badge badge-kindle-encomenda">Kindle + Físico</span>
-            <img src="img/lumen.jpg" alt="Lúmen" class="livro-capa" loading="lazy" />
-            <div class="livro-overlay">
-              <span class="livro-overlay-tag">Thriller Psicológico</span>
-              <p class="livro-overlay-sinopse">O que Hannah não imagina é que o fio do destino a levará ao homem mais proibido de sua vida. Um mergulho nos corredores escuros da mente.</p>
-              <div class="livro-overlay-acoes">
-                <a href="livros/lumen.html" class="livro-overlay-btn saiba">Saiba mais</a>
-              </div>
-            </div>
-          </div>
-          <div class="livro-info">
-            <span class="livro-num" aria-hidden="true">02</span>
-            <h3 class="livro-titulo">Lúmen</h3>
-            <span class="livro-sub">A outra metade do céu</span>
-            <p class="livro-genero">Thriller Psicológico</p>
-            <div class="livro-disponibilidade">
-              <span class="disp-tag disp-kindle">Kindle</span>
-              <span class="disp-tag disp-encomenda">Encomenda</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 3. O JOGO DAS MÁSCARAS — wide card -->
-        <article class="livro-card livro-card-wide reveal" data-genero="thriller" style="position:relative;">
-          <div class="livro-capa-wrap">
-            <img src="img/jogo-das-mascaras.jpg" alt="O Jogo das Máscaras" class="livro-capa" loading="lazy" />
-          </div>
-          <div class="wide-info">
-            <p class="wide-genero">Thriller Psicológico · Nº 3</p>
-            <h3 class="wide-titulo">O Jogo das Máscaras</h3>
-            <p class="wide-sub">Toda verdade usa disfarce</p>
-            <p class="wide-sinopse">Entre cartas secretas, jogos psicológicos e correntes invisíveis, Juliette descobre que não é apenas prisioneira do Cavaleiro… mas também de si mesma. Uma história onde cada máscara esconde uma verdade que pode destruí-la.</p>
-            <div class="wide-acoes">
-              <a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener" class="btn btn-primario btn-sm">Comprar no Kindle</a>
-              <a href="livros/jogo-das-mascaras.html" class="btn btn-secundario btn-sm">Ver detalhes</a>
-            </div>
-            <div class="livro-disponibilidade" style="margin-top: var(--espaco-sm);">
-              <span class="disp-tag disp-kindle">Kindle</span>
-              <span class="disp-tag disp-encomenda">Sob Encomenda</span>
-            </div>
-          </div>
-          <span class="wide-num" aria-hidden="true">03</span>
-        </article>
-
-        <!-- 4. CARTAS DO PASSADO -->
-        <article class="livro-card reveal d2" data-genero="romance">
-          <div class="livro-capa-wrap">
-            <span class="livro-badge badge-encomenda">Sob Encomenda</span>
-            <img src="img/cartas-do-passado.jpg" alt="Cartas do Passado" class="livro-capa" loading="lazy" />
-            <div class="livro-overlay">
-              <span class="livro-overlay-tag">Ficção Romântica</span>
-              <p class="livro-overlay-sinopse">Em cada carta, um refúgio. Em cada frase, um pedaço de si. Cada linha carrega uma promessa silenciosa de retorno.</p>
-              <div class="livro-overlay-acoes">
-                <a href="livros/cartas-do-passado.html" class="livro-overlay-btn saiba">Saiba mais</a>
-              </div>
-            </div>
-          </div>
-          <div class="livro-info">
-            <span class="livro-num" aria-hidden="true">06</span>
-            <h3 class="livro-titulo">Cartas do Passado</h3>
-            <span class="livro-sub">O verdadeiro amor nunca morre</span>
-            <p class="livro-genero">Ficção / Romance</p>
-            <div class="livro-disponibilidade">
-              <span class="disp-tag disp-encomenda">Sob Encomenda</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 5. ROSAS E ESPINHOS -->
-        <article class="livro-card reveal d3" data-genero="romance">
-          <div class="livro-capa-wrap">
-            <span class="livro-badge badge-kindle-encomenda">Kindle + Físico</span>
-            <img src="img/rosas-e-espinhos.jpg" alt="Rosas & Espinhos" class="livro-capa" loading="lazy" />
-            <div class="livro-overlay">
-              <span class="livro-overlay-tag">Drama / Romance</span>
-              <p class="livro-overlay-sinopse">Camille e Laura — irmãs unidas pelo sangue, separadas por segredos profundos. Uma teia de paixões proibidas e reviravoltas inesperadas.</p>
-              <div class="livro-overlay-acoes">
-                <a href="https://www.amazon.com.br/Rosas-espinhos-onde-voc%C3%AA-sente-ebook/dp/B0DMHSDJPX/" target="_blank" rel="noopener" class="livro-overlay-btn comprar">Kindle</a>
-                <a href="livros/rosas-e-espinhos.html" class="livro-overlay-btn saiba">Detalhes</a>
-              </div>
-            </div>
-          </div>
-          <div class="livro-info">
-            <span class="livro-num" aria-hidden="true">07</span>
-            <h3 class="livro-titulo">Rosas & Espinhos</h3>
-            <span class="livro-sub">O diário secreto de uma alma apaixonada</span>
-            <p class="livro-genero">Drama / Romance</p>
-            <div class="livro-disponibilidade">
-              <span class="disp-tag disp-kindle">Kindle</span>
-              <span class="disp-tag disp-encomenda">Encomenda</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 6. CAMINHOS DE OUTONO -->
-        <article class="livro-card reveal d1" data-genero="romance gospel">
-          <div class="livro-capa-wrap">
-            <span class="livro-badge badge-kindle">Kindle</span>
-            <img src="img/caminhos-de-outono.jpg" alt="Caminhos de Outono" class="livro-capa" loading="lazy" />
-            <div class="livro-overlay">
-              <span class="livro-overlay-tag">Drama Espiritual</span>
-              <p class="livro-overlay-sinopse">Clara e Padre Miguel descobrem que a vida se renova em ciclos — onde a morte de velhos conceitos dá lugar a um novo florescer.</p>
-              <div class="livro-overlay-acoes">
-                <a href="livros/caminhos-de-outono.html" class="livro-overlay-btn saiba">Saiba mais</a>
-              </div>
-            </div>
-          </div>
-          <div class="livro-info">
-            <span class="livro-num" aria-hidden="true">08</span>
-            <h3 class="livro-titulo">Caminhos de Outono</h3>
-            <span class="livro-sub">As estações da vida</span>
-            <p class="livro-genero">Drama / Romance</p>
-            <div class="livro-disponibilidade">
-              <span class="disp-tag disp-kindle">Kindle</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 7. DAS COISAS QUE O AMOR FAZ -->
-        <article class="livro-card reveal d2" data-genero="poesia">
-          <div class="livro-capa-wrap">
-            <span class="livro-badge badge-encomenda">Sob Encomenda</span>
-            <img src="img/coisas-que-o-amor-faz.jpg" alt="Das Coisas que o Amor Faz" class="livro-capa" loading="lazy" />
-            <div class="livro-overlay">
-              <span class="livro-overlay-tag">Poesias</span>
-              <p class="livro-overlay-sinopse">Uma pequena anatomia do sentir — cada poema, uma incisão precisa no que o coração tenta esconder.</p>
-              <div class="livro-overlay-acoes">
-                <a href="livros/das-coisas-que-o-amor-faz.html" class="livro-overlay-btn saiba">Saiba mais</a>
-              </div>
-            </div>
-          </div>
-          <div class="livro-info">
-            <span class="livro-num" aria-hidden="true">09</span>
-            <h3 class="livro-titulo">Das Coisas que o Amor Faz</h3>
-            <span class="livro-sub">Pequena anatomia do sentir</span>
-            <p class="livro-genero">Poesias</p>
-            <div class="livro-disponibilidade">
-              <span class="disp-tag disp-encomenda">Sob Encomenda</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 8. AS MARÉS SECRETAS DO AMOR -->
-        <article class="livro-card reveal d3" data-genero="romance">
-          <div class="livro-capa-wrap">
-            <img src="img/mares-secretas.jpg" alt="As Marés Secretas do Amor" class="livro-capa" loading="lazy" />
-            <div class="livro-overlay">
-              <span class="livro-overlay-tag">Romance / Drama</span>
-              <p class="livro-overlay-sinopse">Há amores que chegam como o mar. Um mergulho nas águas onde o amor e a culpa se confundem.</p>
-              <div class="livro-overlay-acoes">
-                <a href="livros/mares-secretas.html" class="livro-overlay-btn saiba">Saiba mais</a>
-              </div>
-            </div>
-          </div>
-          <div class="livro-info">
-            <span class="livro-num" aria-hidden="true">10</span>
-            <h3 class="livro-titulo">As Marés Secretas do Amor</h3>
-            <span class="livro-sub">Nada é tão profundo quanto o que se esconde no coração</span>
-            <p class="livro-genero">Romance / Drama</p>
-            <div class="livro-disponibilidade">
-              <span class="disp-tag disp-encomenda">Sob Encomenda</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- 9. GÊNESIS -->
-        <article class="livro-card reveal d1" data-genero="romance distopia">
-          <div class="livro-capa-wrap">
-            <span class="livro-badge badge-kindle-encomenda">Kindle + Físico</span>
-            <img src="img/genesis.jpg" alt="Gênesis" class="livro-capa" loading="lazy" />
-            <div class="livro-overlay">
-              <span class="livro-overlay-tag">Ficção / Romance</span>
-              <p class="livro-overlay-sinopse">Adam e Ishá — dois personagens cujas vidas foram dilaceradas pela traição — encontram-se num mundo à beira do colapso.</p>
-              <div class="livro-overlay-acoes">
-                <a href="livros/genesis.html" class="livro-overlay-btn saiba">Saiba mais</a>
-              </div>
-            </div>
-          </div>
-          <div class="livro-info">
-            <span class="livro-num" aria-hidden="true">11</span>
-            <h3 class="livro-titulo">Gênesis</h3>
-            <span class="livro-sub">Um novo começo</span>
-            <p class="livro-genero">Ficção / Romance</p>
-            <div class="livro-disponibilidade">
-              <span class="disp-tag disp-kindle">Kindle</span>
-              <span class="disp-tag disp-encomenda">Encomenda</span>
-            </div>
-          </div>
-        </article>
-
-      </div><!-- /livros-grade -->
+    <div>
+      <p class="footer-col-titulo">Navegação</p>
+      <ul class="footer-links">
+        <li><a href="index.html">Início</a></li><li><a href="livros.html">Biblioteca</a></li>
+        <li><a href="autor.html">O Autor</a></li><li><a href="blog.html">Diário</a></li>
+        <li><a href="contato.html">Contato</a></li>
+      </ul>
     </div>
-  </section>
-
-  <!-- ===== CITAÇÃO INTERMEZZO ===== -->
-  <div class="intermezzo">
-    <span class="intermezzo-aspas reveal" aria-hidden="true">"</span>
-    <p class="intermezzo-texto reveal d1">
-      Em suas histórias, o verdadeiro terror muitas vezes não está no que se vê, mas no que se cala.
-    </p>
-    <p class="intermezzo-autor reveal d2">— Sobre Robério Diógenes</p>
-  </div>
-
-  <!-- ===== COMO ADQUIRIR ===== -->
-  <section class="como-section">
-    <div class="como-wrap">
-      <p class="secao-label reveal">Formas de adquirir</p>
-      <h2 class="secao-titulo reveal d1">Como <em>levar um livro</em> para casa</h2>
-<div class="como-grid">
-  <!-- Card Kindle -->
-  <div class="como-card reveal d2">
-    <span class="como-icone"><i class="fa-solid fa-tablet-screen-button"></i></span>
-    <h3 class="como-titulo">Amazon Kindle</h3>
-    <p class="como-desc">Leitura digital imediata. Disponível para qualquer dispositivo com o app Kindle — smartphone, tablet ou e-reader. Receba na hora, leia onde quiser.</p>
-    <a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank" rel="noopener" class="como-link">Ver na Amazon →</a>
-  </div>
-
-  <!-- Card Físico -->
-  <div class="como-card reveal d3">
-    <span class="como-icone"><i class="fa-solid fa-book-open"></i></span>
-    <h3 class="como-titulo">Físico Sob Encomenda</h3>
-    <p class="como-desc">Exemplar impresso, enviado diretamente para você. Entre em contato pelo e-mail ou formulário para solicitar disponibilidade, valor e prazo de entrega.</p>
-    <a href="mailto:diogenes.escritor@gmail.com" class="como-link">Solicitar por e-mail →</a>
-  </div>
-
-  <!-- Card Newsletter -->
-  <div class="como-card reveal d4">
-    <span class="como-icone"><i class="fa-solid fa-envelope-open-text"></i></span>
-    <h3 class="como-titulo">Fique por Dentro</h3>
-    <p class="como-desc">Dois livros chegando em 2026. Inscreva-se na newsletter para receber atualizações, pré-vendas e capítulos de prévia antes de todo mundo.</p>
-    <a href="#newsletter" class="como-link">Inscrever-se →</a>
-  </div>
-</div>
+    <div>
+      <p class="footer-col-titulo">Gêneros</p>
+      <ul class="footer-links">
+        <li><a href="#" onclick="filtrar('thriller');return false;">Thriller</a></li>
+        <li><a href="#" onclick="filtrar('romance');return false;">Romance</a></li>
+        <li><a href="#" onclick="filtrar('horror');return false;">Horror</a></li>
+        <li><a href="#" onclick="filtrar('poesia');return false;">Poesia</a></li>
+      </ul>
     </div>
-  </section>
-
-  <!-- ===== NEWSLETTER ===== -->
-  <section class="newsletter" id="newsletter">
-    <div class="newsletter-wrap reveal">
-      <div class="newsletter-icone" aria-hidden="true">✉</div>
-      <h2 class="newsletter-titulo">Nunca perca um <em>lançamento</em></h2>
-      <p class="newsletter-desc">Novos livros, capítulos exclusivos, pré-vendas e bastidores da criação. Receba tudo antes de todo mundo — sem spam, apenas o que importa.</p>
-      <form class="newsletter-form" onsubmit="inscricao(event)">
-        <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail..." required aria-label="E-mail" />
-        <button type="submit" class="btn btn-primario">Inscrever-se</button>
+    <div>
+      <p class="footer-col-titulo">Newsletter</p>
+      <form onsubmit="submeterNewsletter(event)" style="display:flex;flex-direction:column;gap:0.5rem;margin-top:0.75rem;" aria-label="Newsletter">
+        <input type="email" class="finput" placeholder="seu@email.com" required aria-label="E-mail" style="font-size:0.85rem;padding:0.5rem 0.75rem;" />
+        <button type="submit" class="btn btn-primario" style="padding:0.5rem;font-size:0.8rem;">Inscrever-se</button>
       </form>
-      <p class="newsletter-aviso">Sem spam. Cancele quando quiser.</p>
     </div>
-  </section>
-
-  <!-- ===== RODAPÉ ===== -->
-  <footer>
-    <div class="footer-wrap">
-
-      <div>
-  <a href="index.html" class="footer-logo">Robério Diógenes</a>
-  <p class="footer-desc">"Escrevo sobre o que nos assombra no silêncio, sobre os abismos que escondemos atrás das telas e das convenções sociais."</p>
-  <div class="footer-social">
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/diogenesroberio" target="_blank" rel="noopener" aria-label="Instagram">
-      <i class="fa-brands fa-instagram"></i>
-    </a>
-    
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/rob%C3%A9rio-di%C3%B3genes-47977b210/" target="_blank" rel="noopener" aria-label="LinkedIn">
-      <i class="fa-brands fa-linkedin-in"></i>
-    </a>
-    
-    <!-- Amazon -->
-    <a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank" rel="noopener" aria-label="Amazon">
-      <i class="fa-brands fa-amazon"></i>
-    </a>
   </div>
-</div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Robério Diógenes. Todos os direitos reservados.</p>
+    <p class="footer-copy">Cascavel, Ceará</p>
+  </div>
+</footer>
 
-      <div>
-        <p class="footer-col-titulo">Navegação</p>
-        <ul class="footer-links">
-          <li><a href="index.html">Início</a></li>
-          <li><a href="livros.html">Biblioteca</a></li>
-          <li><a href="autor.html">O Autor</a></li>
-          <li><a href="blog.html">Diário</a></li>
-          <li><a href="contato.html">Contato</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer-col-titulo">Livros Disponíveis</p>
-        <ul class="footer-links">
-          <li><a href="https://www.amazon.com.br/dp/B0GXGZJV1Y" target="_blank" rel="noopener">A Sétima Lei</a></li>
-          <li><a href="https://www.amazon.com.br/jogo-das-m%C3%A1scaras-verdade-disfarce-ebook/dp/B0FTTFPWXB" target="_blank" rel="noopener">O Jogo das Máscaras</a></li>
-          <li><a href="https://www.amazon.com.br/Rosas-espinhos-onde-voc%C3%AA-sente-ebook/dp/B0DMHSDJPX/" target="_blank" rel="noopener">Rosas & Espinhos</a></li>
-          <li><a href="https://www.amazon.com.br/stores/author/B0DJCQMG7C/about" target="_blank" rel="noopener">Ver todos na Amazon →</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2025 Robério Diógenes. Todos os direitos reservados.</p>
-      <p class="footer-copy">Feito com tinta e silêncio · Cascavel, Ceará</p>
-    </div>
-  </footer>
+<div class="toast-wrap" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- ===== JAVASCRIPT ===== -->
-  <script src="js/script-livros.js"></script>
+<script src="js/global.js"></script>
+<script>
+// Filtro de gêneros
+function filtrar(genero) {
+  const btnAtivo = document.querySelector(`.filtro-btn[data-filtro="${genero}"]`);
+  if (btnAtivo) {
+    document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('ativo'));
+    btnAtivo.classList.add('ativo');
+  }
+  const items = document.querySelectorAll('.livro-item');
+  let visiveis = 0;
+  items.forEach(item => {
+    const gen = item.dataset.genero || '';
+    const mostrar = genero === 'todos' || gen.includes(genero);
+    item.style.display = mostrar ? '' : 'none';
+    if (mostrar) visiveis++;
+  });
+  const vazio = document.getElementById('vazioMsg');
+  if (vazio) vazio.style.display = visiveis === 0 ? 'flex' : 'none';
+  if (window.Sons) Sons.tocar('clique');
+}
+
+document.querySelectorAll('.filtro-btn').forEach(btn => {
+  btn.addEventListener('click', () => filtrar(btn.dataset.filtro));
+});
+
+window.submeterNewsletter = function(e) {
+  e.preventDefault();
+  const input = e.target.querySelector('input[type="email"]');
+  mostrarToast('Inscrição realizada! 📖', 'sucesso');
+  if (input) input.value = '';
+};
+</script>
 </body>
 </html>
